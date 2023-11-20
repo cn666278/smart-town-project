@@ -1,4 +1,4 @@
-# Team 2 - Smart Towns
+# Team 3 - Smart Towns
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://git.cardiff.ac.uk/c23091223/team-2-smart-towns.git
+git remote add origin https://git.cardiff.ac.uk/c23091223/team-3-smart-towns.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://git.cardiff.ac.uk/c23091223/team-2-smart-towns/-/settings/integrations)
+- [ ] [Set up project integrations](https://git.cardiff.ac.uk/c23091223/team-3-smart-towns/-/settings/integrations)
 
 ## Collaborate with your team
 
