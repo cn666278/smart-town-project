@@ -1,4 +1,4 @@
-# Team 3 - Smart Towns
+# Team 2 - Smart Towns
 
 
 
