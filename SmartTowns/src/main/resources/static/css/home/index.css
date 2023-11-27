@@ -151,3 +151,125 @@ body {
 .item {
     margin-top: 15px;
 }
+
+/* hd */
+/* public style */
+.hd {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+}
+
+.hd h3 {
+    font-weight: 400;
+    font-size: 21px;
+}
+
+.hd .more {
+    padding-right: 20px;
+    background: url(../images/more.png) no-repeat right center;
+    font-size: 14px;
+    color: #999;
+}
+
+/* /* items  */
+.bd ul {
+    /* bd - [public] */
+    display: flex;
+    /* flex box change line */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bd li {
+    margin-bottom: 14px;
+    width: 228px;
+    height: 271px;
+    background-color: pink;
+}
+
+.bd li .img {
+    height: 156px;
+}
+
+.bd li .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.bd li .text {
+    padding: 20px;
+    height: 115px;
+    background-color: #fff;
+}
+
+.bd li .text h4 {
+    margin-bottom: 13px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.bd li .text p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+}
+
+.bd li .text p span {
+    color: #fa6400;
+}
+
+.bd li .text p i {
+    font-style: normal;
+}
+
+/* Newest area*/
+.hd ul {
+    display: flex;
+}
+
+.hd li {
+    margin-right: 60px;
+    font-size: 16px;
+}
+
+.hd li .active {
+    color: white;
+}
+
+.bd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bd .left {
+    width: 228px;
+    /* background-color: pink; */
+}
+
+.bd .left img{
+    width: 100%;
+    height: 98%;
+}
+
+.bd .right img{
+    width: 100%;
+    height: 100%;
+}
+
+.bd .right {
+    width: 957px;
+    /* background-color: yellow; */
+}
+
+.bd .right .top {
+    margin-bottom: 15px;
+    height: 200px;
+}
+
+.bd .down {
+    width: 1200px;
+}
