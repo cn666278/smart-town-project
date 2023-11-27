@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyAccount Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lightsteelblue;
+        }
+
+        header {
+            background-color: #332;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #443;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>My Account</h1>
+    <p>Welcome, <span id="username">username</span>!</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showModule('trails')">My Trails</a>
+</nav>
+
+<body>
+<!-- content of My Trails module -->
+<div id="trails" class="module">
+    <h2>My Trails</h2>
+</div>
+
+
+<script>
+    function showModule(moduleName) {
+        // Hide all modules
+        document.querySelectorAll('.module').forEach(function(module) {
+            module.style.display = 'none';
+        });
+    }
+</script>
+</body>
