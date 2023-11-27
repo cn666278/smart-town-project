@@ -70,3 +70,42 @@ body {
     color: #666;
     vertical-align: middle;
 }
+
+/* banner */
+.banner {
+    height: 450px;
+    background-color: #0092cb;
+    opacity: 0.9;
+}
+
+.banner .wrapper{
+    display: flex;
+    justify-content: space-between;
+    height: 450px;
+    width: 1200px;
+    background-image: url(../../img/town0.png);
+}
+
+/* left banner */
+.banner .left {
+    padding: 130px 20px;
+    width: 300px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.42);
+    color: #fff;
+}
+
+/* side nav */
+.banner .left a {
+    display: block;
+    height: 46px;
+    background: url(../../img/right.png) no-repeat right center;
+    line-height: 46px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.banner .left a:hover {
+    background-image: url(../../img/right-hover.png);
+    color: #00a4ff;
+}
