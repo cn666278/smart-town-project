@@ -7,3 +7,14 @@
 body {
     background-color: #f3f5f7;
 }
+
+/* header */
+.header {
+    padding-top: 20px;
+    height: 90px;
+    background-color: #fff;
+}
+
+.header .wrapper nav{
+    display: flex;
+}
