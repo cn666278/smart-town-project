@@ -77,10 +77,15 @@
 
 <script>
     function showModule(moduleName) {
-        // Hide all modules
+        // Hides all elements with class="module"
         document.querySelectorAll('.module').forEach(function(module) {
             module.style.display = 'none';
         });
+
+        // Shows the element with id="moduleName"
+        document.getElementById(moduleName).style.display = 'block';
     }
 </script>
+
+
 </body>
