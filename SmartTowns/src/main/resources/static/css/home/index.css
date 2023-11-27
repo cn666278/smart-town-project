@@ -50,5 +50,23 @@ body {
     align-self: center;
     width: 16px;
     height: 16px;
-    background-image: url(../img/search.png);
+    background-image: url(../../img/search.png);
+}
+
+/* user */
+.user {
+    margin-left: 152px;
+    margin-top: 10px;
+}
+
+.user img {
+    margin-right: 7px;
+    /* vertical-align used for inline block center */
+    vertical-align: middle;
+}
+
+.user span {
+    font-size: 16px;
+    color: #666;
+    vertical-align: middle;
 }
