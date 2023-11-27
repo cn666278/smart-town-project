@@ -109,3 +109,45 @@ body {
     background-image: url(../../img/right-hover.png);
     color: #00a4ff;
 }
+
+/* recommend */
+.recommend {
+    display: flex;
+    margin-top: 11px;
+    padding: 0px 20px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(211, 211, 211, 0.5);
+    /* line-height = box height */
+    line-height: 60px;
+}
+
+.recommend h3 {
+    margin-right: 20px;
+    font-size: 18px;
+    color: #00a4ff;
+}
+
+.recommend ul {
+    flex: 1;
+    display: flex;
+}
+
+.recommend ul li a {
+    padding: 0 24px;
+    border-right: 1px solid #e0e0e0;
+    font-size: 18px;
+}
+
+.recommend ul li:last-child a {
+    border-right: none;
+}
+
+.recommend .modify {
+    font-size: 16px;
+    color: #00a4ff;
+}
+
+.item {
+    margin-top: 15px;
+}
