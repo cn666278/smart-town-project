@@ -1,0 +1,9 @@
+/* CSS for homepage */
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #f3f5f7;
+}
