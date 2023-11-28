@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trails Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />=
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #container {
+            position: relative;
+            width: 685px;
+            height: 447px;
+            background: #FFFFFF;
+            margin: 20px auto;
+        }
+
+        #main-rectangle {
+            position: absolute;
+            width: 685px;
+            height: 447px;
+            background: #D9D9D9;
+        }
+
+        #large-rectangle {
+            position: absolute;
+            width: 574px;
+            height: 131px;
+            left: 56px;
+            top: 76px;
+            background: #FFFDFD;
+        }
+
+        .small-rectangle {
+            position: absolute;
+            width: 213px;
+            height: 30px;
+            background: #FFFDFD;
+            border-radius: 18px;
+        }
+
+        #rect1 { left: 56px; top: 237px; }
+        #rect2 { left: 56px; top: 297px; }
+        #rect3 { left: 56px; top: 357px; }
+        #rect4 { left: 331px; top: 237px; }
+        #rect5 { left: 331px; top: 297px; }
+        #rect6 { left: 331px; top: 346px; }
+
+        .checkpoint {
+            position: absolute;
+            font-size: 12px;
+            line-height: 15px;
+            color: #000000;
+        }
+
+        #checkpoint1 { width: 76px; height: 15px; left: 125px; top: 244px; }
+        #checkpoint2 { width: 76px; height: 15px; left: 125px; top: 304px; }
+        #checkpoint3 { width: 76px; height: 15px; left: 125px; top: 364px; }
+        #checkpoint4 { width: 76px; height: 15px; left: 400px; top: 244px; }
+        #checkpoint5 { width: 76px; height: 15px; left: 400px; top: 304px; }
+        #checkpoint6 { width: 76px; height: 15px; left: 400px; top: 353px; }
+
+        #jump-to-map-button {
+            position: absolute;
+            width: 137px;
+            height: 30px;
+            left: 524px;
+            top: 22px;
+            background: #FFFDFD;
+            border-radius: 18px;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+            padding-top: 7px; /* Vertically center text */
+            color: #000000;
+        }
+
+        #map-text {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            left: 307px;
+            top: 134px;
+            font-size: 12px;
+            line-height: 15px;
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+<!-- header-nav -->
+<div class="header">
+    <div class="wrapper">
+        <nav>
+            <link rel="stylesheet" type="text/css" href="../static/css/nav.css">
+            <!-- logo -->
+            <div class="logo">
+                <a href="#">Smart Towns</a>
+            </div>
+            <div class="nav-tab">
+                <a class="active" href="http://localhost:8080/home">Home</a>
+                <a href="http://localhost:8080/towns">Towns</a>
+                <a href="http://localhost:8080/map">Map</a>
+                <a href="http://localhost:8080/about">About Us</a>
+            </div>
+            <!-- search -->
+            <div class="search">
+                <input type="text" placeholder="please enter">
+                <a href="#"><img src="../static/img/search.png" alt=""></a>
+            </div>
+            <!-- user -->
+            <div class="user">
+                <a href="http://localhost:8080/aboutMe">
+                    <img src="../static/img/user.png" alt="">
+                    <span>Steven</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>
+<div id="container">
+    <div id="main-rectangle"></div>
+    <div id="large-rectangle"></div>
+    <div class="small-rectangle" id="rect1"></div>
+    <div class="small-rectangle" id="rect2"></div>
+    <div class="small-rectangle" id="rect3"></div>
+    <div class="small-rectangle" id="rect4"></div>
+    <div class="small-rectangle" id="rect5"></div>
+    <div class="small-rectangle" id="rect6"></div>
+    <div class="checkpoint" id="checkpoint1">Check Point 1</div>
+    <div class="checkpoint" id="checkpoint2">Check Point 2</div>
+    <div class="checkpoint" id="checkpoint3">Check Point 3</div>
+    <div class="checkpoint" id="checkpoint4">Check Point 4</div>
+    <div class="checkpoint" id="checkpoint5">Check Point 5</div>
+    <div class="checkpoint" id="checkpoint6">Check Point 6</div>
+    <div id="jump-to-map-button">Jump to Map App</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('large-rectangle').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+    </script>
+</div>
+
+</body>
+<footer>
+    <!-- footer -->
+    <div class="footer">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <div class="wrapper">
+            <div class="left">
+                <h2><a href="#">Smart Towns</a></h2>
+                <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
+                    for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
+                    do where they live and work, creating a better sense of community.</p>
+                <a href="#" class="download">Download App</a>
+                <p>@2023 Smart Towns Inc. All rights reserved.</p>
+                <p></p>
+            </div>
+            <div class="right">
+                <dl>
+                    <dt>About</dt>
+                    <dd><a href="#">About Us</a></dd>
+                    <dd><a href="#">Join Us</a></dd>
+                    <dd><a href="#">Contact Us</a></dd>
+                    <dd><a href="#">Q&A</a></dd>
+                </dl>
+                <dl>
+                    <dt>Community</dt>
+                    <dd><a href="#">Our Community</a></dd>
+                    <dd><a href="#">Guide</a></dd>
+                    <dd><a href="#">Community</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</html>
