@@ -8,69 +8,6 @@ body {
     background-color: #f3f5f7;
 }
 
-/* header */
-.header {
-    padding-top: 20px;
-    height: 90px;
-    background-color: #fff;
-}
-
-.header .wrapper nav{
-    display: flex;
-}
-
-/* search */
-.search {
-    display: flex;
-    margin-left: 164px;
-    margin-top: 10px;
-    padding-left: 19px;
-    padding-right: 12px;
-    width: 212px;
-    height: 32px;
-    border-radius: 20px;
-    background-color: #f3f5f7;
-}
-
-.search input {
-    flex: 1;
-    border: 0;
-    background-color: transparent;
-    /* background-color: #f3f5f7; */
-    outline: none;
-}
-
-/* placeholder text style */
-.search input::placeholder {
-    color: #999;
-    font-size: 14px;
-}
-
-.search a{
-    align-self: center;
-    width: 16px;
-    height: 16px;
-    background-image: url(../../img/search.png);
-}
-
-/* user */
-.user {
-    margin-left: 152px;
-    margin-top: 10px;
-}
-
-.user img {
-    margin-right: 7px;
-    /* vertical-align used for inline block center */
-    vertical-align: middle;
-}
-
-.user span {
-    font-size: 16px;
-    color: #fff;
-    vertical-align: middle;
-}
-
 /* banner */
 .banner {
     height: 450px;
