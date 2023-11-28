@@ -80,6 +80,44 @@
             background-color: #D9EAD3; /* Different background to highlight user rank */
         }
 
+        .trail-details-section {
+            margin-top: 120px;
+            position: relative; /* Position relative to place it correctly in the flow */
+            z-index: 2; /* Higher z-index to be on top of the image */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 20px; /* More padding */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        }
+
+        .trail-details-section h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .trail {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .trail h3 {
+            margin-top: 0;
+            color: #555;
+        }
+
+        .trail p {
+            font-size: 14px;
+            color: #666;
+        }
+        #main-image img {
+            width: 100%; /* Full width */
+            height: auto; /* Maintain aspect ratio */
+            opacity: 0.9; /* Slight transparency */
+            z-index: 1; /* Make sure it is behind text */
+        }
+
     </style>
 </head>
 <body>
@@ -117,11 +155,17 @@
 <div id="container">
     <!-- Main Image Area -->
     <div id="main-image">
-        <!--https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg>-->
-        <img src="https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=" alt="London" width="420" height="90">
-
+        <img src="https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=" alt="London" style="width:100%; height:auto;">
     </div>
-
+    <div class="trail-details-section">
+        <h2>Explore Trails</h2>
+        <div class="trail" id="trail1">
+            <h3>Trail Name 1</h3>
+            <p>Length: 5 km, Difficulty: Easy</p>
+            <p>Description: This trail offers scenic views of the city and is suitable for all ages.</p>
+        </div>
+        <!-- Add more trails as needed -->
+    </div>
     <!-- Button -->
     <button id="map-view-button">View on Map</button>
 
