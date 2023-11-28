@@ -1,38 +1,107 @@
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* header */
+.header {
+  padding-top: 20px;
+  height: 90px;
+  background-color: #fff;
+}
+
+.header .wrapper nav{
+  display: flex;
+}
+
+/* search */
+.search {
+  display: flex;
+  margin-left: 164px;
+  margin-top: 10px;
+  padding-left: 19px;
+  padding-right: 12px;
+  width: 212px;
+  height: 32px;
+  border-radius: 20px;
+  background-color: #f3f5f7;
+}
+
+.search input {
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+  /* background-color: #f3f5f7; */
+  outline: none;
+}
+
+/* placeholder text style */
+.search input::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+.search a{
+  align-self: center;
+  width: 16px;
+  height: 16px;
+  background-image: url(../../img/search.png);
+}
+
+/* user */
+.user {
+  margin-left: 152px;
+  margin-top: 10px;
+}
+
+.user img {
+  margin-right: 7px;
+  /* vertical-align used for inline block center */
+  vertical-align: middle;
+}
+
+.user span {
+  font-size: 16px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+
 nav {
-    top: 20px;
-    background-color: #333;
-    position: fixed;
-    border-radius: 24px;
-    overflow: hidden;
-    width: 1200px;
-    height: 50px;
-  }
-  
-  nav .nav-tab a {
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  nav .nav-tab a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .active {
-    background-color: #00a4ff;
-    color: white;
-  }
-  
-  nav .logo a{
-    text-align: center;
-    padding: 14px 14px;
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    float: left;
-    margin-left: 20px;
-  }
+  top: 20px;
+  background-color: #333;
+  position: fixed;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 1200px;
+  height: 50px;
+}
+
+nav .nav-tab a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+nav .nav-tab a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #00a4ff;
+  color: white;
+}
+
+nav .logo a {
+  text-align: center;
+  padding: 14px 14px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  float: left;
+  margin-left: 20px;
+}
