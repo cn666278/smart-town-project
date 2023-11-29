@@ -29,19 +29,18 @@
         }
 
         #map-view-button {
-            position: absolute;
             width: 147px;
             height: 52px;
-            left: 263px;
-            top: 137px;
             background: #FFFAFA;
             border-radius: 12px;
             border: none;
             font-size: 12px;
+            display: block; /* Make the button a block element to fill the width of .viewonmap */
+            margin: 0 auto; /* Center the button horizontally */
         }
 
         .checkpoint {
-            position: absolute;
+            display: inline-block; /* Align checkpoints inline */
             width: 213px;
             height: 30px;
             background: #FFFDFD;
@@ -49,14 +48,14 @@
             font-size: 12px;
             text-align: center;
             line-height: 30px;
+            margin: 10px 5px; /* Add some margin around checkpoints */
         }
-
-        #checkpoint1 { left: 93px; top: 254px; }
-        #checkpoint2 { left: 93px; top: 314px; }
-        #checkpoint3 { left: 93px; top: 374px; }
-        #checkpoint4 { left: 368px; top: 254px; }
-        #checkpoint5 { left: 368px; top: 314px; }
-        #checkpoint6 { left: 368px; top: 363px; }
+        .viewonmap,
+        .   checkpoints {
+            width: 685px; /* Match the width of the container */
+            margin: 20px auto; /* Center these elements and add margin on the top and bottom */
+            position: relative; /* Use relative positioning */
+        }
 
         /* Rank Sidebar */
         #rank-sidebar {
@@ -106,7 +105,12 @@
             margin-top: 0;
             color: #555;
         }
-
+        .header1 {
+            background-color: #6a0dad;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
         .trail p {
             font-size: 14px;
             color: #666;
@@ -116,6 +120,26 @@
             height: auto; /* Maintain aspect ratio */
             opacity: 0.9; /* Slight transparency */
             z-index: 1; /* Make sure it is behind text */
+        }
+
+
+        .header-image {
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)), url('https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 300px; /* Adjust the height as needed */
+        }
+        .button1 {
+            background-color: #ff0266;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
         }
 
     </style>
@@ -152,11 +176,13 @@
         </nav>
     </div>
 </div>
+
+<div class="header-image"></div>
+<div class="header1">
+    <h1>Public Arts Trail</h1>
+</div>
 <div id="container">
     <!-- Main Image Area -->
-    <div id="main-image">
-        <img src="https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=" alt="London" style="width:100%; height:auto;">
-    </div>
     <div class="trail-details-section">
         <h2>Explore Trails</h2>
         <div class="trail" id="trail1">
@@ -164,18 +190,18 @@
             <p>Length: 5 km, Difficulty: Easy</p>
             <p>Description: This trail offers scenic views of the city and is suitable for all ages.</p>
         </div>
-        <!-- Add more trails as needed -->
     </div>
-    <!-- Button -->
-    <button id="map-view-button">View on Map</button>
-
-    <!-- Checkpoints -->
-    <div class="checkpoint" id="checkpoint1">Checkpoint 1</div>
-    <div class="checkpoint" id="checkpoint2">Checkpoint 2</div>
-    <div class="checkpoint" id="checkpoint3">Checkpoint 3</div>
-    <div class="checkpoint" id="checkpoint4">Checkpoint 4</div>
-    <div class="checkpoint" id="checkpoint5">Checkpoint 5</div>
-    <div class="checkpoint" id="checkpoint6">Checkpoint 6</div>
+    <div class="viewonmap">
+        <button id="map-view-button" class="button">View on map</button>
+    </div>
+    <div class="checkpoints">
+        <div class="checkpoint" id="checkpoint1">Checkpoint 1</div>
+        <div class="checkpoint" id="checkpoint2">Checkpoint 2</div>
+        <div class="checkpoint" id="checkpoint3">Checkpoint 3</div>
+        <div class="checkpoint" id="checkpoint4">Checkpoint 4</div>
+        <div class="checkpoint" id="checkpoint5">Checkpoint 5</div>
+        <div class="checkpoint" id="checkpoint6">Checkpoint 6</div>
+    </div>
 </div>
 
 <!-- Rank Sidebar -->
