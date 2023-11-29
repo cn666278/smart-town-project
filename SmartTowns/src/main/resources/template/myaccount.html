@@ -66,7 +66,112 @@
             margin: 0 auto;
         }
 
+        .item {
+            margin-top: 15px;
+        }
 
+        /* hd */
+        /* public style */
+        .hd {
+            display: flex;
+            justify-content: space-between;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .hd h3 {
+            font-weight: 400;
+            font-size: 21px;
+        }
+
+        .hd .more {
+            /*padding-right: 20px;*/
+            /*background: url(../static/img/more) no-repeat right center;*/
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* /* items  */
+        .bd ul {
+            /* bd - [public] */
+            display: flex;
+            /* flex box change line */
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .bd li {
+            margin-bottom: 14px;
+            width: 228px;
+            height: 271px;
+            /*background-color: pink;*/
+        }
+
+        .bd li .img {
+            height: 156px;
+        }
+
+        .bd li .img img {
+            width: 88%;
+            height: 90%;
+        }
+
+        .bd li .text {
+            padding: 20px 0 20px 0;
+            height: 115px;
+            /*background-color: #fff;*/
+        }
+
+        .bd li .text h4 {
+            margin-bottom: 13px;
+            height: 40px;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+
+        .bd li .text p {
+            font-size: 14px;
+            line-height: 20px;
+            color: #999;
+        }
+
+        .bd li .text p span {
+            color: #fa6400;
+        }
+
+        .bd li .text p i {
+            font-style: normal;
+        }
+
+        /* Newest area*/
+        .hd ul {
+            display: flex;
+        }
+
+        .hd li {
+            margin-right: 60px;
+            font-size: 16px;
+        }
+
+        .hd li .active {
+            color: white;
+        }
+
+        .bd {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bd .left img {
+            width: 100%;
+            height: 98%;
+        }
+
+        .bd .right img {
+            width: 100%;
+            height: 100%;
+        }
 
     </style>
 </head>
@@ -106,7 +211,7 @@
 <div class="wrapper">
     <div class="account-header">
         <div class="user-details">
-            <img src="../static/img/Profile.jpg" alt="" >
+            <img src="../static/img/Profile.jpg" alt="">
             <h1>user name</h1>
             <p>
                 <a href="#">Edit Profile</a>
@@ -125,7 +230,108 @@
     <section>
         <!-- content of My Trails module -->
         <div class="module" id="trails">
-            <h2>My Trails</h2>
+            <!-- My Trails -->
+            <div class="item wrapper">
+                <!-- header -->
+                <div class="hd">
+                    <h3>My Trails</h3>
+                </div>
+                <!-- content -->
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- content of Finished module -->
