@@ -50,7 +50,7 @@
 
 /* user */
 .user {
-  margin-left: 152px;
+  margin-left: 40px;
   margin-top: 10px;
 }
 
@@ -105,3 +105,24 @@ nav .logo a {
   float: left;
   margin-left: 20px;
 }
+
+/* towns */
+nav .nav-town {
+  margin: 10px 0 10px 120px;
+  padding: 2px;
+  width: 100px;
+  display: block;
+  border: 2px solid white;
+  border-radius: 16px;
+  text-align: center;
+}
+
+
+nav .nav-town:hover {
+  background-color: #00a4ff;
+}
+
+nav .nav-town a {
+  display: block; /* make the whole div clickable */
+  color: white;
+} 
