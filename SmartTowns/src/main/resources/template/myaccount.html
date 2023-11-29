@@ -10,45 +10,187 @@
             background-color: lightsteelblue;
         }
 
-        header {
+        .account-header {
             background-color: #332;
             color: #fff;
             text-align: center;
             padding: 10px;
+            height: 300px;
         }
 
-        nav {
+        .user-details {
+            /*display: flex;*/
+            margin-top: 50px;
+        }
+
+        .user-details img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .box {
             display: flex;
             justify-content: space-around;
-            background-color: #443;
-            padding: 10px;
+            background-color: #444;
+            padding: 20px;
         }
+
+        .box a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            /*padding: 20px;*/
+        }
+
+        .module {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .wrapper {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+
 
     </style>
 </head>
 <body>
-<header>
-    <h1>My Account</h1>
-    <p>Welcome, <span id="username">username</span>!</p>
-</header>
 
-<nav>
-    <a href="#" onclick="showModule('trails')">My Trails</a>
-</nav>
-
-<body>
-<!-- content of My Trails module -->
-<div id="trails" class="module">
-    <h2>My Trails</h2>
+<!-- header-nav -->
+<div class="header">
+    <div class="wrapper">
+        <nav>
+            <link href="../static/css/nav.css" rel="stylesheet" type="text/css">
+            <!-- logo -->
+            <div class="logo">
+                <a href="#">Smart Towns</a>
+            </div>
+            <div class="nav-tab">
+                <a class="active" href="http://localhost:8080/home">Home</a>
+                <a href="http://localhost:8080/towns">Towns</a>
+                <a href="http://localhost:8080/map">Map</a>
+                <a href="http://localhost:8080/about">About Us</a>
+            </div>
+            <!-- search -->
+            <div class="search">
+                <input placeholder="please enter" type="text">
+                <a href="#"><img alt="" src="../static/img/search.png"></a>
+            </div>
+            <!-- user -->
+            <div class="user">
+                <a href="http://localhost:8080/aboutMe">
+                    <img alt="" src="../static/img/user.png">
+                    <span>Steven</span>
+                </a>
+            </div>
+        </nav>
+    </div>
 </div>
 
+<div class="wrapper">
+    <div class="account-header">
+        <div class="user-details">
+            <img src="../static/img/Profile.jpg" alt="" >
+            <h1>user name</h1>
+            <p>
+                <a href="#">Edit Profile</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <a href="#" onclick="showModule('trails')">My Trails</a>
+        <a href="#" onclick="showModule('finished')">Finished</a>
+        <a href="#" onclick="showModule('medal')">My Medal</a>
+        <a href="#" onclick="showModule('collection')">Collection</a>
+    </div>
+
+
+    <section>
+        <!-- content of My Trails module -->
+        <div class="module" id="trails">
+            <h2>My Trails</h2>
+        </div>
+
+        <!-- content of Finished module -->
+        <div class="module" id="finished">
+            <h2>Finished</h2>
+        </div>
+
+        <!-- content of My Medal module -->
+        <div class="module" id="medal">
+            <h2>My Medal</h2>
+        </div>
+
+        <!-- content of Collection module -->
+        <div class="module" id="collection">
+            <h2>Collection</h2>
+        </div>
+    </section>
+
+</div>
 
 <script>
     function showModule(moduleName) {
-        // Hide all modules
-        document.querySelectorAll('.module').forEach(function(module) {
+        // Hides all elements with class="module"
+        document.querySelectorAll('.module').forEach(function (module) {
             module.style.display = 'none';
         });
+
+        // Shows the element with id="moduleName"
+        document.getElementById(moduleName).style.display = 'block';
     }
 </script>
+
+
 </body>
+
+<footer>
+    <!-- footer -->
+    <div class="footer">
+        <link href="../static/css/footer.css" rel="stylesheet">
+        <div class="wrapper">
+            <div class="left">
+                <h2><a href="#">Smart Towns</a></h2>
+                <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
+                    for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
+                    do where they live and work, creating a better sense of community.</p>
+                <a class="download" href="#">Download App</a>
+                <p>@2023 Smart Towns Inc. All rights reserved.</p>
+                <p></p>
+            </div>
+            <div class="right">
+                <dl>
+                    <dt>About</dt>
+                    <dd><a href="#">About Us</a></dd>
+                    <dd><a href="#">Join Us</a></dd>
+                    <dd><a href="#">Contact Us</a></dd>
+                    <dd><a href="#">Q&A</a></dd>
+                </dl>
+                <dl>
+                    <dt>Community</dt>
+                    <dd><a href="#">Our Community</a></dd>
+                    <dd><a href="#">Guide</a></dd>
+                    <dd><a href="#">Community</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</footer>
