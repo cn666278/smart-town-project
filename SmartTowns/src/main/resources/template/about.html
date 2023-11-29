@@ -10,29 +10,87 @@
             align-items: center;
             justify-content: center;
             flex-direction: column; /* Vertical arrangement */
-            height: 100vh;/* Light blue background */
+        }
+        .header {
+            /* your header styles */
+        }
+
+        .wrapper {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            /* your nav styles */
+        }
+
+        .logo {
+            /* your logo styles */
+        }
+
+        .nav-tab {
+            /* your nav-tab styles */
+        }
+
+        .search {
+            /* your search styles */
+        }
+
+        .user {
+            /* your user styles */
+        }
+
+        .about-me-image img{
+            /* styles for the image */
+            margin-top: 350px;
+            width: 1200px;
+            height: 500px;
         }
 
         .about-me-box {
-            width: 1000px;
+            width: 1200px;
             padding: 20px;
             background-color: #fff; /* White rectangular box background */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin-top: 20px; /* The distance of upward movement */
+            margin-top: 10px; /* The distance of upward movement */
+        }
+
+        /* banner */
+        .banner {
+            height: 500px;
+            background-color: #0092cb;
+            opacity: 0.9;
+        }
+
+        .banner .wrapper{
+            display: flex;
+            justify-content: space-between;
+            height: 500px;
+            width: 1200px;
+            background-image: url(../static/img/cardiff1.png);
+        }
+
+        /* left banner */
+        .banner .left {
+            padding: 130px 20px;
+            width: 300px;
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.42);
+            color: #fff;
         }
 
         h1, p {
             margin: 0;
         }
-        .about-me-box h1 {
-            font-size: 24px; /* Sets the title text size */
+
+        .left {
+            /* your left styles */
         }
 
-        .about-me-box img {
-            max-width: 100%; /* Make sure the image does not exceed the width of the parent container */
-            margin-top: 20px; /* Set the spacing between the image and the text above it */
+        .right {
+            /* your right styles */
         }
 
     </style>
@@ -70,12 +128,21 @@
     </div>
 </div>
 
+<div class="banner">
+    <div class="wrapper">
+        <div class="left">
+            <h2>About Us</h2>
+            <p>xxxxxx</p>
+        </div>
+    </div>
+</div>
+
 <div class="about-me-box">
     <h1>About Us</h1>
     <p>
         Welcome to our personal page! Our team is Crazy Thursday, if you have any questions please contact us, our email is ********
+        Our city is proud of its strong community spirit and rich history and culture. Walk along Cardiff Bay, starting at the Bay, visiting many national retailers and independent shops along the way. There is a great variety of food and drink to enjoy in the city centre. Experience the historic charm of Cardiff Castle, followed by the beautiful Cardiff University, where you can experience the passion of students from all over the world.
     </p>
-    <img src="../static/img/1.jpg" alt="About Us Image">
 </div>
 
 
