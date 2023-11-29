@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trails Website</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #container {
+            position: relative;
+            width: 685px;
+            height: 447px;
+            background: #FFFFFF;
+            margin: 20px auto;
+        }
+
+        #main-image {
+            position: absolute;
+            width: 420px;
+            height: 90px;
+            left: 50px;
+            top: 27px;
+            background: #FFFDFD;
+        }
+
+        #map-view-button {
+            position: absolute;
+            width: 147px;
+            height: 52px;
+            left: 263px;
+            top: 137px;
+            background: #FFFAFA;
+            border-radius: 12px;
+            border: none;
+            font-size: 12px;
+        }
+
+        .checkpoint {
+            position: absolute;
+            width: 213px;
+            height: 30px;
+            background: #FFFDFD;
+            border-radius: 18px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #checkpoint1 { left: 93px; top: 254px; }
+        #checkpoint2 { left: 93px; top: 314px; }
+        #checkpoint3 { left: 93px; top: 374px; }
+        #checkpoint4 { left: 368px; top: 254px; }
+        #checkpoint5 { left: 368px; top: 314px; }
+        #checkpoint6 { left: 368px; top: 363px; }
+
+        /* Rank Sidebar */
+        #rank-sidebar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #FFFDFD;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .rank {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .user-rank {
+            background-color: #D9EAD3; /* Different background to highlight user rank */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- header-nav -->
+<div class="header">
+    <div class="wrapper">
+        <nav>
+            <link rel="stylesheet" type="text/css" href="../static/css/nav.css">
+            <!-- logo -->
+            <div class="logo">
+                <a href="#">Smart Towns</a>
+            </div>
+            <div class="nav-tab">
+                <a class="active" href="http://localhost:8080/home">Home</a>
+                <a href="http://localhost:8080/towns">Towns</a>
+                <a href="http://localhost:8080/map">Map</a>
+                <a href="http://localhost:8080/about">About Us</a>
+            </div>
+            <!-- search -->
+            <div class="search">
+                <input type="text" placeholder="please enter">
+                <a href="#"><img src="../static/img/search.png" alt=""></a>
+            </div>
+            <!-- user -->
+            <div class="user">
+                <a href="http://localhost:8080/aboutMe">
+                    <img src="../static/img/user.png" alt="">
+                    <span>Steven</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>
+<div id="container">
+    <!-- Main Image Area -->
+    <div id="main-image">
+        <!--https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg>-->
+        <img src="https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=" alt="London" width="420" height="90">
+
+    </div>
+
+    <!-- Button -->
+    <button id="map-view-button">View on Map</button>
+
+    <!-- Checkpoints -->
+    <div class="checkpoint" id="checkpoint1">Checkpoint 1</div>
+    <div class="checkpoint" id="checkpoint2">Checkpoint 2</div>
+    <div class="checkpoint" id="checkpoint3">Checkpoint 3</div>
+    <div class="checkpoint" id="checkpoint4">Checkpoint 4</div>
+    <div class="checkpoint" id="checkpoint5">Checkpoint 5</div>
+    <div class="checkpoint" id="checkpoint6">Checkpoint 6</div>
+</div>
+
+<!-- Rank Sidebar -->
+<div id="rank-sidebar">
+    <div class="rank">1. User A</div>
+    <div class="rank">2. User B</div>
+    <div class="rank">3. User C</div>
+    <!-- Highlight the user's rank if it's not in the top three -->
+    <div class="rank user-rank">Your Rank: #5</div>
+</div>
+</body>
+<footer>
+    <!-- footer -->
+    <div class="footer">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <div class="wrapper">
+            <div class="left">
+                <h2><a href="#">Smart Towns</a></h2>
+                <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
+                    for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
+                    do where they live and work, creating a better sense of community.</p>
+                <a href="#" class="download">Download App</a>
+                <p>@2023 Smart Towns Inc. All rights reserved.</p>
+                <p></p>
+            </div>
+            <div class="right">
+                <dl>
+                    <dt>About</dt>
+                    <dd><a href="#">About Us</a></dd>
+                    <dd><a href="#">Join Us</a></dd>
+                    <dd><a href="#">Contact Us</a></dd>
+                    <dd><a href="#">Q&A</a></dd>
+                </dl>
+                <dl>
+                    <dt>Community</dt>
+                    <dd><a href="#">Our Community</a></dd>
+                    <dd><a href="#">Guide</a></dd>
+                    <dd><a href="#">Community</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</html>
