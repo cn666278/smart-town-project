@@ -34,4 +34,9 @@ public class UserRepositoryJDBC implements UserRepository{
         return jdbcTemplate.query(sql, userRowMapper);
     }
 
+    @Override
+    public User getUserByAccount(String account) {
+        return null;
+    }
+
 }
