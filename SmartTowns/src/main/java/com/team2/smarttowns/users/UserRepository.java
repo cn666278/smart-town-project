@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface UserRepository {
     List<User> getAllUsers();
+
+    User getUserByAccount(String account);
 }
