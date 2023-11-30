@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,7 +94,42 @@
         .right {
             /* your right styles */
         }
+        /* Add these styles inside your existing styles or in a separate style tag */
+        .image-slider {
+            margin-top: 50px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
 
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .prev-button, .next-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            outline: none;
+            color: #fff;
+        }
+
+        .prev-button {
+            left: 10px;
+        }
+
+        .next-button {
+            right: 10px;
+        }
     </style>
     <title>About Me</title>
 </head>
@@ -149,15 +185,45 @@
     </p>
 </div>
 
+<div class="wrapper">
+    <!--image slider-->
+    <div class="image-slider">
+        <div class="slider-wrapper">
+            <div class="slide"><img src="../static/img/slide1.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="../static/img/slide2.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="../static/img/slide3.jpg" alt="Image 3"></div>
+            <!-- Add more slides as needed -->
+        </div>
+        <button class="prev-button" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-button" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</div>
 
 </body>
 
+<script>
+    var currentSlide = 0;
 
+    function changeSlide(n) {
+        showSlide(currentSlide += n);
+    }
+
+    function showSlide(n) {
+        var slides = document.querySelectorAll('.slide');
+        if (n >= slides.length) {
+            currentSlide = 0;
+        }
+        if (n < 0) {
+            currentSlide = slides.length - 1;
+        }
+        document.querySelector('.slider-wrapper').style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+    }
+</script>
 <footer>
     <!-- footer -->
     <div class="footer">
         <link rel="stylesheet" href="../static/css/footer.css">
-        <div class="wrapper">
+        <div class="wrapper" style="padding: 0 50px 0 50px">
             <div class="left">
                 <h2><a href="#">Smart Towns</a></h2>
                 <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
