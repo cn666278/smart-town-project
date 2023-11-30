@@ -1,18 +1,22 @@
-.main {
+.wrapper {
     font-family: Inter, sans-serif;
-    text-align: center;
     margin: 20px auto;
-    margin: 0;
+    width: 1200px;
     padding: 0;
 }
 
-.checkpoint {
+.checkpointPic {
     width: 60%;
     max-width: 574px; /* set maximum width for the image */
     display: block;
     margin: 0 auto;
 }
 
+.checkpointName {
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: center;
+}
 
 .title {
     font-size: 24px;
@@ -21,4 +25,5 @@
 
 .content {
     font-size: 15px;
+    margin-bottom: 30px;
 }
