@@ -202,6 +202,14 @@
         <div class="checkpoint" id="checkpoint5">Checkpoint 5</div>
         <div class="checkpoint" id="checkpoint6">Checkpoint 6</div>
     </div>
+    <div th:each="checkpoint : ${checkpoints}" class="checkpoint">
+        <span th:text="${checkpoint.id}">Checkpoint ID</span>
+        <span th:text="${checkpoint.latitude}">Latitude</span>
+        <span th:text="${checkpoint.longitude}">Longitude</span>
+        <img th:src="${checkpoint.image}" alt="Checkpoint Image"/>
+        <span th:text="${checkpoint.detail}">Detail</span>
+        <span th:text="${checkpoint.address}">Address</span>
+    </div>
 </div>
 
 <!-- Rank Sidebar -->
@@ -247,3 +255,9 @@
 
 </footer>
 </html>
+<script>
+    //click viem on map jump to /trailmap
+    document.getElementById("map-view-button").onclick = function () {
+        location.href = "http://localhost:8080/trailmap";
+    };
+</script>
