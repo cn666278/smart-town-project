@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 
+@org.springframework.stereotype.Repository
 public class UserRepositoryJDBC implements UserRepository{
 
         private JdbcTemplate jdbcTemplate;
