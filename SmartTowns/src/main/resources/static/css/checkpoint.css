@@ -1,0 +1,24 @@
+.main {
+    font-family: Inter, sans-serif;
+    text-align: center;
+    margin: 20px auto;
+    margin: 0;
+    padding: 0;
+}
+
+.checkpoint {
+    width: 60%;
+    max-width: 574px; /* set maximum width for the image */
+    display: block;
+    margin: 0 auto;
+}
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content {
+    font-size: 15px;
+}

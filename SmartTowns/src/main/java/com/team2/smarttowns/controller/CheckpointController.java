@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CheckpointController {
-    @GetMapping("/checkout")
+    @GetMapping("/checkpoint")
     public ModelAndView checkpointPage() {
         ModelAndView modelAndView = new ModelAndView("checkpoint.html");
         return modelAndView;
