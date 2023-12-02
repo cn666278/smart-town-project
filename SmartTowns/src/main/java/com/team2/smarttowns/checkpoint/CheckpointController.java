@@ -15,7 +15,7 @@ public class CheckpointController {
 
     @GetMapping("/checkpoint/{id}")
     public ModelAndView checkpointPage(@PathVariable int id) {
-        ModelAndView modelAndView = new ModelAndView("checkpointTh.html");
+        ModelAndView modelAndView = new ModelAndView("checkpoint.html");
         for (Checkpoint checkpoint : checkpointRepository.getAll()) {
             if (checkpoint.getId() == id) {
                 modelAndView.addObject("name", checkpoint.getName());
