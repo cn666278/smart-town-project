@@ -22,9 +22,10 @@ public class TrailController {
         ModelAndView modelAndView = new ModelAndView("trails.html");
         for (Trail trail : trailRepository.getAllTrails()) {
             if (trail.getId() == id) {
-                modelAndView.addObject("name", trail.getName());
-                modelAndView.addObject("image", trail.getImage());
-                modelAndView.addObject("details", trail.getDetails());
+                modelAndView.addObject("trails", trail.getAllTrails());
+//                modelAndView.addObject("name", trail.getName());s
+//                modelAndView.addObject("image", trail.getImage());
+//                modelAndView.addObject("details", trail.getDetails());
             }
         }
         return modelAndView;
