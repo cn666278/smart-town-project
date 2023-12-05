@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import java.util.List;
 
 @Controller
@@ -25,7 +24,7 @@ public class TrailController {
         // add the trail details to the model
         for (Trail trail : trailRepository.getAllTrails()) {
             if (trail.getId() == id) {
-                modelAndView.addObject("name", trail.getName());s
+                modelAndView.addObject("name", trail.getName());
                 modelAndView.addObject("image", trail.getImage());
                 modelAndView.addObject("details", trail.getDetails());
             }
