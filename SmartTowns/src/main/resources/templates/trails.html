@@ -410,6 +410,20 @@
                             </div>
                         </a>
                     </li>
+                    <li th:each="checkpoint : ${checkpoints}">
+                        <a th:href="@{/checkpoint/{id}(id=${checkpoint.id})}">
+                            <div class="img">
+                                <!-- use Thymeleaf show picture -->
+                                <img th:src="@{/static/img/{image}(image=${checkpoint.image})}" alt="Checkpoint Image"/>
+                            </div>
+                            <div class="text">
+                                <!-- show name -->
+                                <h4 th:text="${checkpoint.address}">Checkpoint name</h4>
+                                <!-- other detail -->
+                                <p><span>New</span> - <i th:text="${checkpoint.detail}">1123</i> views</p>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
