@@ -15,7 +15,7 @@
             color: #fff;
             text-align: center;
             padding: 10px;
-            height: 300px;
+            height: 350px;
         }
 
         .user-details {
@@ -66,50 +66,125 @@
             margin: 0 auto;
         }
 
+        .item {
+            margin-top: 15px;
+        }
 
+        /* hd */
+        /* public style */
+        .hd {
+            display: flex;
+            justify-content: space-between;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .hd h3 {
+            font-weight: 400;
+            font-size: 21px;
+        }
+
+        /* /* items  */
+        .bd ul {
+            /* bd - [public] */
+            display: flex;
+            /* flex box change line */
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .bd li {
+            margin-bottom: 14px;
+            width: 228px;
+            height: 271px;
+            /*background-color: pink;*/
+        }
+
+        .bd li .img {
+            height: 156px;
+        }
+
+        .bd li .img img {
+            width: 88%;
+            height: 90%;
+        }
+
+        .bd li .text {
+            padding: 20px 0 20px 0;
+            height: 115px;
+            /*background-color: #fff;*/
+        }
+
+        .bd li .text h4 {
+            margin-bottom: 13px;
+            height: 40px;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+
+        .bd li .text p {
+            font-size: 14px;
+            line-height: 20px;
+            color: #999;
+        }
+
+        .bd li .text p span {
+            color: #fa6400;
+        }
+
+        .bd li .text p i {
+            font-style: normal;
+        }
+
+        /* Newest area*/
+        .hd ul {
+            display: flex;
+        }
+
+        .hd li {
+            margin-right: 60px;
+            font-size: 16px;
+        }
+
+        .bd {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .editprofile {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .bd .left img {
+            width: 100%;
+            height: 98%;
+        }
+
+        .bd .right img {
+            width: 100%;
+            height: 100%;
+        }
 
     </style>
 </head>
 <body>
 
 <!-- header-nav -->
-<div class="header">
-    <div class="wrapper">
-        <nav>
-            <link href="../static/css/nav.css" rel="stylesheet" type="text/css">
-            <!-- logo -->
-            <div class="logo">
-                <a href="#">Smart Towns</a>
-            </div>
-            <div class="nav-tab">
-                <a class="active" href="http://localhost:8080/home">Home</a>
-                <a href="http://localhost:8080/towns">Towns</a>
-                <a href="http://localhost:8080/map">Map</a>
-                <a href="http://localhost:8080/about">About Us</a>
-            </div>
-            <!-- search -->
-            <div class="search">
-                <input placeholder="please enter" type="text">
-                <a href="#"><img alt="" src="../static/img/search.png"></a>
-            </div>
-            <!-- user -->
-            <div class="user">
-                <a href="http://localhost:8080/aboutMe">
-                    <img alt="" src="../static/img/user.png">
-                    <span>Steven</span>
-                </a>
-            </div>
-        </nav>
-    </div>
-</div>
+    <div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
     <div class="account-header">
         <div class="user-details">
-            <img src="../static/img/Profile.jpg" alt="" >
-            <h1>user name</h1>
+            <img src="../static/img/Profile.jpg" alt="">
+            <h1>Welcome! user name</h1>
+            <a class="editprofile" href="mailto:email@example.com">my email:1223341604@qq.com</a>
             <p>
-                <a href="#">Edit Profile</a>
+                <a class="editprofile" href="#">Edit Profile</a>
             </p>
         </div>
     </div>
@@ -118,29 +193,433 @@
         <a href="#" onclick="showModule('trails')">My Trails</a>
         <a href="#" onclick="showModule('finished')">Finished</a>
         <a href="#" onclick="showModule('medal')">My Medal</a>
-        <a href="#" onclick="showModule('collection')">Collection</a>
+        <a href="#" onclick="showModule('collects')">Collects</a>
     </div>
 
 
     <section>
         <!-- content of My Trails module -->
         <div class="module" id="trails">
-            <h2>My Trails</h2>
+            <!-- My Trails -->
+            <div class="item wrapper">
+                <!-- header -->
+                <div class="hd">
+                    <h3>My Trails</h3>
+                </div>
+                <!-- content -->
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- content of Finished module -->
         <div class="module" id="finished">
-            <h2>Finished</h2>
+            <!-- Finished -->
+            <div class="item wrapper">
+                <!-- header -->
+                <div class="hd">
+                    <h3>Finished</h3>
+                </div>
+                <!-- content -->
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- content of My Medal module -->
         <div class="module" id="medal">
-            <h2>My Medal</h2>
+            <!-- My Medal -->
+            <div class="item wrapper">
+                <!-- header -->
+                <div class="hd">
+                    <h3>My Medal</h3>
+                </div>
+                <!-- content -->
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- content of Collection module -->
-        <div class="module" id="collection">
-            <h2>Collection</h2>
+        <div class="module" id="collects">
+            <!-- Collects -->
+            <div class="item wrapper">
+                <!-- header -->
+                <div class="hd">
+                    <h3>Collects</h3>
+                </div>
+                <!-- content -->
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                                <div class="text">
+                                    <h4>Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -161,36 +640,4 @@
 
 </body>
 
-<footer>
-    <!-- footer -->
-    <div class="footer">
-        <link href="../static/css/footer.css" rel="stylesheet">
-        <div class="wrapper">
-            <div class="left">
-                <h2><a href="#">Smart Towns</a></h2>
-                <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
-                    for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
-                    do where they live and work, creating a better sense of community.</p>
-                <a class="download" href="#">Download App</a>
-                <p>@2023 Smart Towns Inc. All rights reserved.</p>
-                <p></p>
-            </div>
-            <div class="right">
-                <dl>
-                    <dt>About</dt>
-                    <dd><a href="#">About Us</a></dd>
-                    <dd><a href="#">Join Us</a></dd>
-                    <dd><a href="#">Contact Us</a></dd>
-                    <dd><a href="#">Q&A</a></dd>
-                </dl>
-                <dl>
-                    <dt>Community</dt>
-                    <dd><a href="#">Our Community</a></dd>
-                    <dd><a href="#">Guide</a></dd>
-                    <dd><a href="#">Community</a></dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-
-</footer>
+<div th:replace="~{fragments/footer :: footerBlock}"/>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkpoint Page</title>
+    <link rel="stylesheet" href="/css/checkpoint.css">
+    <script src="/js/jsQR.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: headerBlock}"/>
+    </div>
+    <button onclick="startScanning()">SCAN</button>
+    <div id="loadingMessage" style="display:none;">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+    <canvas id="canvas" hidden></canvas>
+    <div id="output" hidden>
+        <div id="outputMessage">No QR code detected.</div>
+        <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    </div>
+    <div class="wrapper" style="display:none;">
+        <img class="checkpointPic" style="align-content: center" th:src="${img}"/>
+    </div>
+
+    <script>
+        function startScanning() {
+            let video = document.createElement("video");
+            let canvasElement = document.getElementById("canvas");
+            let canvas = canvasElement.getContext("2d");
+            let loadingMessage = document.getElementById("loadingMessage");
+            let outputContainer = document.getElementById("output");
+            let outputMessage = document.getElementById("outputMessage");
+            let outputData = document.getElementById("outputData");
+            let wrapper = document.querySelector(".wrapper");
+
+            function drawLine(begin, end, color) {
+                canvas.beginPath();
+                canvas.moveTo(begin.x, begin.y);
+                canvas.lineTo(end.x, end.y);
+                canvas.lineWidth = 4;
+                canvas.strokeStyle = color;
+                canvas.stroke();
+            }
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+                video.srcObject = stream;
+                video.setAttribute("playsinline", true);
+                video.play();
+                requestAnimationFrame(tick);
+            });
+
+            function tick() {
+                loadingMessage.innerText = "⌛ Loading video..."
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    loadingMessage.hidden = true;
+                    canvasElement.hidden = false;
+                    outputContainer.hidden = false;
+                    wrapper.hidden = true; // 隐藏检查点信息部分
+
+                    canvasElement.height = video.videoHeight;
+                    canvasElement.width = video.videoWidth;
+                    canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                    let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                    let code = jsQR(imageData.data, imageData.width, imageData.height, {
+                        inversionAttempts: "dontInvert",
+                    });
+                    if (code) {
+                        drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                        drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                        drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                        drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                        outputMessage.hidden = true;
+                        outputData.parentElement.hidden = false;
+                        outputData.innerText = code.data;
+                    } else {
+                        outputMessage.hidden = false;
+                        outputData.parentElement.hidden = true;
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+        }
+    </script>
+
+    <div class="wrapper">
+        <img class="checkpointPic" style="align-content: center" th:src="${img}"/>
+        <div class="checkpointName" th:text="${name}">Checkpoint Name</div>
+        <div class="title" th:text="'About ' + ${name}">About xxx</div>
+        <div th:text="${description}">Description</div>
+        <div class="title">Contact Details</div>
+        <div class="content">
+            <a th:href="${contact}" th:text="${contact}">Website URL</a>
+            <br>
+        </div>
+        <div class="title">Nearby Businesses</div>
+        <div class="content">
+            <ol>
+                <li>Coffee Barker</li>
+                <li>Fabulous Welshcakes</li>
+                <li>Cardiff Market</li>
+            </ol>
+        </div>
+        <div class="title">Trials</div>
+        <div class="content">
+            <ol>
+                <li>Public Arts Trail</li>
+                <li>Coffee Trail</li>
+            </ol>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footerBlock}"/>
+</body>
+</html>

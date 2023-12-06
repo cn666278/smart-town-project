@@ -11,39 +11,7 @@
 
 <body>
 <!-- header-nav -->
-<div class="header">
-  <div class="wrapper">
-    <nav>
-      <link rel="stylesheet" type="text/css" href="../static/css/nav.css">
-      <!-- logo -->
-      <div class="logo">
-        <a href="#">Smart Towns</a>
-      </div>
-      <div class="nav-tab">
-        <!-- TODO: change active class to your page -->
-        <!-- Home -> ${CityName} -->
-        <a href="http://localhost:8080/home">Home</a>
-        <a href="http://localhost:8080/map">Map</a>
-        <a href="http://localhost:8080/about">About Us</a>
-      </div>
-      <!-- search -->
-      <div class="search">
-        <input type="text" placeholder="please enter">
-        <a href="#"><img src="../static/img/search.png" alt=""></a>
-      </div>
-      <div class="nav-town" style="background-color: #00a4ff;">
-        <a href="http://localhost:8080/towns">Towns</a>
-      </div>
-      <!-- user -->
-      <div class="user">
-        <a href="http://localhost:8080/aboutMe">
-          <img src="../static/img/user.png" alt="">
-          <span>Steven</span>
-        </a>
-      </div>
-    </nav>
-  </div>
-</div>
+  <div th:replace="~{fragments/header :: headerBlock}"/>
 
 
 <!-- Trails -->
@@ -57,7 +25,7 @@
   <div class="bd">
     <ul>
       <li>
-        <a href="#">
+        <a href="http://localhost:8080/home">
           <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
           <div class="text">
             <h4>Town Name</h4>
@@ -198,38 +166,6 @@
 
 </body>
 
-<footer>
-  <!-- footer -->
-  <div class="footer">
-    <link rel="stylesheet" href="../static/css/footer.css">
-    <div class="wrapper">
-      <div class="left">
-        <h2><a href="#">Smart Towns</a></h2>
-        <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
-          for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
-          do where they live and work, creating a better sense of community.</p>
-        <a href="#" class="download">Download App</a>
-        <p>@2023 Smart Towns Inc. All rights reserved.</p>
-        <p></p>
-      </div>
-      <div class="right">
-        <dl>
-          <dt>About</dt>
-          <dd><a href="#">About Us</a></dd>
-          <dd><a href="#">Join Us</a></dd>
-          <dd><a href="#">Contact Us</a></dd>
-          <dd><a href="#">Q&A</a></dd>
-        </dl>
-        <dl>
-          <dt>Community</dt>
-          <dd><a href="#">Our Community</a></dd>
-          <dd><a href="#">Guide</a></dd>
-          <dd><a href="#">Community</a></dd>
-        </dl>
-      </div>
-    </div>
-  </div>
-
-</footer>
+<div th:replace="~{fragments/footer :: footerBlock}"/>
 
 </html>
