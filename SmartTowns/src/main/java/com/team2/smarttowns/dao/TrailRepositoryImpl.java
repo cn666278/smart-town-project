@@ -157,6 +157,17 @@ public class TrailRepositoryImpl implements TrailRepository{
         return checkpointEntities;
     }
 
+
+    //from checkpoints id to find trail id
+    public int getTrailIdByCheckpointId(int checkpointId) {
+        String sql = "SELECT trail_id FROM trail_checkpoint WHERE checkpoint_id = ?";
+        // notnull
+        int trailIds = jdbcTemplate.queryForObject(sql,
+                Integer.class,
+                checkpointId);
+        return trailIds;
+    }
+
     //use all the checkpoint id to make a list, check if all the checkpoint id of a trail is included in the checkpoint list
     public boolean isCompleted(List<Integer> userCheckpoint, int trailId) {
         String sql = "SELECT checkpoint_id FROM trail_checkpoint WHERE trail_id = ?";
