@@ -11,6 +11,7 @@ public class Checkpoint {
 
     private int id;
     private String latitude;
+    private String name;
     private String longitude;
     private String image;
     private String detail;
