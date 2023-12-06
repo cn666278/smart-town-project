@@ -33,5 +33,10 @@ public class UserService {
 
     }
 
+    public List<Integer> getCompletedTrailsByUserId(int id) {
+        TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
+        return trailRepository.getCompletedTrailsByUserId(id);
+    }
+
 
 }
