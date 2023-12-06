@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkpoint Page</title>
+    <link rel="stylesheet" href="/css/checkpoint.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: headerBlock}"/>
+    </div>
+    <div class="wrapper">
+        <img class="checkpointPic" style="align-content: center" src="/img/Cardiff-Castle-2.jpg"/>
+        <div class="checkpointName">Cardiff Castle</div>
+        <div class="title">About Cardiff Castle</div>
+        <div>
+            Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located
+            in the city centre of Cardiff, Wales. The original motte and bailey castle was built in the late 11th
+            century by Norman invaders on top of a 3rd-century Roman fort. The castle was commissioned either by William
+            the Conqueror or by Robert Fitzhamon, and formed the heart of the medieval town of Cardiff and the Marcher
+            Lord territory of Glamorgan. In the 12th century the castle began to be rebuilt in stone, probably by Robert
+            of Gloucester, with a shell keep and substantial defensive walls being erected. Further work was conducted
+            by the 6th Earl of Gloucester in the second half of the 13th century. Cardiff Castle was repeatedly involved
+            in the conflicts between the Anglo-Normans and the Welsh, being attacked several times in the 12th century,
+            and stormed in 1404 during the revolt of Owain Glyndŵr.
+        </div>
+        <div class="title">Contact Details</div>
+        <div class="content">
+            <span>link: </span><a href="https://www.cardiffcastle.com/">https://www.cardiffcastle.com/</a>
+            <br>
+            <span>tel: </span><span>079054621456</span>
+        </div>
+        <div class="title">Nearby Businesses</div>
+        <div class="content">
+            <ol>
+                <li>Coffee Barker</li>
+                <li>Fabulous Welshcakes</li>
+                <li>Cardiff Market</li>
+            </ol>
+        </div>
+        <div class="title">Trials</div>
+        <div class="content">
+            <ol>
+                <li>Public Arts Trail</li>
+                <li>Coffee Trail</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div th:replace="~{fragments/footer :: footerBlock}"/>
+    </div>
+</body>
+</html>
