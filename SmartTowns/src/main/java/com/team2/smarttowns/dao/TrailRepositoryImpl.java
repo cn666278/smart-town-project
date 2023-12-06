@@ -99,4 +99,7 @@ public class TrailRepositoryImpl implements TrailRepository {
 
     public TrailRepositoryImpl() {
     }
+
+    public void getTrailIdByCheckPointId(int checkpointEntityId) {
+    }
 }
