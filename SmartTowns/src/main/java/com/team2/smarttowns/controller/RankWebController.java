@@ -1,4 +1,4 @@
 package com.team2.smarttowns.controller;
 
-public class LeaderBoardController {
+public class RankWebController {
 }
