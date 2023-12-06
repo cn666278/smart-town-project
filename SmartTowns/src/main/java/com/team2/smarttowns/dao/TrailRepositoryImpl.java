@@ -160,3 +160,19 @@ public class TrailRepositoryImpl implements TrailRepository {
         return checkpointEntities;
     }
 
+    //use all the checkpoint id to make a list, check if all the checkpoint id of a trail is included in the checkpoint list
+    public boolean isCompleted(List<Integer> userCheckpoint, int trailId) {
+        String sql = "SELECT checkpoint_id FROM trail_checkpoint WHERE trail_id = ?";
+        List<Integer> checkpointIds = jdbcTemplate.queryForObject(sql,
+                List.class,
+                trailId);
+        for (int checkpointId : checkpointIds) {
+            if (!userCheckpoint.contains(checkpointId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
+
