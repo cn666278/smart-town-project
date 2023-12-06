@@ -99,7 +99,7 @@ public class TrailRepositoryImpl implements TrailRepository{
 
     public void getTrailIdByCheckPointId(int checkpointEntityId) {
     }
-}
+
     public List<Integer> getCompletedTrailsByUserId(int UserId) {
         // get user checkpoints by user id
         List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
@@ -127,5 +127,33 @@ public class TrailRepositoryImpl implements TrailRepository{
         }
 
         return completedTrails;
+    }
+
+    public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
+        List<CheckpointEntity> checkpointEntities = new ArrayList<>();
+        String sql = "SELECT c.* FROM checkpoints c " +
+                "INNER JOIN user_checkpoint uc ON c.id = uc.checkpoint_id " +
+                "WHERE uc.user_id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    CheckpointEntity checkpoint = new CheckpointEntity();
+                    checkpoint.setId(rs.getInt("id"));
+                    checkpoint.setLatitude(rs.getString("latitude"));
+                    checkpoint.setLongitude(rs.getString("longitude"));
+                    checkpoint.setName(rs.getString("name"));
+                    checkpoint.setImage(rs.getString("image"));
+                    checkpoint.setDetail(rs.getString("detail"));
+                    checkpoint.setAddress(rs.getString("address"));
+                    checkpointEntities.add(checkpoint);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return checkpointEntities;
     }
 
