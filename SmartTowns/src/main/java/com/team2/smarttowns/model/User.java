@@ -1,7 +1,8 @@
-package com.team2.smarttowns.users;
+package com.team2.smarttowns.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
