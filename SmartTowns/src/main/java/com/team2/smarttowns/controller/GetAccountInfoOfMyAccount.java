@@ -1,7 +1,7 @@
 package com.team2.smarttowns.controller;
 
-import com.team2.smarttowns.users.User;
-import com.team2.smarttowns.users.UserRepository;
+import com.team2.smarttowns.dao.UserRepository;
+import com.team2.smarttowns.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
