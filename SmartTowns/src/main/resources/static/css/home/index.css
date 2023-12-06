@@ -1,6 +1,7 @@
 /* CSS for homepage */
 .wrapper {
-    width: 1200px;
+    /* change to max-width to make the website customized */
+    max-width: 1200px; 
     margin: 0 auto;
 }
 
