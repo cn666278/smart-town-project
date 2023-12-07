@@ -16,6 +16,10 @@ public class CheckpointRepositoryImpl implements CheckpointRepository{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public CheckpointRepositoryImpl() {
+
+    }
+
     @Override
     public List<CheckpointEntity> getAllCheckpoints() {
         String sql = "SELECT * FROM checkpoints";
@@ -45,6 +49,15 @@ public class CheckpointRepositoryImpl implements CheckpointRepository{
     public void deleteCheckpoint(int id) {
         String sql = "DELETE FROM checkpoints WHERE id = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public List<CheckpointEntity> getUserAccessedCheckpointsByUserId(int userId) {
+        String sql="SELECT c.*\n" +
+                "FROM checkpoint c\n" +
+                "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
+                "WHERE uc.user_id = YOUR_USER_ID;";
+        return jdbcTemplate.query(sql,checkpointRowMapper);
     }
 
 }

@@ -10,4 +10,6 @@ public interface CheckpointRepository {
     void addCheckpoint(CheckpointEntity checkpointEntity);
     void updateCheckpoint(CheckpointEntity checkpointEntity);
     void deleteCheckpoint(int id);
+
+    List<CheckpointEntity> getUserAccessedCheckpointsByUserId(int userId);
 }
