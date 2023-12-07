@@ -31,6 +31,7 @@ public class CheckpointController {
     @PostMapping("/checkpoint/{checkpointId}/{userId}")
     public ModelAndView finishCheckpoint(@PathVariable int checkpointId, @PathVariable int userId) {
         ModelAndView modelAndView = new ModelAndView("finish_checkpoint.html");
+        checkpointRepository.addUserCheckpoint(checkpointId, userId);
         return modelAndView;
     }
 }
