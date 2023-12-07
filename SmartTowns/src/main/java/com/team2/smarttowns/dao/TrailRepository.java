@@ -9,7 +9,7 @@ public interface TrailRepository {
 
 
     List<TrailEntity> getAllTrails();
-    public List<CheckpointEntity> getCheckpointsById(int id);
+    public List<CheckpointEntity> getCheckpointsByTrailId(int id);
 
 //    void addTrail(TrailEntity trailEntity);
 //    void updateTrail(TrailEntity trailEntity);
