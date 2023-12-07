@@ -10,7 +10,16 @@ import java.util.List;
 public class CheckpointRepositoryImpl implements CheckpointRepository{
     private JdbcTemplate jdbcTemplate;
 
-    private RowMapper<CheckpointEntity> checkpointRowMapper;
+    private RowMapper<CheckpointEntity> checkpointRowMapper = (rs, rowNum) -> {
+        CheckpointEntity checkpoint = new CheckpointEntity();
+        checkpoint.setId(rs.getInt("id"));
+        checkpoint.setLatitude(rs.getString("latitude"));
+        checkpoint.setLongitude(rs.getString("longitude"));
+        checkpoint.setName(rs.getString("name"));
+        checkpoint.setImage(rs.getString("image"));
+        checkpoint.setDetail(rs.getString("detail"));
+        return checkpoint;
+    };
 
     public CheckpointRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
