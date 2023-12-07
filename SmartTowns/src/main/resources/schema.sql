@@ -32,6 +32,6 @@ drop table if exists user_checkpoint;
 create table user_checkpoint
 (
     id            int auto_increment primary key,
-    user_id       varchar(255),
-    checkpoint_id varchar(255)
+    user_id       int,
+    checkpoint_id int
 ) engine = InnoDB;
