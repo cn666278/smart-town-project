@@ -1,8 +1,6 @@
 package com.team2.smarttowns.service;
 
-import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.dao.TrailRepositoryImpl;
-import com.team2.smarttowns.entity.CheckpointEntity;
 
 import java.util.List;
 
@@ -11,26 +9,13 @@ public class UserService {
     }
 
     /**
-     * get user trails by get what checkpoint user visited
+     * get user trails by the checkpoints user visited
      *
-     * @param id
+     * @param id user id
      */
-    public void getUserTrails(int id) {
-        // get checkpoint user visited by user id
-
+    public List<Integer> getTrailsByUserId(int id) {
         TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
-        List<CheckpointEntity> checkpointEntities = trailRepository.getCheckpointsById(id);
-
-
-        // Find all the checkpoints corresponding to the trail,
-        // and then put the trail into a non-repetitive list.
-        for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            int checkpointEntityId = checkpointEntity.getId();
-            // get trail by trail id
-            trailRepository.getTrailIdByCheckPointId(checkpointEntityId);
-        }
-
-
+        return trailRepository.getTrailsByUserId(id);
     }
 
     public List<Integer> getCompletedTrailsByUserId(int id) {

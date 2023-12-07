@@ -100,6 +100,28 @@ public class TrailRepositoryImpl implements TrailRepository {
     public void getTrailIdByCheckPointId(int checkpointEntityId) {
     }
 
+    /**
+     * get user trails by the checkpoints user visited
+     *
+     * @param UserId user id
+     */
+    public List<Integer> getTrailsByUserId(int UserId) {
+        // get user checkpoints by user id
+        List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
+
+        // get a return list of trail id
+        List<Integer> trailIds = new ArrayList<>();
+        // save the trail id for each checkpoint
+        for (CheckpointEntity checkpointEntity : checkpointEntities) {
+            int checkpointEntityId = checkpointEntity.getId();
+            // get trail by checkpoint id
+            int trailId = getTrailIdByCheckpointId(checkpointEntityId);
+            trailIds.add(trailId);
+        }
+
+        return trailIds;
+    }
+
     public List<Integer> getCompletedTrailsByUserId(int UserId) {
         // get user checkpoints by user id
         List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
@@ -129,12 +151,6 @@ public class TrailRepositoryImpl implements TrailRepository {
         return completedTrails;
     }
 
-    /**
-     * get all the checkpoints of a user
-     *
-     * @param userId
-     * @return
-     */
     public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
         List<CheckpointEntity> checkpointEntities = new ArrayList<>();
         String sql = "SELECT c.* FROM checkpoints c " +
@@ -164,12 +180,7 @@ public class TrailRepositoryImpl implements TrailRepository {
     }
 
 
-    /**
-     * get trail id by checkpoint id
-     *
-     * @param checkpointId
-     * @return
-     */
+    //from checkpoints id to find trail id
     public int getTrailIdByCheckpointId(int checkpointId) {
         String sql = "SELECT trail_id FROM trail_checkpoint WHERE checkpoint_id = ?";
         // notnull
@@ -179,13 +190,7 @@ public class TrailRepositoryImpl implements TrailRepository {
         return trailIds;
     }
 
-    /**
-     * check if the trail is completed
-     *
-     * @param userCheckpoint
-     * @param trailId
-     * @return
-     */
+    //use all the checkpoint id to make a list, check if all the checkpoint id of a trail is included in the checkpoint list
     public boolean isCompleted(List<Integer> userCheckpoint, int trailId) {
         String sql = "SELECT checkpoint_id FROM trail_checkpoint WHERE trail_id = ?";
         List<Integer> checkpointIds = jdbcTemplate.queryForObject(sql,
