@@ -81,7 +81,7 @@
                         scanningEnabled = false;
                         let checkpointId = code.data.replace('http://localhost:8080/checkpoint/', '');
                         if (checkpointId == backendId) {
-                            window.alert('Congratulations! You have finished checkpoint');
+                            window.alert('Congratulations! You have finished checkpoint: ' +/*[[${name}]]*/ '');
                         }
                     } else {
                         outputMessage.hidden = false;
