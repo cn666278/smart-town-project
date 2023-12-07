@@ -20,7 +20,7 @@ public class TrailController {
         // TODO : Rename trails.html to tail.html
         ModelAndView modelAndView = new ModelAndView("trails.html");
         // add the list of trails to the model
-        modelAndView.addObject("trails", trail.getAllTrails());
+        modelAndView.addObject("trails", trailRepository.getAllTrails());
         // add the trail details to the model
         for (Trail trail : trailRepository.getAllTrails()) {
             if (trail.getId() == id) {

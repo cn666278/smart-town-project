@@ -32,34 +32,34 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     }
 
     @Override
-    public List<CheckpointEntity> getAll() {
-        String sql = "select * from checkpoint";
+    public List<CheckpointEntity> getAllCheckpoints() {
+        String sql = "select * from checkpoints";
         return jdbc.query(sql, checkpointMapper);
     }
 
     @Override
-    public CheckpointEntity getById(int id) {
+    public CheckpointEntity getCheckpointById(int id) {
         String sql = "SELECT * FROM checkpoints WHERE id = ?";
         return jdbc.queryForObject(sql, checkpointMapper, id);
     }
 
     @Override
-    public void addOne(CheckpointEntity checkpointEntity) {
-        String sql = "INSERT INTO checkpoints (id,,lantitude,longitude,name,image,detail) VALUES (?,?,?,?,?,?)";
-        jdbc.update(sql, checkpointEntity.getId(), checkpointEntity.getName(), checkpointEntity.getImg(), checkpointEntity.getDescription(),
-                checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
-    }
-
-
-    @Override
-    public void updateOne(CheckpointEntity checkpointEntity) {
-        String sql = "UPDATE checkpoints SET lantitude = ?, longitude = ?, name = ?, image = ?, detail = ? WHERE id = ?";
+    public void addCheckpoint(CheckpointEntity checkpointEntity) {
+        String sql = "INSERT INTO checkpoints (name,img,description,contact,latitude,longitude,address) VALUES (?,?,?,?,?,?,?)";
         jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImg(), checkpointEntity.getDescription(),
                 checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
     }
 
+
     @Override
-    public void deleteById(int id) {
+    public void updateCheckpoint(CheckpointEntity checkpointEntity) {
+        String sql = "UPDATE checkpoints SET name = ?, img = ?, description = ?, contact = ?, latitude = ?,longitude=?,address=? WHERE id = ?";
+        jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImg(), checkpointEntity.getDescription(), checkpointEntity.getContact(),
+                checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress(), checkpointEntity.getId());
+    }
+
+    @Override
+    public void deleteCheckpoint(int id) {
         String sql = "DELETE FROM checkpoints WHERE id = ?";
         jdbc.update(sql, id);
     }
