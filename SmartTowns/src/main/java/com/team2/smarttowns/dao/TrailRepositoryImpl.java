@@ -167,8 +167,8 @@ public class TrailRepositoryImpl implements TrailRepository {
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
                     checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("image"));
-                    checkpoint.setDetail(rs.getString("detail"));
+                    checkpoint.setImg(rs.getString("img"));
+                    checkpoint.setDescription(rs.getString("description"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpointEntities.add(checkpoint);
                 }

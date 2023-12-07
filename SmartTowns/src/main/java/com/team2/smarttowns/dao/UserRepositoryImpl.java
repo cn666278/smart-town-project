@@ -1,54 +1,47 @@
 package com.team2.smarttowns.dao;
 
+import com.team2.smarttowns.entity.UserEntity;
 import com.team2.smarttowns.model.User;
-import com.team2.smarttowns.users.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@org.springframework.stereotype.Repository
+@Repository
 public class UserRepositoryImpl implements UserRepository {
-    public class UserRepositoryJDBC implements UserRepository {
 
-        private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-        private RowMapper<com.team2.smarttowns.users.User> userRowMapper;
+    private RowMapper<UserEntity> userRowMapper;
 
-        public UserRepositoryImp(JdbcTemplate jdbcTemplate) {
-            this.jdbcTemplate = jdbcTemplate;
-        }
-
-        private void setUserMapper() {
-            userRowMapper = (resultSet, i) -> {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String password = resultSet.getString("password");
-                String profile_img = resultSet.getString("profile_img");
-                String account = resultSet.getString("account");
-                String email = resultSet.getString("email");
-                String badget = resultSet.getString("badget");
-                return new User(id, name, password, profile_img, account, email, badget);
-            };
-        }
-
-        @Override
-        public List<User> getAllUsers() {
-            String sql = "SELECT * FROM users";
-            return jdbcTemplate.query(sql, userRowMapper);
-        }
-
-
-        @Override
-        public List<User> getAllUsers() {
-            String sql = "SELECT * FROM users";
-            return jdbcTemplate.query(sql, userRowMapper);
-        }
-
-        @Override
-        public User getUserByAccount(String account) {
-            return null;
-        }
-
+    public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        setUserMapper();
     }
+
+    private void setUserMapper() {
+        userRowMapper = (resultSet, i) -> {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String password = resultSet.getString("password");
+            String profileImg = resultSet.getString("profile_img");
+            String account = resultSet.getString("account");
+            String email = resultSet.getString("email");
+            String badge = resultSet.getString("badge");
+            return new UserEntity(id, name, password, profileImg, account, email, badge);
+        };
+    }
+
+    @Override
+    public List<UserEntity> getAllUsers() {
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, userRowMapper);
+    }
+
+    @Override
+    public User getUserByAccount(String account) {
+        return null;
+    }
+
 }

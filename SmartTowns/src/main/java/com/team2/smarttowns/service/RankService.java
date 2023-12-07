@@ -14,34 +14,34 @@ import java.util.List;
 @Service
 public class RankService {
 
-    public List<Checkpoint> checkpointUserAccessed(int userID) {
-        List<Checkpoint> checkpoints = new ArrayList<>();
-
-        // 需要用户访问过的检查点
-
-        CheckpointRepositoryImpl checkpointRepository = new CheckpointRepositoryImpl();
-
-        List<CheckpointEntity> checkpointEntities = checkpointRepository.getUserAccessedCheckpointsByUserId(userID);
-
-        for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            checkpoints.add(checkpointEntityToModel(checkpointEntity));
-        }
-
-        return checkpoints;
-    }
-
-
-
-    public Checkpoint checkpointEntityToModel(CheckpointEntity checkpointEntity)
-    {
-        Checkpoint checkpoint=new Checkpoint();
-        checkpoint.setId(checkpointEntity.getId());
-        checkpoint.setName(checkpointEntity.getName());
-        checkpoint.setImage(checkpointEntity.getImage());
-        checkpoint.setLatitude(checkpointEntity.getLatitude());
-        checkpoint.setLongitude(checkpointEntity.getLongitude());
-        checkpoint.setAddress(checkpointEntity.getAddress());
-        checkpoint.setDetail(checkpointEntity.getDetail());
-        return (checkpoint);
-    }
+//    public List<Checkpoint> checkpointUserAccessed(int userID) {
+//        List<Checkpoint> checkpoints = new ArrayList<>();
+//
+//        // 需要用户访问过的检查点
+//
+//        CheckpointRepositoryImpl checkpointRepository = new CheckpointRepositoryImpl();
+//
+//        List<CheckpointEntity> checkpointEntities = checkpointRepository.getUserAccessedCheckpointsByUserId(userID);
+//
+//        for (CheckpointEntity checkpointEntity : checkpointEntities) {
+//            checkpoints.add(checkpointEntityToModel(checkpointEntity));
+//        }
+//
+//        return checkpoints;
+//    }
+//
+//
+//
+//    public Checkpoint checkpointEntityToModel(CheckpointEntity checkpointEntity)
+//    {
+//        Checkpoint checkpoint=new Checkpoint();
+//        checkpoint.setId(checkpointEntity.getId());
+//        checkpoint.setName(checkpointEntity.getName());
+//        checkpoint.setImage(checkpointEntity.getImage());
+//        checkpoint.setLatitude(checkpointEntity.getLatitude());
+//        checkpoint.setLongitude(checkpointEntity.getLongitude());
+//        checkpoint.setAddress(checkpointEntity.getAddress());
+//        checkpoint.setDetail(checkpointEntity.getDetail());
+//        return (checkpoint);
+//    }
 }

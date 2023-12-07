@@ -12,17 +12,6 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private JdbcTemplate jdbc;
     private RowMapper<CheckpointEntity> checkpointMapper; // an interface for mapping rows of a database result set to Java objects
 
-    private RowMapper<CheckpointEntity> checkpointRowMapper = (rs, rowNum) -> {
-        CheckpointEntity checkpoint = new CheckpointEntity();
-        checkpoint.setId(rs.getInt("id"));
-        checkpoint.setLatitude(rs.getString("latitude"));
-        checkpoint.setLongitude(rs.getString("longitude"));
-        checkpoint.setName(rs.getString("name"));
-        checkpoint.setImage(rs.getString("image"));
-        checkpoint.setDetail(rs.getString("detail"));
-        return checkpoint;
-    };
-
     public CheckpointRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
         setCheckpointMapper();
@@ -39,10 +28,6 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
                 rs.getString("longitude"),
                 rs.getString("address")
         );
-    }
-
-    public CheckpointRepositoryImpl() {
-
     }
 
     @Override
@@ -89,12 +74,13 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         String sql = "SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?";
         return jdbc.queryForList(sql, Integer.class, userId);
     }
+
     @Override
     public List<CheckpointEntity> getUserAccessedCheckpointsByUserId(int userId) {
-        String sql="SELECT c.*\n" +
+        String sql = "SELECT c.*\n" +
                 "FROM checkpoint c\n" +
                 "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
                 "WHERE uc.user_id = YOUR_USER_ID;";
-        return jdbc.query(sql,checkpointMapper);
+        return jdbc.query(sql, checkpointMapper);
     }
 }
