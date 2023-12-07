@@ -5,9 +5,10 @@ import com.team2.smarttowns.entity.CheckpointEntity;
 import java.util.List;
 
 public interface CheckpointRepository {
-    List<CheckpointEntity> getAllCheckpoints();
-    CheckpointEntity getCheckpointById(int id);
-    void addCheckpoint(CheckpointEntity checkpointEntity);
-    void updateCheckpoint(CheckpointEntity checkpointEntity);
-    void deleteCheckpoint(int id);
+    List<CheckpointEntity> getAll();
+    CheckpointEntity getById(int id);
+    void addOne(CheckpointEntity checkpointEntity);
+    void updateOne(CheckpointEntity checkpointEntity);
+    void deleteById(int id);
+
 }

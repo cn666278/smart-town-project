@@ -2,7 +2,6 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.TrailEntity;
-import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,15 +20,12 @@ import static java.sql.DriverManager.getConnection;
 /**
  * TrailRepository reads data from the database and returns the data to the controller.
  *
- * @version 1.0
- *
  * @author CHENKE SUN
- *
- *
+ * @version 1.0
  */
 
 @Repository
-public class TrailRepositoryImpl implements TrailRepository{
+public class TrailRepositoryImpl implements TrailRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -65,11 +61,12 @@ public class TrailRepositoryImpl implements TrailRepository{
                 while (rs.next()) {
                     CheckpointEntity checkpoint = new CheckpointEntity();
                     checkpoint.setId(rs.getInt("id"));
+                    checkpoint.setName(rs.getString("name"));
+                    checkpoint.setImg(rs.getString("img"));
+                    checkpoint.setDescription(rs.getString("description"));
+                    checkpoint.setContact(rs.getString("contact"));
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
-                    checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("image"));
-                    checkpoint.setDetail(rs.getString("detail"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpoints.add(checkpoint);
                 }
@@ -79,6 +76,7 @@ public class TrailRepositoryImpl implements TrailRepository{
         }
         return checkpoints;
     }
+
     private Connection getConnection() throws SQLException {
         return jdbcTemplate.getDataSource().getConnection();
     }

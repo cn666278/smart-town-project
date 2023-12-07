@@ -3,48 +3,64 @@ package com.team2.smarttowns.dao;
 import com.team2.smarttowns.entity.CheckpointEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@org.springframework.stereotype.Repository
-public class CheckpointRepositoryImpl implements CheckpointRepository{
-    private JdbcTemplate jdbcTemplate;
+@Repository
+public class CheckpointRepositoryImpl implements CheckpointRepository {
+    private JdbcTemplate jdbc;
+    private RowMapper<CheckpointEntity> checkpointMapper; // an interface for mapping rows of a database result set to Java objects
 
-    private RowMapper<CheckpointEntity> checkpointRowMapper;
 
-    public CheckpointRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CheckpointRepositoryImpl(JdbcTemplate aJdbc) {
+        this.jdbc = aJdbc;
+        setCheckpointMapper();
+    }
+
+    private void setCheckpointMapper() {
+        checkpointMapper = (rs, i) -> new CheckpointEntity(
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("img"),
+                rs.getString("description"),
+                rs.getString("contact"),
+                rs.getString("latitude"),
+                rs.getString("longitude"),
+                rs.getString("address")
+        );
     }
 
     @Override
-    public List<CheckpointEntity> getAllCheckpoints() {
-        String sql = "SELECT * FROM checkpoints";
-        return jdbcTemplate.query(sql, checkpointRowMapper);
+    public List<CheckpointEntity> getAll() {
+        String sql = "select * from checkpoint";
+        return jdbc.query(sql, checkpointMapper);
     }
 
     @Override
-    public CheckpointEntity getCheckpointById(int id) {
+    public CheckpointEntity getById(int id) {
         String sql = "SELECT * FROM checkpoints WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, checkpointRowMapper, id);
+        return jdbc.queryForObject(sql, checkpointMapper, id);
     }
 
     @Override
-    public void addCheckpoint(CheckpointEntity checkpointEntity) {
+    public void addOne(CheckpointEntity checkpointEntity) {
         String sql = "INSERT INTO checkpoints (id,,lantitude,longitude,name,image,detail) VALUES (?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, checkpointEntity.getId(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDetail());
+        jdbc.update(sql, checkpointEntity.getId(), checkpointEntity.getName(), checkpointEntity.getImg(), checkpointEntity.getDescription(),
+                checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
     }
 
 
     @Override
-    public void updateCheckpoint(CheckpointEntity checkpointEntity) {
+    public void updateOne(CheckpointEntity checkpointEntity) {
         String sql = "UPDATE checkpoints SET lantitude = ?, longitude = ?, name = ?, image = ?, detail = ? WHERE id = ?";
-        jdbcTemplate.update(sql, checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDetail(), checkpointEntity.getId());
+        jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImg(), checkpointEntity.getDescription(),
+                checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
     }
 
     @Override
-    public void deleteCheckpoint(int id) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM checkpoints WHERE id = ?";
-        jdbcTemplate.update(sql, id);
+        jdbc.update(sql, id);
     }
-
 }
