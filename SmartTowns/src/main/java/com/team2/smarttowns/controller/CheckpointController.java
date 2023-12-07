@@ -19,6 +19,7 @@ public class CheckpointController {
         ModelAndView modelAndView = new ModelAndView("checkpoint.html");
         for (CheckpointEntity checkpoint : checkpointRepository.getAllCheckpoints()) {
             if (checkpoint.getId() == id) {
+                modelAndView.addObject("id", checkpoint.getId());
                 modelAndView.addObject("name", checkpoint.getName());
                 modelAndView.addObject("img", checkpoint.getImg());
                 modelAndView.addObject("description", checkpoint.getDescription());
