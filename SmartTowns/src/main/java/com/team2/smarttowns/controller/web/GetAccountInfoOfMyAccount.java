@@ -1,4 +1,4 @@
-package com.team2.smarttowns.controller;
+package com.team2.smarttowns.controller.web;
 
 import com.team2.smarttowns.dao.UserRepository;
 import com.team2.smarttowns.model.User;

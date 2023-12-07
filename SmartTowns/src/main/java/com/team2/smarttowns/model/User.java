@@ -12,9 +12,9 @@ public class User {
     private int id;
     private String name;
     private String password;
-    private String profile_img;
+    private String profileImg;
     private String account;
     private String email;
-    private String badget;
+    private String badge;
 
 }

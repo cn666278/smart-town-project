@@ -44,7 +44,12 @@ public class TrailRepositoryImpl implements TrailRepository {
         return jdbcTemplate.query(sql, trailRowMapper);
     }
 
-    public List<CheckpointEntity> getCheckpointsById(int id) {
+    /**
+     * Get all checkpoints of a trail by trail id
+     * @param id
+     * @return
+     */
+    public List<CheckpointEntity> getCheckpointsByTrailId(int id) {
         //todo rename checkpoints to trail_checkpoint
         List<CheckpointEntity> checkpoints = new ArrayList<>();
         String sql = "SELECT c.* FROM checkpoints c " +
@@ -58,11 +63,12 @@ public class TrailRepositoryImpl implements TrailRepository {
                 while (rs.next()) {
                     CheckpointEntity checkpoint = new CheckpointEntity();
                     checkpoint.setId(rs.getInt("id"));
+                    checkpoint.setName(rs.getString("name"));
+                    checkpoint.setImg(rs.getString("img"));
+                    checkpoint.setDescription(rs.getString("description"));
+                    checkpoint.setContact(rs.getString("contact"));
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
-                    checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("image"));
-                    checkpoint.setDetail(rs.getString("detail"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpoints.add(checkpoint);
                 }
