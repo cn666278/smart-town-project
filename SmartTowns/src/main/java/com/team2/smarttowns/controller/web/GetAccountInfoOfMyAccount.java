@@ -1,4 +1,4 @@
-package com.team2.smarttowns.controller;
+package com.team2.smarttowns.controller.web;
 
 import com.team2.smarttowns.users.User;
 import com.team2.smarttowns.users.UserRepository;
