@@ -63,4 +63,16 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         String sql = "DELETE FROM checkpoints WHERE id = ?";
         jdbc.update(sql, id);
     }
+
+    @Override
+    public void addUserCheckpoint(int checkpointId, int userId) {
+        String sql = "INSERT INTO user_checkpoint (checkpoint_id,user_id) VALUES (?,?)";
+        jdbc.update(sql, checkpointId, userId);
+    }
+
+    @Override
+    public List<Integer> getByUserId(int userId) {
+        String sql = "SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?";
+        return jdbc.queryForList(sql, Integer.class, userId);
+    }
 }

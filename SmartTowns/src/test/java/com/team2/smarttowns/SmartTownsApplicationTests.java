@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
@@ -54,4 +57,12 @@ class SmartTownsApplicationTests {
         checkpointRepository.deleteCheckpoint(1);
         getAllCheckpoints();
     }
+    @Test
+    void getCheckpointsByUserId() {
+        checkpointRepository.addUserCheckpoint(1,1);
+        checkpointRepository.addUserCheckpoint(2,1);
+        List<Integer> list = checkpointRepository.getByUserId(1);
+        list.forEach(System.out::println);
+    }
+
 }
