@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.service.RankService;
 import com.team2.smarttowns.service.TrailService;
+import com.team2.smarttowns.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,5 +19,11 @@ public class TrailsApi {
         public String getAllTrailsDataApi() {
                 Gson gson = new Gson();
                 return gson.toJson(trailService.getAllTrails());
+        }
+        UserService userService=new UserService();
+        @PostMapping("/api/trails/GetCompletedTrails")
+        public String getCompletedTrailsDataApi(@RequestParam("userId") int userId) {
+                Gson gson = new Gson();
+                return gson.toJson(userService.getCompletedTrailsByUserId(userId));
         }
 }

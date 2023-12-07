@@ -1,18 +1,19 @@
-package com.team2.smarttowns.users;
+package com.team2.smarttowns.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+public class UserEntity
 
     private int id;
     private String name;
     private String password;
-    private String profileImg;
+    private String profile_img;
     private String account;
     private String email;
-    private String badge;
+    private String badget;
 
 }

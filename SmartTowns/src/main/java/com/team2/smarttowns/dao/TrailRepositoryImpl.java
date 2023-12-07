@@ -12,10 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.util.List;
-
-import static java.sql.DriverManager.getConnection;
 
 /**
  * TrailRepository reads data from the database and returns the data to the controller.
@@ -99,4 +96,108 @@ public class TrailRepositoryImpl implements TrailRepository {
 
     public TrailRepositoryImpl() {
     }
+
+    public void getTrailIdByCheckPointId(int checkpointEntityId) {
+    }
+
+    public List<Integer> getCompletedTrailsByUserId(int UserId) {
+        // get user checkpoints by user id
+        List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
+
+        // get a return list of trail id
+        List<Integer> trailIds = new ArrayList<>();
+        for (CheckpointEntity checkpointEntity : checkpointEntities) {
+            int checkpointEntityId = checkpointEntity.getId();
+            // get trail by trail id
+            int trailId = getTrailIdByCheckpointId(checkpointEntityId);
+            trailIds.add(trailId);
+        }
+
+        List<Integer> userCheckpoint = new ArrayList<>();
+        for (CheckpointEntity checkpointEntity : checkpointEntities) {
+            userCheckpoint.add(checkpointEntity.getId());
+        }
+
+        List<Integer> completedTrails = new ArrayList<>();
+        // save the trail id user as completed
+        for (int trailId : trailIds) {
+            if (isCompleted(userCheckpoint, trailId)) {
+                completedTrails.add(trailId);
+            }
+        }
+
+        return completedTrails;
+    }
+
+    /**
+     * get all the checkpoints of a user
+     *
+     * @param userId
+     * @return
+     */
+    public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
+        List<CheckpointEntity> checkpointEntities = new ArrayList<>();
+        String sql = "SELECT c.* FROM checkpoints c " +
+                "INNER JOIN user_checkpoint uc ON c.id = uc.checkpoint_id " +
+                "WHERE uc.user_id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    CheckpointEntity checkpoint = new CheckpointEntity();
+                    checkpoint.setId(rs.getInt("id"));
+                    checkpoint.setLatitude(rs.getString("latitude"));
+                    checkpoint.setLongitude(rs.getString("longitude"));
+                    checkpoint.setName(rs.getString("name"));
+                    checkpoint.setImage(rs.getString("image"));
+                    checkpoint.setDetail(rs.getString("detail"));
+                    checkpoint.setAddress(rs.getString("address"));
+                    checkpointEntities.add(checkpoint);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return checkpointEntities;
+    }
+
+
+    /**
+     * get trail id by checkpoint id
+     *
+     * @param checkpointId
+     * @return
+     */
+    public int getTrailIdByCheckpointId(int checkpointId) {
+        String sql = "SELECT trail_id FROM trail_checkpoint WHERE checkpoint_id = ?";
+        // notnull
+        int trailIds = jdbcTemplate.queryForObject(sql,
+                Integer.class,
+                checkpointId);
+        return trailIds;
+    }
+
+    /**
+     * check if the trail is completed
+     *
+     * @param userCheckpoint
+     * @param trailId
+     * @return
+     */
+    public boolean isCompleted(List<Integer> userCheckpoint, int trailId) {
+        String sql = "SELECT checkpoint_id FROM trail_checkpoint WHERE trail_id = ?";
+        List<Integer> checkpointIds = jdbcTemplate.queryForObject(sql,
+                List.class,
+                trailId);
+        for (int checkpointId : checkpointIds) {
+            if (!userCheckpoint.contains(checkpointId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
+
