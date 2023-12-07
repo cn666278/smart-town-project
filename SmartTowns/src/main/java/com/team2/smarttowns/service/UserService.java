@@ -15,22 +15,9 @@ public class UserService {
      *
      * @param id user id
      */
-    public void getUserTrails(int id) {
-        // get checkpoint user visited by user id
-
+    public List<Integer> getTrailsByUserId(int id) {
         TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
-        List<CheckpointEntity> checkpointEntities = trailRepository.getCheckpointsById(id);
-
-
-        // Find all the checkpoints corresponding to the trail,
-        // and then put the trail into a non-repetitive list.
-        for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            int checkpointId = checkpointEntity.getId();
-            // get trail by trail id
-//            Trail trail = trailRepository.getTrailIdByCheckPointId(checkpointId);
-        }
-
-
+        return trailRepository.getTrailsByUserId(id);
     }
 
     public List<Integer> getCompletedTrailsByUserId(int id) {
