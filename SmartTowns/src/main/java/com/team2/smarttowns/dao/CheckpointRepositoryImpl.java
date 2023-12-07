@@ -31,6 +31,10 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         );
     }
 
+    public CheckpointRepositoryImpl() {
+
+    }
+
     @Override
     public List<CheckpointEntity> getAllCheckpoints() {
         String sql = "select * from checkpoints";
@@ -74,5 +78,13 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     public List<Integer> getByUserId(int userId) {
         String sql = "SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?";
         return jdbc.queryForList(sql, Integer.class, userId);
+    }
+    @Override
+    public List<CheckpointEntity> getUserAccessedCheckpointsByUserId(int userId) {
+        String sql="SELECT c.*\n" +
+                "FROM checkpoint c\n" +
+                "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
+                "WHERE uc.user_id = YOUR_USER_ID;";
+        return jdbc.query(sql,checkpointMapper);
     }
 }
