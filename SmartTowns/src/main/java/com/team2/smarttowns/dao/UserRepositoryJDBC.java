@@ -1,7 +1,7 @@
 package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.TrailEntity;
-import com.team2.smarttowns.users.User;
+import com.team2.smarttowns.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,7 +12,7 @@ public class UserRepositoryJDBC implements UserRepository {
 
         private JdbcTemplate jdbcTemplate;
 
-        private RowMapper<com.team2.smarttowns.users.User> userRowMapper;
+        private RowMapper<User> userRowMapper;
 
     public UserRepositoryJDBC(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
