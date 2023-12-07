@@ -10,7 +10,9 @@
     <div th:replace="~{fragments/header :: headerBlock}"/>
     </div>
     <button onclick="startScanning()">SCAN</button>
-    <div id="loadingMessage" style="display:none;">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+    <div id="loadingMessage" style="display:none;">🎥 Unable to access video stream (please make sure you have a webcam
+        enabled)
+    </div>
     <canvas id="canvas" hidden></canvas>
     <div id="output" hidden>
         <div id="outputMessage">No QR code detected.</div>
@@ -21,7 +23,11 @@
     </div>
 
     <!--mostly from external library-->
-    <script>
+    <script th:inline="javascript">
+        let backendId =  /*[[${id}]]*/ '';
+
+        let scanningEnabled = true;
+
         function startScanning() {
             let video = document.createElement("video");
             let canvasElement = document.getElementById("canvas");
@@ -63,7 +69,7 @@
                     let code = jsQR(imageData.data, imageData.width, imageData.height, {
                         inversionAttempts: "dontInvert",
                     });
-                    if (code) {
+                    if (code && scanningEnabled) {
                         drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
                         drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
                         drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
@@ -72,12 +78,10 @@
                         outputData.parentElement.hidden = false;
                         outputData.innerText = code.data;
 
+                        scanningEnabled = false;
                         let checkpointId = code.data.replace('http://localhost:8080/checkpoint/', '');
-                        let backendId = /*[[${id}]]*/ '';
-                        // console.log(backendId);
-                        console.log(checkpointId);
                         if (checkpointId == backendId) {
-                            window.alert(checkpointId);
+                            window.alert('Congratulations! You have finished checkpoint');
                         }
                     } else {
                         outputMessage.hidden = false;
