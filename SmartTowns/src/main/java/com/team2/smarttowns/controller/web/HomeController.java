@@ -1,4 +1,4 @@
-package com.team2.smarttowns.controller;
+package com.team2.smarttowns.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TownsController {
+public class HomeController {
 
-    @GetMapping("/towns")
+    @GetMapping("/home")
     public ModelAndView homePage() {
-        ModelAndView modelAndView = new ModelAndView("town.html");
+        ModelAndView modelAndView = new ModelAndView("home.html");
+        // modelAndView.addObject("message", "Hello World");
         return modelAndView;
     }
 

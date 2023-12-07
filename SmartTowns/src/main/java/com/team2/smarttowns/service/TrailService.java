@@ -23,7 +23,7 @@ public class TrailService {
             trail.setName(trailEntity.getName());
             trail.setImage(trailEntity.getImage());
             trail.setDetails(trailEntity.getDetails());
-            for (CheckpointEntity checkpointEntity : trailRepository.getCheckpointsById(trailEntity.getId())) {
+            for (CheckpointEntity checkpointEntity : trailRepository.getCheckpointsByTrailId(trailEntity.getId())) {
                 Checkpoint checkpoint = checkpointEntityToModel(checkpointEntity);
                 trail.getCheckpoints().add(checkpoint);
             }

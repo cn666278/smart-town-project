@@ -12,6 +12,16 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private JdbcTemplate jdbc;
     private RowMapper<CheckpointEntity> checkpointMapper; // an interface for mapping rows of a database result set to Java objects
 
+    private RowMapper<CheckpointEntity> checkpointRowMapper = (rs, rowNum) -> {
+        CheckpointEntity checkpoint = new CheckpointEntity();
+        checkpoint.setId(rs.getInt("id"));
+        checkpoint.setLatitude(rs.getString("latitude"));
+        checkpoint.setLongitude(rs.getString("longitude"));
+        checkpoint.setName(rs.getString("name"));
+        checkpoint.setImage(rs.getString("image"));
+        checkpoint.setDetail(rs.getString("detail"));
+        return checkpoint;
+    };
 
     public CheckpointRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
