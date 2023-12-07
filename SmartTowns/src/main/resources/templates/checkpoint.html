@@ -20,6 +20,7 @@
         <img class="checkpointPic" style="align-content: center" th:src="${img}"/>
     </div>
 
+    <!--mostly from external library-->
     <script>
         function startScanning() {
             let video = document.createElement("video");
@@ -40,7 +41,7 @@
                 canvas.stroke();
             }
 
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+            navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(function (stream) {
                 video.srcObject = stream;
                 video.setAttribute("playsinline", true);
                 video.play();
@@ -70,6 +71,14 @@
                         outputMessage.hidden = true;
                         outputData.parentElement.hidden = false;
                         outputData.innerText = code.data;
+
+                        let checkpointId = code.data.replace('http://localhost:8080/checkpoint/', '');
+                        let backendId = /*[[${id}]]*/ '';
+                        // console.log(backendId);
+                        console.log(checkpointId);
+                        if (checkpointId == backendId) {
+                            window.alert(checkpointId);
+                        }
                     } else {
                         outputMessage.hidden = false;
                         outputData.parentElement.hidden = true;
