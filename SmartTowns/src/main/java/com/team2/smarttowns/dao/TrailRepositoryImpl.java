@@ -103,6 +103,28 @@ public class TrailRepositoryImpl implements TrailRepository {
     public void getTrailIdByCheckPointId(int checkpointEntityId) {
     }
 
+    /**
+     * get user trails by the checkpoints user visited
+     *
+     * @param UserId user id
+     */
+    public List<Integer> getTrailsByUserId(int UserId) {
+        // get user checkpoints by user id
+        List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
+
+        // get a return list of trail id
+        List<Integer> trailIds = new ArrayList<>();
+        // save the trail id for each checkpoint
+        for (CheckpointEntity checkpointEntity : checkpointEntities) {
+            int checkpointEntityId = checkpointEntity.getId();
+            // get trail by checkpoint id
+            int trailId = getTrailIdByCheckpointId(checkpointEntityId);
+            trailIds.add(trailId);
+        }
+
+        return trailIds;
+    }
+
     public List<Integer> getCompletedTrailsByUserId(int UserId) {
         // get user checkpoints by user id
         List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
