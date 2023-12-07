@@ -5,6 +5,7 @@ import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.model.Trail;
 import com.team2.smarttowns.entity.TrailEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
