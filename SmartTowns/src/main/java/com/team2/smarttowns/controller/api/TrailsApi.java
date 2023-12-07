@@ -1,7 +1,6 @@
 package com.team2.smarttowns.controller.api;
 
 import com.google.gson.Gson;
-import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.service.TrailService;
 import com.team2.smarttowns.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
