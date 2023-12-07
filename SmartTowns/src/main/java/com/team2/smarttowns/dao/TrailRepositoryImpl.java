@@ -12,10 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.util.List;
-
-import static java.sql.DriverManager.getConnection;
 
 /**
  * TrailRepository reads data from the database and returns the data to the controller.

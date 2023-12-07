@@ -1,8 +1,6 @@
 package com.team2.smarttowns.service;
 
-import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.dao.TrailRepositoryImpl;
-import com.team2.smarttowns.entity.CheckpointEntity;
 
 import java.util.List;
 

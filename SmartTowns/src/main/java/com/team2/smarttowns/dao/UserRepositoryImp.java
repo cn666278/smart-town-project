@@ -8,13 +8,13 @@ import org.springframework.jdbc.core.RowMapper;
 import java.util.List;
 
 @org.springframework.stereotype.Repository
-public class UserRepositoryJDBC implements UserRepository {
+public class UserRepositoryImp implements UserRepository {
 
         private JdbcTemplate jdbcTemplate;
 
         private RowMapper<User> userRowMapper;
 
-    public UserRepositoryJDBC(JdbcTemplate jdbcTemplate) {
+    public UserRepositoryImp(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
