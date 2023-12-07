@@ -449,4 +449,16 @@
     document.getElementById("map-view-button").onclick = function () {
         location.href = "http://localhost:8080/trailsmap";
     };
+
+    //get data from /api/trails
+    var trails = [];
+    $.ajax({
+        url: "/api/trails",
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            trails = data;
+        }
+    });
 </script>
