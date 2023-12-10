@@ -37,7 +37,7 @@ CREATE TABLE if not exists users_roles
 ) engine = InnoDB;
 
 CREATE VIEW if not exists user_authorities as
-select u.username as username, CONCAT("ROLE_", r.name) as authority
+select u.name as username, CONCAT('ROLE_', r.name) as authority
 from users u
          inner join users_roles ur on u.id = ur.user_id
          inner join roles r on ur.role_id = r.id;

@@ -36,10 +36,10 @@ values ('user1',
         'dragon hero');
 
 delete from roles;
-insert into roles (role_id, name)
-values (1, 'ADMIN');
-insert into roles (role_id, name)
-values (2, 'USER');
+insert into roles (name)
+values ('ADMIN');
+insert into roles (name)
+values ('USER');
 
 delete from users_roles;
 insert into users_roles (user_id, role_id)
