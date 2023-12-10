@@ -24,13 +24,13 @@ public class CheckpointService {
         //CheckpointRepositoryImpl checkpointRepository = new CheckpointRepositoryImpl();
         List<CheckpointEntity> checkpointEntities = checkpointRepository.getCheckpointsByTrailId(trailId);
         for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            Checkpoint checkpoint = tranferCheckpointEntityToModel(checkpointEntity);
+            Checkpoint checkpoint = transferCheckpointEntityToModel(checkpointEntity);
             checkpoints.add(checkpoint);
         }
         return checkpoints;
     }
 
-    public Checkpoint tranferCheckpointEntityToModel(CheckpointEntity checkpointEntity) {
+    public Checkpoint transferCheckpointEntityToModel(CheckpointEntity checkpointEntity) {
         Checkpoint checkpoint = new Checkpoint();
         checkpoint.setId(checkpointEntity.getId());
         checkpoint.setLatitude(checkpointEntity.getLatitude());
