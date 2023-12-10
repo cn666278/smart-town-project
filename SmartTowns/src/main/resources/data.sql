@@ -1,6 +1,6 @@
 delete
-from checkpoints;
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+from checkpoint;
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
         'Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located in the city centre of Cardiff, Wales.',
@@ -9,7 +9,7 @@ values ('Cardiff Castle',
         '3.4360° W',
         'Castle St, Cardiff CF10 3RB');
 
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('National Museum Cardiff',
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/46/de/c6/spring-sunshine.jpg',
         'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.',
@@ -17,7 +17,7 @@ values ('National Museum Cardiff',
         '51.4857° N',
         '3.1768° W',
         'Cardiff CF10 3NP');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-2.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.',
@@ -25,7 +25,7 @@ values ('Cardiff Bay',
         '51.4647° N',
         '3.1633° W',
         'Cardiff CF10 4PA');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Principality Stadium',
         'https://www.visitcardiff.com/app/uploads/2019/06/Principality-Stadium-2.jpg',
         'The Principality Stadium (Welsh: Stadiwm Principality), known as the Millennium Stadium from 1999 until 2015, is the national stadium of Wales.',
@@ -33,7 +33,7 @@ values ('Principality Stadium',
         '51.4782° N',
         '3.1828° W',
         'Westgate St, Cardiff CF10 1NS');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Barrage',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Barrage-2.jpg',
         'The Cardiff Bay Barrage (Welsh: Dynesfa Bae Caerdydd) is a major civil engineering project in South Cardiff, Wales.',
@@ -41,7 +41,7 @@ values ('Cardiff Bay Barrage',
         '51.4532° N',
         '3.1667° W',
         'Cardiff CF10 4LY');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('St Fagans National Museum of History',
         'https://www.visitcardiff.com/app/uploads/2019/06/St-Fagans-National-Museum-of-History-2.jpg',
         'St Fagans National Museum of History (Welsh: Sain Ffagan: Amgueddfa Werin Cymru), commonly referred to as St Fagans after the village where it is located, is an open-air museum in Cardiff chronicling the historical lifestyle, culture, and architecture of the Welsh people.',
@@ -49,7 +49,7 @@ values ('St Fagans National Museum of History',
         '51.4861° N',
         '3.2733° W',
         'Cardiff CF5 6XB');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Wales Millennium Centre',
         'https://www.visitcardiff.com/app/uploads/2019/06/Wales-Millennium-Centre-2.jpg',
         'Wales Millennium Centre (Welsh: Canolfan Mileniwm Cymru) is an arts centre located in the Cardiff Bay area of Cardiff, Wales.',
@@ -57,7 +57,7 @@ values ('Wales Millennium Centre',
         '51.4647° N',
         '3.1633° W',
         'Bute Pl, Cardiff CF10 5AL');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Wetlands Reserve',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Wetlands-Reserve-2.jpg',
         'Cardiff Bay Wetlands Reserve is a wetlands reserve in Cardiff, Wales. It is managed by the Wildlife Trust of South and West Wales.',
@@ -65,7 +65,7 @@ values ('Cardiff Bay Wetlands Reserve',
         '51.4532° N',
         '3.1667° W',
         'Cardiff CF10 4LY');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Barrage',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Barrage-2.jpg',
         'The Cardiff Bay Barrage (Welsh: Dynesfa Bae Caerdydd) is a major civil engineering project in South Cardiff, Wales.',
@@ -73,7 +73,7 @@ values ('Cardiff Bay Barrage',
         '51.4532° N',
         '3.1667° W',
         'Cardiff CF10 4LY');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Barrage',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Barrage-2.jpg',
         'The Cardiff Bay Barrage (Welsh: Dynesfa Bae Caerdydd) is a major civil engineering project in South Cardiff, Wales.',
@@ -81,7 +81,7 @@ values ('Cardiff Bay Barrage',
         '51.4532° N',
         '3.1667° W',
         'Cardiff CF10 4LY');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Barrage',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Barrage-2.jpg',
         'The Cardiff Bay Barrage (Welsh: Dynesfa Bae Caerdydd) is a major civil engineering project in South Cardiff, Wales.',
@@ -89,7 +89,7 @@ values ('Cardiff Bay Barrage',
         '51.4532° N',
         '3.1667° W',
         'Cardiff CF10 4LY');
-insert into checkpoints (name, img, description, contact, latitude, longitude, address)
+insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay Barrage',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-Barrage-2.jpg',
         'The Cardiff Bay Barrage (Welsh: Dynesfa Bae Caerdydd) is a major civil engineering project in South Cardiff, Wales.',
@@ -119,14 +119,16 @@ values ('user2',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         123,
         '1@qq.com',
-        'dragon hero)
-delete from roles;
+        'dragon hero');
+delete
+from roles;
 insert into roles (name)
 values ('ADMIN');
 insert into roles (name)
 values ('USER');
 
-delete from users_roles;
+delete
+from users_roles;
 insert into users_roles (user_id, role_id)
 values (1, 1);
 insert into users_roles (user_id, role_id)

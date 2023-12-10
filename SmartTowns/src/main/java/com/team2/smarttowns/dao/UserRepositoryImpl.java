@@ -44,4 +44,10 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(sql, userRowMapper, account);
     }
 
+    @Override
+    public UserEntity getUserById(int id) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, userRowMapper, id);
+    }
+
 }
