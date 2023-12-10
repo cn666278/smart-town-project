@@ -175,7 +175,7 @@
 <body>
 
 <!-- header-nav -->
-    <div th:replace="~{fragments/header :: headerBlock}"/>
+<div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
     <div class="account-header">
@@ -190,6 +190,7 @@
     </div>
 
     <div class="box">
+        <!--        todo: userId-->
         <a href="#" onclick="showModule('trails'); getUserTrails(userId);">My Trails</a>
         <a href="#" onclick="showModule('finished')">Finished</a>
         <a href="#" onclick="showModule('medal')">My Medal</a>
@@ -568,7 +569,6 @@
         xhr.send();
         return myTrails;
     }
-
 
 
 </script>
