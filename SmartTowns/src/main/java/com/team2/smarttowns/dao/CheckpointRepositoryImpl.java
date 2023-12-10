@@ -73,6 +73,15 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     }
 
     @Override
+    public List<CheckpointEntity> getCheckpointsByTrailId(int trailId) {
+        String sql = "SELECT c.*\n" +
+                "FROM checkpoint c\n" +
+                "JOIN trail_checkpoint tc ON c.id = tc.checkpoint_id\n" +
+                "WHERE tc.trail_id = ?";
+        return jdbc.query(sql, checkpointMapper, trailId);
+    }
+
+    @Override
     public List<Integer> getByUserId(int userId) {
         String sql = "SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?";
         return jdbc.queryForList(sql, Integer.class, userId);
