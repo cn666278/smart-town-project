@@ -9,4 +9,7 @@ public interface UserRepository {
 
     UserEntity getUserByAccount(String account);
 
+    UserEntity getUserById(int id);
+
+
 }
