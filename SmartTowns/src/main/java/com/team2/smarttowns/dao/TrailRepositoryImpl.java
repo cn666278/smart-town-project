@@ -2,6 +2,7 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.TrailEntity;
+import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -24,7 +25,6 @@ import java.util.List;
 @Repository
 public class TrailRepositoryImpl implements TrailRepository {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private RowMapper<TrailEntity> trailRowMapper = (rs, rowNum) -> {
@@ -57,6 +57,7 @@ public class TrailRepositoryImpl implements TrailRepository {
         return checkpoint;
     };
 
+    @Override
     public List<TrailEntity> getAllTrails() {
         String sql = "SELECT * FROM trails";
         return jdbcTemplate.query(sql, trailRowMapper);
@@ -67,6 +68,7 @@ public class TrailRepositoryImpl implements TrailRepository {
      * @param id
      * @return
      */
+    @Override
     public List<CheckpointEntity> getCheckpointsByTrailId(int id) {
         //todo rename checkpoints to trail_checkpoint
         List<CheckpointEntity> checkpoints = new ArrayList<>();
@@ -113,8 +115,6 @@ public class TrailRepositoryImpl implements TrailRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public TrailRepositoryImpl() {
-    }
 
     public void getTrailIdByCheckPointId(int checkpointEntityId) {
     }
@@ -124,6 +124,7 @@ public class TrailRepositoryImpl implements TrailRepository {
      *
      * @param UserId user id
      */
+    @Override
     public List<Integer> getTrailsByUserId(int UserId) {
         // get user checkpoints by user id
         List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
@@ -141,6 +142,7 @@ public class TrailRepositoryImpl implements TrailRepository {
         return trailIds;
     }
 
+    @Override
     public List<Integer> getCompletedTrailsByUserId(int UserId) {
         // get user checkpoints by user id
         List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
@@ -170,6 +172,7 @@ public class TrailRepositoryImpl implements TrailRepository {
         return completedTrails;
     }
 
+    @Override
     public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
         List<CheckpointEntity> checkpointEntities = new ArrayList<>();
         String sql = "SELECT c.* FROM checkpoints c " +
@@ -186,7 +189,7 @@ public class TrailRepositoryImpl implements TrailRepository {
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
                     checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImg(rs.getString("img"));
+                    checkpoint.setImage(rs.getString("img"));
                     checkpoint.setDescription(rs.getString("description"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpointEntities.add(checkpoint);
