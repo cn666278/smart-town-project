@@ -19,12 +19,13 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private RowMapper<CheckpointEntity> checkpointMapper = (rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
-            rs.getString("img"),
+            rs.getString("image"),
             rs.getString("description"),
             rs.getString("contact"),
             rs.getString("latitude"),
             rs.getString("longitude"),
-            rs.getString("address")
+            rs.getString("address"),
+            rs.getString("detail")
     );; // an interface for mapping rows of a database results set to Java objects
 
     @Autowired

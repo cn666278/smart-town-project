@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.service.RankService;
-import com.team2.smarttowns.users.UserRepository;
+import com.team2.smarttowns.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
