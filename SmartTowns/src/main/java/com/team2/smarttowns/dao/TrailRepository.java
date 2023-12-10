@@ -11,6 +11,14 @@ public interface TrailRepository {
     List<TrailEntity> getAllTrails();
     public List<CheckpointEntity> getCheckpointsByTrailId(int id);
 
+    List<CheckpointEntity> getCheckpointsByUserId(int userId);
+
+    TrailEntity getTrailById(int id);
+
+    List<Integer> getTrailsByUserId(int id);
+
+    List<Integer> getCompletedTrailsByUserId(int id);
+
 //    void addTrail(TrailEntity trailEntity);
 //    void updateTrail(TrailEntity trailEntity);
 //    void deleteTrail(int id);

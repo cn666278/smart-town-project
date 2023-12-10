@@ -16,5 +16,6 @@ public class Checkpoint {
     private String image;
     private String detail;
     private String address;
+    private String description;
 
 }
