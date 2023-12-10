@@ -1,24 +1,28 @@
 package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@org.springframework.stereotype.Repository
+@Repository
 public class CheckpointRepositoryImpl implements CheckpointRepository{
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private RowMapper<CheckpointEntity> checkpointRowMapper;
 
-    public CheckpointRepositoryImpl(JdbcTemplate jdbcTemplate) {
+
+    public CheckpointRepositoryImpl(JdbcTemplate jdbcTemplate, RowMapper<CheckpointEntity> checkpointRowMapper) {
         this.jdbcTemplate = jdbcTemplate;
+        this.checkpointRowMapper = checkpointRowMapper;
     }
-
-    public CheckpointRepositoryImpl() {
-
-    }
+//    public CheckpointRepositoryImpl() {
+//
+//    }
 
     @Override
     public List<CheckpointEntity> getAllCheckpoints() {
@@ -56,8 +60,8 @@ public class CheckpointRepositoryImpl implements CheckpointRepository{
         String sql="SELECT c.*\n" +
                 "FROM checkpoint c\n" +
                 "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
-                "WHERE uc.user_id = YOUR_USER_ID;";
-        return jdbcTemplate.query(sql,checkpointRowMapper);
+                "WHERE uc.user_id = ?";
+        return jdbcTemplate.query(sql,checkpointRowMapper, userId);
     }
 
 }
