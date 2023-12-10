@@ -13,22 +13,13 @@ import java.util.List;
 public class TrailService {
     private final TrailRepository trailRepository;
     public List<Trail> getAllTrails() {
-        TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
         List<Trail> trails = new ArrayList<>();
         //get data from dao. Then transfer entity to model
-
         List<TrailEntity> trailEntities = trailRepository.getAllTrails();
 
         for (TrailEntity trailEntity : trailEntities) {
             Trail trail = new Trail();
-            trail.setId(trailEntity.getId());
-            trail.setName(trailEntity.getName());
-            trail.setImage(trailEntity.getImage());
-            trail.setDetails(trailEntity.getDetails());
-            for (CheckpointEntity checkpointEntity : trailRepository.getCheckpointsByTrailId(trailEntity.getId())) {
-                Checkpoint checkpoint = checkpointEntityToModel(checkpointEntity);
-                trail.getCheckpoints().add(checkpoint);
-            }
+            trailEntityToModel(trailEntity, trail);
             trails.add(trail);
         }
 
