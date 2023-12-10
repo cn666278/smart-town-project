@@ -1,6 +1,9 @@
 package com.team2.smarttowns.service;
 
+import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.dao.TrailRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
