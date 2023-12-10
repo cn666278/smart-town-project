@@ -19,7 +19,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private RowMapper<CheckpointEntity> checkpointMapper = (rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
-            rs.getString("img"),
+            rs.getString("image"),
             rs.getString("description"),
             rs.getString("contact"),
             rs.getString("latitude"),
@@ -47,7 +47,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
 
     @Override
     public void addCheckpoint(CheckpointEntity checkpointEntity) {
-        String sql = "INSERT INTO checkpoint (name,img,description,contact,latitude,longitude,address) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO checkpoint (name,image,description,contact,latitude,longitude,address) VALUES (?,?,?,?,?,?,?)";
         jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDescription(),
                 checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
     }
@@ -55,7 +55,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
 
     @Override
     public void updateCheckpoint(CheckpointEntity checkpointEntity) {
-        String sql = "UPDATE checkpoint SET name = ?, img = ?, description = ?, contact = ?, latitude = ?,longitude=?,address=? WHERE id = ?";
+        String sql = "UPDATE checkpoint SET name = ?, image = ?, description = ?, contact = ?, latitude = ?,longitude=?,address=? WHERE id = ?";
         jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDescription(), checkpointEntity.getContact(),
                 checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress(), checkpointEntity.getId());
     }

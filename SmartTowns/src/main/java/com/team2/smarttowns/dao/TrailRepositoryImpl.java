@@ -72,7 +72,7 @@ public class TrailRepositoryImpl implements TrailRepository {
     public List<CheckpointEntity> getCheckpointsByTrailId(int id) {
         //todo rename checkpoints to trail_checkpoint
         List<CheckpointEntity> checkpoints = new ArrayList<>();
-        String sql = "SELECT c.* FROM checkpoints c " +
+        String sql = "SELECT c.* FROM checkpoint c " +
                 "INNER JOIN trail_checkpoint tc ON c.id = tc.checkpoint_id " +
                 "WHERE tc.trail_id = ?";
         try (Connection conn = getConnection();
