@@ -17,13 +17,13 @@ public class TrailsApi {
                 return gson.toJson(trailService.getAllTrails());
         }
         UserService userService=new UserService();
-        @PostMapping("/api/trails/GetTrails")
-        public String getTrailsDataApi(@RequestParam("userId") int userId) {
+        @PostMapping("/api/trails/GetUserTrails")
+        public String getUserTrailsDataApi(@RequestParam("userId") int userId) {
                 Gson gson = new Gson();
                 return gson.toJson(userService.getTrailsByUserId(userId));
         }
-        @PostMapping("/api/trails/GetCompletedTrails")
-        public String getCompletedTrailsDataApi(@RequestParam("userId") int userId) {
+        @PostMapping("/api/trails/GetUserCompletedTrails")
+        public String getUserCompletedTrailsDataApi(@RequestParam("userId") int userId) {
                 Gson gson = new Gson();
                 return gson.toJson(userService.getCompletedTrailsByUserId(userId));
         }
