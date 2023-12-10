@@ -1,7 +1,6 @@
 package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.UserEntity;
-import com.team2.smarttowns.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -40,8 +39,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserByAccount(String account) {
-        return null;
+    public UserEntity getUserByAccount(String account) {
+        String sql = "SELECT * FROM users WHERE account = ?";
+        return jdbcTemplate.queryForObject(sql, userRowMapper, account);
     }
 
 }
