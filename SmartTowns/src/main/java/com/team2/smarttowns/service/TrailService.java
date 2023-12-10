@@ -9,7 +9,9 @@ import com.team2.smarttowns.entity.TrailEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TrailService {
+    private final TrailRepository trailRepository;
     public List<Trail> getAllTrails() {
         TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
         List<Trail> trails = new ArrayList<>();
@@ -42,5 +44,9 @@ public class TrailService {
         return checkpoint;
     }
 
+    @Autowired
+    public TrailService(TrailRepository trailRepository) {
+        this.trailRepository = trailRepository;
+    }
 
 }

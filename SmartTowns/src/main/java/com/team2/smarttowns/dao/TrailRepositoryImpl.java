@@ -204,5 +204,18 @@ public class TrailRepositoryImpl implements TrailRepository {
         return true;
     }
 
+    @Override
+    public TrailEntity getTrailById(int id) {
+        String sql = "SELECT * FROM trail WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, trailRowMapper, id);
+    }
+
+
+    @Autowired
+    public TrailRepositoryImpl(JdbcTemplate jdbcTemplate, RowMapper<TrailEntity> userRowMapper, RowMapper<CheckpointEntity> checkpointRowMapper) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.userRowMapper = userRowMapper;
+        this.checkpointRowMapper = checkpointRowMapper;
+    }
 }
 

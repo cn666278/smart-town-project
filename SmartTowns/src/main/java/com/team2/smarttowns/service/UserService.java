@@ -4,8 +4,14 @@ import com.team2.smarttowns.dao.TrailRepositoryImpl;
 
 import java.util.List;
 
+@Service
 public class UserService {
-    public UserService() {
+
+    TrailRepository trailRepository;
+
+    @Autowired
+    public UserService(TrailRepositoryImpl trailRepository) {
+        this.trailRepository=trailRepository;
     }
 
     /**
