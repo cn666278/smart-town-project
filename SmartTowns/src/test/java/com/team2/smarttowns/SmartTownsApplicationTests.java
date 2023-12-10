@@ -88,7 +88,7 @@ class SmartTownsApplicationTests {
     @Test
     void testPasswordEncoder() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String rawPassword = "admin";
+        String rawPassword = "user1";
         String encodedPassword = passwordEncoder.encode(rawPassword);
         System.out.println(encodedPassword);
     }

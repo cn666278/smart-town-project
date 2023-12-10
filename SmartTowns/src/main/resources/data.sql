@@ -20,16 +20,16 @@ values ('National Museum Cardiff',
 
 delete
 from users;
-insert into users (name, password, profile_img, account, email, badge)
+insert into users (username, password, profile_img, account, email, badge)
 values ('admin1',
-        '$2a$10$SZiL1xIvb4AmAQHlHdpGXumenQGUF16.vPbK2qjxQCWuL1SftZ2aO',
+        '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         001,
         'admin@cardiff.ac.uk',
         'dragon hero');
-insert into users (name, password, profile_img, account, email, badge)
+insert into users (username, password, profile_img, account, email, badge)
 values ('user1',
-        '$2a$10$MvdjfEjMRuuSaTx8sCBEHepupbp8rcmJTzuF6oxuyFYtCY5KzVjLC',
+        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         123,
         'user@cardiff.ac.uk',

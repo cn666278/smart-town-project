@@ -21,7 +21,7 @@ public class SecurityConfig {
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap"};
+            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**"};
     public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
 
 
@@ -32,7 +32,9 @@ public class SecurityConfig {
                         .requestMatchers(USER_ENDPOINTS_WHITELIST).hasRole("USER")
                         .anyRequest().hasRole("ADMIN"))
                 .csrf(csrf -> csrf.disable())
-                .formLogin(form -> form.loginPage("/login").permitAll());
+                .formLogin(form -> form
+                        .loginPage("/login").permitAll()
+                        .defaultSuccessUrl("/myaccount",true));
         return http.build();
     }
 
