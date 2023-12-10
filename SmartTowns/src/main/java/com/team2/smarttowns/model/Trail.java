@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,6 +16,6 @@ public class Trail {
     private String name;
     private String image;
     private String details;
-    private List<Checkpoint> checkpoints;
+    private List<Checkpoint> checkpoints=new ArrayList<>();
 
 }
