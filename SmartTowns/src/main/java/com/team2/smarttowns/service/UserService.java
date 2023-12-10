@@ -20,14 +20,13 @@ public class UserService {
      * @param id user id
      */
     public List<Integer> getTrailsByUserId(int id) {
-        TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
+
         return trailRepository.getTrailsByUserId(id);
     }
 
     public List<Integer> getCompletedTrailsByUserId(int id) {
-        TrailRepositoryImpl trailRepository = new TrailRepositoryImpl();
+
         return trailRepository.getCompletedTrailsByUserId(id);
     }
-
 
 }
