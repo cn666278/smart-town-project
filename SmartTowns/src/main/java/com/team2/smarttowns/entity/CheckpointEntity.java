@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CheckpointEntity {
     private int id;
     private String name;
-    private String img;
+    private String image;
     private String description;
     private String contact;
     private String latitude;

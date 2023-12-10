@@ -2,9 +2,11 @@ package com.team2.smarttowns.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class TrailEntity {
 
     private int id;
@@ -12,7 +14,4 @@ public class TrailEntity {
     private String image;
     private String details;
 
-    public TrailEntity() {
-
-    }
 }

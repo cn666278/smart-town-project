@@ -21,7 +21,7 @@ public class CheckpointController {
             if (checkpoint.getId() == id) {
                 modelAndView.addObject("id", checkpoint.getId());
                 modelAndView.addObject("name", checkpoint.getName());
-                modelAndView.addObject("img", checkpoint.getImg());
+                modelAndView.addObject("img", checkpoint.getImage());
                 modelAndView.addObject("description", checkpoint.getDescription());
                 modelAndView.addObject("contact", checkpoint.getContact());
             }
