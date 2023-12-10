@@ -10,21 +10,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TrailsApi {
-        TrailService trailService=new TrailService();
+        TrailService trailService;
+        UserService userService;
+
         @GetMapping("/api/trails")
         public String getAllTrailsDataApi() {
                 Gson gson = new Gson();
                 return gson.toJson(trailService.getAllTrails());
         }
-        UserService userService=new UserService();
-        @PostMapping("/api/trails/GetTrails")
-        public String getTrailsDataApi(@RequestParam("userId") int userId) {
+
+        @PostMapping("/api/trails/GetUserTrails")
+        public String getUserTrailsDataApi(@RequestParam("userId") int userId) {
                 Gson gson = new Gson();
                 return gson.toJson(userService.getTrailsByUserId(userId));
         }
-        @PostMapping("/api/trails/GetCompletedTrails")
-        public String getCompletedTrailsDataApi(@RequestParam("userId") int userId) {
+        @PostMapping("/api/trails/GetUserCompletedTrails")
+        public String getUserCompletedTrailsDataApi(@RequestParam("userId") int userId) {
                 Gson gson = new Gson();
                 return gson.toJson(userService.getCompletedTrailsByUserId(userId));
+        }
+
+        @Autowired
+        public TrailsApi(TrailService trailService, UserService userService) {
+                this.trailService = trailService;
+                this.userService = userService;
         }
 }
