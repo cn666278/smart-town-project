@@ -14,12 +14,12 @@ import java.util.List;
 @RestController
 public class RankApi {
     TrailService trailService = new TrailService();
-//    RankService rankService = new RankService();
-//
-//    @PostMapping("/api/checkpointUserAccessed")
-//    public String checkpointUserAccessed(@RequestParam("userId") int userId) {
-//        Gson gson = new Gson();
-//        System.out.println(gson.toJson(rankService.checkpointUserAccessed(userId)));
-//        return gson.toJson(rankService.checkpointUserAccessed(userId));
-//    }
+    RankService rankService = new RankService();
+
+    @PostMapping("/api/checkpointUserAccessed")
+    public String checkpointUserAccessed(@RequestParam("userId") int userId) {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(rankService.checkpointUserAccessed(userId)));
+        return gson.toJson(rankService.checkpointUserAccessed(userId));
+    }
 }

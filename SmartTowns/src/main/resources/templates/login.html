@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/login/login.css">
+    <title>login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<!--    <div th:replace="~{fragments/header :: headerBlock}"/>-->
+
+<div class="container right-panel-active">
+
+    <!-- login -->
+    <div class="container_form container--signin">
+        <form th:action="@{/login}" method="post" name="login" class="form" id="form1">
+            <h2 class="form_title">Login</h2>
+            <input type="text" name="username" class="input" placeholder="Username" required/>
+            <input type="password" name="password" class="input" placeholder="Password" required/>
+            <input name="submit" class="btn" type="submit" value="Login"/>
+            <p>Forgot your password? <a href='#'>Click Here</a></p>
+        </form>
+        <br/><br/>
+    </div>
+
+    <!-- Register -->
+    <div class="container_form container--signup">
+        <form th:action="@{/register}" method="post" name="register" class="form" id="form2">
+            <h2 class="form_title">Register</h2>
+            <input type="text" name="username" class="input" placeholder="Username" required />
+            <input type="email" name="email" class="input" placeholder="Email" required />
+            <input type="password" name="password" class="input" placeholder="Password" required />
+            <input name="submit" class="btn" type="submit" value="Register" />
+        </form>
+        <br/><br/>
+    </div>
+
+    <!-- overlay -->
+    <div class="container_overlay">
+        <div class="overlay">
+            <div class="overlay_panel overlay--left">
+                <p>
+                    <b style="font-size:28px; font-family: 'Times New Roman', Georgia, serif;"
+                       target="_blank" class="w3-hover-text-blue">Smart Town</b>
+                </p>
+                <button class="btn" id="signIn">Login</button>
+            </div>
+            <div class="overlay_panel overlay--right">
+                <p>
+                    <b style="font-size:28px; font-family: 'Times New Roman', Georgia, serif;"
+                       target="_blank" class="w3-hover-text-blue">Smart Town</b>
+                </p>
+                <button class="btn" id="signUp">Register</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- background -->
+<div class="slidershow">
+    <div class="slidershow--image" style="background-image: url('../static/img/town0.png')"></div>
+    <div class="slidershow--image" style="background-image: url('../static/img/town1.jpg')"></div>
+    <div class="slidershow--image" style="background-image: url('../static/img/town2.jpg')"></div>
+    <div class="slidershow--image" style="background-image: url('../static/img/town3.jpg')"></div>
+</div>
+
+<script src="../static/js/login.js"></script>
+
+<!--    <div th:replace="~{fragments/footer :: footerBlock}"/>-->
+
+</body>
+</html>

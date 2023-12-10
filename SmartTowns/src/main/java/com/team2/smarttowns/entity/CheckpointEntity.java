@@ -4,18 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CheckpointEntity {
-
     private int id;
+    private String name;
+    private String img;
+    private String description;
+    private String contact;
     private String latitude;
     private String longitude;
-    private String name;
-    private String image;
-    private String detail;
     private String address;
 
 }
