@@ -36,8 +36,26 @@ public class TrailRepositoryImpl implements TrailRepository {
         return trail;
     };
 
-    private RowMapper<TrailEntity> userRowMapper;
-    private RowMapper<CheckpointEntity> checkpointRowMapper;
+    private RowMapper<TrailEntity> userRowMapper= (rs, rowNum) -> {
+        TrailEntity trail = new TrailEntity();
+        trail.setId(rs.getInt("id"));
+        trail.setName(rs.getString("name"));
+        trail.setImage(rs.getString("image"));
+        trail.setDetails(rs.getString("details"));
+        return trail;
+    };
+    private RowMapper<CheckpointEntity> checkpointRowMapper= (rs, rowNum) -> {
+        CheckpointEntity checkpoint = new CheckpointEntity();
+        checkpoint.setId(rs.getInt("id"));
+        checkpoint.setName(rs.getString("name"));
+        checkpoint.setImage(rs.getString("img"));
+        checkpoint.setDescription(rs.getString("description"));
+        checkpoint.setContact(rs.getString("contact"));
+        checkpoint.setLatitude(rs.getString("latitude"));
+        checkpoint.setLongitude(rs.getString("longitude"));
+        checkpoint.setAddress(rs.getString("address"));
+        return checkpoint;
+    };
 
     public List<TrailEntity> getAllTrails() {
         String sql = "SELECT * FROM trails";
@@ -90,6 +108,7 @@ public class TrailRepositoryImpl implements TrailRepository {
 //    }
 
 
+    @Autowired
     public TrailRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -208,14 +227,6 @@ public class TrailRepositoryImpl implements TrailRepository {
     public TrailEntity getTrailById(int id) {
         String sql = "SELECT * FROM trail WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, trailRowMapper, id);
-    }
-
-
-    @Autowired
-    public TrailRepositoryImpl(JdbcTemplate jdbcTemplate, RowMapper<TrailEntity> userRowMapper, RowMapper<CheckpointEntity> checkpointRowMapper) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.userRowMapper = userRowMapper;
-        this.checkpointRowMapper = checkpointRowMapper;
     }
 }
 

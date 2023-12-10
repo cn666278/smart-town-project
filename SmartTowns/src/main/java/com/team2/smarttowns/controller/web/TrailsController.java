@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class TrailsController {
     TrailService trailService;
+
     CheckpointService checkpointService;
     @RequestMapping("/trails")
     public ModelAndView trails() {

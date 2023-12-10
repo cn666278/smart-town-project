@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TrailsApi {
-        TrailService trailService=new TrailService();
         TrailService trailService;
         UserService userService;
 
