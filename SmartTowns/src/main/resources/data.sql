@@ -21,10 +21,30 @@ values ('National Museum Cardiff',
 delete
 from users;
 insert into users (name, password, profile_img, account, email, badge)
-values ('test_username',
-        'testPassword123',
+values ('admin1',
+        '$2a$10$SZiL1xIvb4AmAQHlHdpGXumenQGUF16.vPbK2qjxQCWuL1SftZ2aO',
+        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+        001,
+        'admin@cardiff.ac.uk',
+        'dragon hero');
+insert into users (name, password, profile_img, account, email, badge)
+values ('user1',
+        '$2a$10$MvdjfEjMRuuSaTx8sCBEHepupbp8rcmJTzuF6oxuyFYtCY5KzVjLC',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         123,
-        'tester@cardiff.ac.uk',
+        'user@cardiff.ac.uk',
         'dragon hero');
 
+delete from roles;
+insert into roles (role_id, name)
+values (1, 'ADMIN');
+insert into roles (role_id, name)
+values (2, 'USER');
+
+delete from users_roles;
+insert into users_roles (user_id, role_id)
+values (1, 1);
+insert into users_roles (user_id, role_id)
+values (1, 2);
+insert into users_roles (user_id, role_id)
+values (2, 2);
