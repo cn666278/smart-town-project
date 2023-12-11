@@ -3,6 +3,7 @@ package com.team2.smarttowns.controller.web;
 import com.google.gson.Gson;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.model.Checkpoint;
+import com.team2.smarttowns.model.UserAccessedCheckpointRank;
 import com.team2.smarttowns.service.RankService;
 import com.team2.smarttowns.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,10 @@ public class RankWebController {
 //    ResponseEntity<List<Checkpoint>>
     public ModelAndView rankweb() {
         ModelAndView modelAndView=new ModelAndView("rank.html");
-        List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
-        System.out.println(checkpoints.size());
+        //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
+
+        List<UserAccessedCheckpointRank> checkpoints=rankService.getRankListSorted();
+        System.out.println(checkpoints);
 //        for (Checkpoint checkpoint : checkpoints) {
 //            System.out.println(checkpoint);
 //        }

@@ -55,6 +55,16 @@ public class UserService {
         return user;
     }
 
+    public List<User> getAllUsers() {
+        List<UserEntity> userEntities = userRepository.getAllUsers();
+        List<User> users = new ArrayList<>();
+        for (UserEntity userEntity : userEntities) {
+            User user1 = userEntityToModel(userEntity);
+            user1.setCheckpoints(getUserCheckpointsByUserId(user1.getId()));
+            users.add(user1);
+        }
+        return users;
+    }
     public List<Checkpoint> getUserCheckpointsByUserId(int id) {
         List<CheckpointEntity> checkpointEntities = trailRepository.getCheckpointsByUserId(id);
         List<Checkpoint> checkpoints = new ArrayList<>();

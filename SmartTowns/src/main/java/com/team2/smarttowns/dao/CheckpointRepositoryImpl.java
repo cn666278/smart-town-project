@@ -16,7 +16,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
 
 
     private JdbcTemplate jdbc;
-    private RowMapper<CheckpointEntity> checkpointMapper = (rs, i) -> new CheckpointEntity(
+    private final RowMapper<CheckpointEntity> checkpointMapper = (rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
             rs.getString("image"),

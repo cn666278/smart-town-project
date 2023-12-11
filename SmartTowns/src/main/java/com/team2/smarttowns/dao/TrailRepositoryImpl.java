@@ -175,7 +175,7 @@ public class TrailRepositoryImpl implements TrailRepository {
     @Override
     public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
         List<CheckpointEntity> checkpointEntities = new ArrayList<>();
-        String sql = "SELECT c.* FROM checkpoints c " +
+        String sql = "SELECT c.* FROM checkpoint c " +
                 "INNER JOIN user_checkpoint uc ON c.id = uc.checkpoint_id " +
                 "WHERE uc.user_id = ?";
         try (Connection conn = getConnection();
@@ -189,7 +189,7 @@ public class TrailRepositoryImpl implements TrailRepository {
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
                     checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("img"));
+                    checkpoint.setImage(rs.getString("image"));
                     checkpoint.setDescription(rs.getString("description"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpointEntities.add(checkpoint);
