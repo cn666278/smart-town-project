@@ -1,5 +1,6 @@
 delete
 from checkpoint;
+TRUNCATE TABLE checkpoint;
 insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
@@ -99,6 +100,7 @@ values ('Cardiff Bay Barrage',
         'Cardiff CF10 4LY');
 delete
 from users;
+TRUNCATE TABLE users;
 insert into users (name, password, profile_img, account, email, badge)
 values ('admin1',
         '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
@@ -122,6 +124,7 @@ values ('user1',
             'dragon hero');
 delete
 from trail;
+TRUNCATE TABLE trail;
 insert into trail (name,image,details)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
@@ -136,6 +139,7 @@ values ('Cardiff Bay',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
 delete
 from roles;
+TRUNCATE TABLE roles;
 insert into roles (name)
 values ('ADMIN');
 insert into roles (name)
@@ -143,6 +147,8 @@ values ('USER');
 
 delete
 from users_roles;
+
+TRUNCATE TABLE users_roles;
 insert into users_roles (user_id, role_id)
 values (1, 1);
 insert into users_roles (user_id, role_id)
@@ -151,6 +157,7 @@ insert into users_roles (user_id, role_id)
 values (2, 2);
 
 delete from user_checkpoint;
+TRUNCATE TABLE user_checkpoint;
 INSERT INTO `user_checkpoint` VALUES (1, 1, 3);
 INSERT INTO `user_checkpoint` VALUES (2, 1, 4);
 INSERT INTO `user_checkpoint` VALUES (3, 1, 5);
@@ -165,3 +172,28 @@ INSERT INTO `user_checkpoint` VALUES (11, 3, 3);
 INSERT INTO `user_checkpoint` VALUES (12, 3, 4);
 INSERT INTO `user_checkpoint` VALUES (13, 3, 5);
 INSERT INTO `user_checkpoint` VALUES (14, 3, 6);
+
+delete from trail_checkpoint;
+TRUNCATE TABLE trail_checkpoint;
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (1, 1, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (2, 2, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (3, 3, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (4, 4, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (5, 5, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (6, 6, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (7, 7, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (8, 8, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (9, 9, 1);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (10, 2, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (11, 3, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (12, 4, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (13, 5, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (14, 6, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (15, 7, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (16, 8, 2);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (17, 7, 3);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (18, 6, 3);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (19, 5, 3);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (20, 4, 3);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (21, 3, 3);
+INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (22, 2, 3);

@@ -51,7 +51,7 @@ CREATE TABLE `roles`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop`  (
-                         `id` int(11) NOT NULL,
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `longitude` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `latitude` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `shop`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `town`;
 CREATE TABLE `town`  (
-                         `id` int(11) NOT NULL,
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE `trail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `trail_checkpoint`;
 CREATE TABLE `trail_checkpoint`  (
-                                     `id` int(11) NOT NULL,
+                                     `id` int(11) NOT NULL AUTO_INCREMENT,
                                      `checkpoint_id` int(11) NULL DEFAULT NULL,
                                      `trail_id` int(11) NULL DEFAULT NULL,
                                      PRIMARY KEY (`id`) USING BTREE
