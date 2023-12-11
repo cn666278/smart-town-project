@@ -93,7 +93,7 @@ CREATE TABLE `town`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `trail`;
 CREATE TABLE `trail`  (
-                          `Id` int(11) NOT NULL,
+                          `Id` int(11) NOT NULL AUTO_INCREMENT,
                           `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           `details` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,

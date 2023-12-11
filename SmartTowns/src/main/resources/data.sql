@@ -121,6 +121,20 @@ values ('user2',
         '1@qq.com',
         'dragon hero');
 delete
+from trail;
+insert into trail (name,image,details)
+values ('Cardiff Castle',
+        'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
+        'Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located in the city centre of Cardiff, Wales.');
+insert into trail (name,image,details)
+values ('National Museum Cardiff',
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/46/de/c6/spring-sunshine.jpg',
+        'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.');
+insert into trail (name,image,details)
+values ('Cardiff Bay',
+        'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-2.jpg',
+        'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
+delete
 from roles;
 insert into roles (name)
 values ('ADMIN');
