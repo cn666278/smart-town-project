@@ -21,8 +21,10 @@ public class SecurityConfig {
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**"};
+            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/rank","/rank/**","/rankweb"};
     public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
+
+    //
 
 
     @Bean

@@ -93,7 +93,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         String sql = "SELECT c.*\n" +
                 "FROM checkpoint c\n" +
                 "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
-                "WHERE uc.user_id = YOUR_USER_ID;";
+                "WHERE uc.user_id = ?;";
         return jdbc.query(sql, checkpointMapper);
     }
 }
