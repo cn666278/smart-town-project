@@ -2,7 +2,6 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.TrailEntity;
-import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -231,5 +230,17 @@ public class TrailRepositoryImpl implements TrailRepository {
         String sql = "SELECT * FROM trail WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, trailRowMapper, id);
     }
+
+    //get user collected trails by user id
+    @Override
+    public List<TrailEntity> getCollectedTrailsByUserId(int userId) {
+        String sql = "SELECT t.* FROM trail t " +
+                "INNER JOIN u.collection_user ut ON t.id = ut.trailid " +
+                "WHERE ut.userid = ?";
+        return jdbcTemplate.query(sql, trailRowMapper, userId);
+    }
+
 }
+
+
 
