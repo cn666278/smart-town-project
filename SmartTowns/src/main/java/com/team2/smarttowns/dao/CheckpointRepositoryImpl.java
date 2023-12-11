@@ -1,7 +1,6 @@
 package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
-import com.team2.smarttowns.service.CheckpointService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -94,5 +93,14 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
                 "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
                 "WHERE uc.user_id = YOUR_USER_ID;";
         return jdbc.query(sql, checkpointMapper);
+    }
+
+    @Override
+    public List<CheckpointEntity> getCheckpointsByUserId(int trailId) {
+        String sql = "SELECT c.*\n" +
+                "FROM checkpoint c\n" +
+                "JOIN trail_checkpoint tc ON c.id = tc.checkpoint_id\n" +
+                "WHERE tc.trail_id = ?";
+        return jdbc.query(sql, checkpointMapper, trailId);
     }
 }
