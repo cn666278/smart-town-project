@@ -1,6 +1,9 @@
 package com.team2.smarttowns.dao;
 
+import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.UserEntity;
+import org.apache.tomcat.util.digester.RuleSet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -12,25 +15,30 @@ public class UserRepositoryImpl implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
 
-    private RowMapper<UserEntity> userRowMapper;
+    private RowMapper<UserEntity> userRowMapper=(rs, i) -> new UserEntity(
+            rs.getInt("id"),
+            rs.getString("name"),
+            rs.getString("password"),
+            rs.getString("profile_img"),
+            rs.getString("account"),
+            rs.getString("email"),
+            rs.getString("badge")
+    );
 
-    public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        setUserMapper();
-    }
+    private RowMapper<CheckpointEntity> checkpointEntityRowMapper=(rs, i) -> new CheckpointEntity(
+            rs.getInt("id"),
+            rs.getString("name"),
+            rs.getString("img"),
+            rs.getString("description"),
+            rs.getString("contact"),
+            rs.getString("latitude"),
+            rs.getString("longitude"),
+            rs.getString("address")
+    );
 
-    private void setUserMapper() {
-        userRowMapper = (resultSet, i) -> {
-            int id = resultSet.getInt("id");
-            String name = resultSet.getString("name");
-            String password = resultSet.getString("password");
-            String profileImg = resultSet.getString("profile_img");
-            String account = resultSet.getString("account");
-            String email = resultSet.getString("email");
-            String badge = resultSet.getString("badge");
-            return new UserEntity(id, name, password, profileImg, account, email, badge);
-        };
-    }
+    CheckpointRepository checkpointRepository;
+
+
 
     @Override
     public List<UserEntity> getAllUsers() {
@@ -50,4 +58,14 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 
+    public List<CheckpointEntity> getCheckpointsByUserId(int id) {
+        String sql = "SELECT * FROM checkpoint WHERE user_id = ?";
+        return jdbcTemplate.query(sql,checkpointEntityRowMapper, id);
+    }
+
+    @Autowired
+    public UserRepositoryImpl(JdbcTemplate jdbcTemplate, CheckpointRepository checkpointRepository) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.checkpointRepository=checkpointRepository;
+    }
 }
