@@ -135,3 +135,12 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+
+delete
+from collection_user;
+insert into collection_user (user_id, checkpoint_id)
+values (1, 1);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 2);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 3);
