@@ -40,7 +40,6 @@ public class MyAccountController {
         return modelAndView;
     }
 
-}
 
 
     @GetMapping("/myaccount/completedTrails/{userid}")
@@ -59,4 +58,12 @@ public class MyAccountController {
         return modelAndView;
     }
 
+
+    @Autowired
+    public MyAccountController(CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
+        this.checkpointRepository = checkpointRepository;
+        this.trailRepository = trailRepository;
+        this.trailService = trailService;
+    }
+}
 
