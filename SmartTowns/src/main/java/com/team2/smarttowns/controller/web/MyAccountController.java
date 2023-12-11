@@ -59,6 +59,21 @@ public class MyAccountController {
     }
 
 
+    @GetMapping("/myaccount/collects/{userid}")
+    public ModelAndView collectsPage(@PathVariable int userid) {
+        ModelAndView modelAndView = new ModelAndView("myaccount.html");
+
+        List<TrailEntity> userCollects1 = trailRepository.getCollectedTrailsByUserId(userid);
+        List<Trail> userCollects = new ArrayList<>();
+        for (TrailEntity trailEntity : userCollects1) {
+            Trail trail = trailService.transferTrailEntityToModel(trailEntity);
+            userCollects.add(trail);
+        }
+        modelAndView.addObject("collects", userCollects);
+        return modelAndView;
+    }
+
+
     @Autowired
     public MyAccountController(CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
         this.checkpointRepository = checkpointRepository;
