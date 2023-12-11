@@ -74,6 +74,15 @@ public class TrailService {
         return checkpoint;
     }
 
+    public Trail transferTrailEntityToModel(TrailEntity trailEntity) {
+        Trail trail = new Trail();
+        trail.setId(trailEntity.getId());
+        trail.setName(trailEntity.getName());
+        trail.setImage(trailEntity.getImage());
+        trail.setDetails(trailEntity.getDetails());
+        return trail;
+    }
+
     @Autowired
     public TrailService(TrailRepository trailRepository) {
         this.trailRepository = trailRepository;
