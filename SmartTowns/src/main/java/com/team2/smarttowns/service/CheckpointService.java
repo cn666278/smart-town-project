@@ -3,7 +3,9 @@ package com.team2.smarttowns.service;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
 import com.team2.smarttowns.entity.CheckpointEntity;
+import com.team2.smarttowns.entity.TrailEntity;
 import com.team2.smarttowns.model.Checkpoint;
+import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +42,6 @@ public class CheckpointService {
         checkpoint.setDescription(checkpointEntity.getDescription());
         return checkpoint;
     }
+
 
 }
