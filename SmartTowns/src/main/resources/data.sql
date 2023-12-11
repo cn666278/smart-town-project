@@ -99,27 +99,27 @@ values ('Cardiff Bay Barrage',
         'Cardiff CF10 4LY');
 delete
 from users;
-insert into users (username, password, profile_img, account, email, badge)
+insert into users (name, password, profile_img, account, email, badge)
 values ('admin1',
         '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         001,
         'admin@cardiff.ac.uk',
         'dragon hero');
-insert into users (username, password, profile_img, account, email, badge)
+insert into users (name, password, profile_img, account, email, badge)
 values ('user1',
         '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         123,
         'user@cardiff.ac.uk',
         'dragon hero');
-insert into users (username, password, profile_img, account, email, badge)
-values ('user2',
-        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
-        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
-        123,
-        '1@qq.com',
-        'dragon hero');
+    insert into users (name, password, profile_img, account, email, badge)
+    values ('user2',
+            '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+            'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+            124,
+            '1@qq.com',
+            'dragon hero');
 delete
 from trail;
 insert into trail (name,image,details)
@@ -149,3 +149,19 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+
+delete from user_checkpoint;
+INSERT INTO `user_checkpoint` VALUES (1, 1, 3);
+INSERT INTO `user_checkpoint` VALUES (2, 1, 4);
+INSERT INTO `user_checkpoint` VALUES (3, 1, 5);
+INSERT INTO `user_checkpoint` VALUES (4, 1, 6);
+INSERT INTO `user_checkpoint` VALUES (5, 1, 7);
+INSERT INTO `user_checkpoint` VALUES (6, 1, 8);
+INSERT INTO `user_checkpoint` VALUES (7, 2, 3);
+INSERT INTO `user_checkpoint` VALUES (8, 2, 4);
+INSERT INTO `user_checkpoint` VALUES (9, 2, 5);
+INSERT INTO `user_checkpoint` VALUES (10, 2, 6);
+INSERT INTO `user_checkpoint` VALUES (11, 3, 3);
+INSERT INTO `user_checkpoint` VALUES (12, 3, 4);
+INSERT INTO `user_checkpoint` VALUES (13, 3, 5);
+INSERT INTO `user_checkpoint` VALUES (14, 3, 6);
