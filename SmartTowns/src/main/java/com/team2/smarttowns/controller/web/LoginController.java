@@ -1,4 +1,4 @@
-package com.team2.smarttowns.controller;
+package com.team2.smarttowns.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

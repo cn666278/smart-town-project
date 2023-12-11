@@ -1,4 +1,4 @@
-package com.team2.smarttowns.controller;
+package com.team2.smarttowns.controller.web;
 
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
