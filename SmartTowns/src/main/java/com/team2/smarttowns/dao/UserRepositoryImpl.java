@@ -28,12 +28,13 @@ public class UserRepositoryImpl implements UserRepository {
     private RowMapper<CheckpointEntity> checkpointEntityRowMapper=(rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
-            rs.getString("img"),
+            rs.getString("image"),
             rs.getString("description"),
             rs.getString("contact"),
             rs.getString("latitude"),
             rs.getString("longitude"),
-            rs.getString("address")
+            rs.getString("address"),
+            rs.getString("detail")
     );
 
     CheckpointRepository checkpointRepository;
@@ -59,7 +60,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
-        String sql = "SELECT * FROM checkpoint WHERE user_id = ?";
+        //get from user_checkpoint
+        String sql = "SELECT * FROM checkpoint WHERE id IN (SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?)";
         return jdbcTemplate.query(sql,checkpointEntityRowMapper, id);
     }
 

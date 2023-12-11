@@ -109,7 +109,7 @@
 
 
         .header-image {
-            background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)), url('https://media.istockphoto.com/id/1294454411/photo/london-symbols-with-big-ben-double-decker-buses-and-red-phone-booth-in-england-uk.jpg?s=612x612&w=0&k=20&c=IX4_XZC-_P60cq9ZZbxw1CbL68hlv1L5-r_vSgEfx4k=');
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
             background-repeat: no-repeat;
             background-size: cover;
             height: 300px; /* Adjust the height as needed */
@@ -279,18 +279,18 @@
     <div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
-    <div class="header-image"></div>
+    <div class="header-image" th:src=""></div>
     <div class="header1">
-        <h1>Public Arts Trail</h1>
+        <h1 th:text="${trails.name}"></h1>
     </div>
     <div id="container">
         <!-- Main Image Area -->
         <div class="trail-details-section">
             <h2>Explore Trails</h2>
             <div class="trail" id="trail1">
-                <h3>Trail Name 1</h3>
+                <h3 th:text="${trails.name}">Trail Name</h3>
                 <p>Length: 5 km, Difficulty: Easy</p>
-                <p>Description: This trail offers scenic views of the city and is suitable for all ages.</p>
+                <p th:text="${trails.details}">Description: This trail offers scenic views of the city and is suitable for all ages.</p>
             </div>
         </div>
         <div class="viewonmap">
@@ -432,6 +432,36 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+
+            <div class="row" th:each="checkpoint : ${checkpoints}">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/sample-1.jpg">
+                            <span class="card-title" th:href="@{/checkpoint/{id}(id=${checkpoint.id})}">Card Title</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p th:text="${checkpoint.detail}">detail of checkpoint</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/sample-1.jpg">
+                            <span class="card-title">Card Title</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

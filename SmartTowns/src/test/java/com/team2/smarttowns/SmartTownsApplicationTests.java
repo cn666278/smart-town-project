@@ -2,6 +2,7 @@ package com.team2.smarttowns;
 
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
+import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ import java.util.List;
 
 @SpringBootTest
 class SmartTownsApplicationTests {
-    @Autowired
+
+    private TrailRepository trailRepository;
     private CheckpointRepository checkpointRepository;
 
     /**
@@ -93,4 +95,72 @@ class SmartTownsApplicationTests {
         System.out.println(encodedPassword);
     }
 
+    /**
+     * Test for TrailService
+     *
+     */
+
+    @Test
+    void testTrailService() {
+        // TrailService = new TrailService();
+        // List<Trail> trails = trailService.getTrailsByUserId(1);
+        // for (Trail trail : trails) {
+        //     System.out.println(trail);
+        // }
+    }
+
+
+    @Test
+    void testTrailRepository() {
+        // List<Integer> list = trailRepository.getTrailsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testTrailRepository2() {
+        // List<Integer> list = trailRepository.getCompletedTrailsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testTrailRepository3() {
+        // List<CheckpointEntity> list = trailRepository.getCheckpointsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+
+    /**
+     * Test for CheckpointService
+     */
+
+    @Test
+    void testCheckpointService() {
+        // CheckpointService checkpointService = new CheckpointService();
+        // List<Checkpoint> checkpoints = checkpointService.getCheckpointsByTrailId(1);
+        // for (Checkpoint checkpoint : checkpoints) {
+        //     System.out.println(checkpoint);
+        // }
+    }
+
+    /**
+     * Test for CheckpointRepository
+     */
+
+    @Test
+    void testCheckpointRepository() {
+        // List<CheckpointEntity> list = checkpointRepository.getCheckpointsByTrailId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testCheckpointRepository2() {
+        // List<Integer> list = checkpointRepository.getByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Autowired
+    public SmartTownsApplicationTests(CheckpointRepository checkpointRepository, TrailRepository trailRepository) {
+        this.checkpointRepository = checkpointRepository;
+        this.trailRepository=trailRepository;
+    }
 }
