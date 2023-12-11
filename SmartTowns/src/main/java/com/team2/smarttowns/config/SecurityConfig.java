@@ -17,14 +17,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/rank","/rank/**","/rankweb"};
+            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/trails/**"};
     public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
-
-    //
 
 
     @Bean
@@ -55,4 +52,8 @@ public class SecurityConfig {
         return jdbcUserDetails;
     }
 
+    @Autowired
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 }
