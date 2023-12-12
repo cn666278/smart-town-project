@@ -11,5 +11,5 @@ public interface UserRepository {
 
     UserEntity getUserById(int id);
 
-
+    void updateUser(UserEntity userEntity);
 }
