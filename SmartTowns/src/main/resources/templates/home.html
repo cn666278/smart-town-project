@@ -180,7 +180,7 @@
                     <!-- Thymeleaf-->
                     <li th:each="trail : ${trails}">
                         <a href="/trails">
-                            <div class="img"><img th:src="@{${trail.image}}" alt="content1"></div>
+                            <div class="img"><img th:src="${trail.image}" alt="content1"></div>
                             <div class="text">
                                 <h4 th:text="${trail.name}">Town Name</h4>
                                 <p><span>new</span> - <i>1123</i> view</p>
