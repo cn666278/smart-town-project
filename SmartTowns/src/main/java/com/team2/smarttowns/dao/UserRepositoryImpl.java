@@ -59,6 +59,12 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 
+    public List<CheckpointEntity> getCheckpointsByUserId(int id) {
+        //get from user_checkpoint
+        String sql = "SELECT * FROM checkpoint WHERE id IN (SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?)";
+        return jdbcTemplate.query(sql,checkpointEntityRowMapper, id);
+    }
+
     @Autowired
     public UserRepositoryImpl(JdbcTemplate jdbcTemplate, CheckpointRepository checkpointRepository) {
         this.jdbcTemplate = jdbcTemplate;
