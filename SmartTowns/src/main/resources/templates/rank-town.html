@@ -44,14 +44,14 @@
         <tr>
             <th>list</th>
             <th>username</th>
-            <th>Checkpoint</th>
+            <th>trail</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="checkpoint, iterStat : ${checkpoints}">
+        <tr th:each="trail, iterStat : ${trails}">
             <td th:text="${iterStat.index + 1}">1</td>
-            <td th:text="${checkpoint.name}">checkpoint.name</td>
-            <td th:text="${checkpoint.count}">checkpoint.count</td>
+            <td th:text="${trail.name}">trail.name</td>
+            <td th:text="${trail.count}">trail.count</td>
         </tr>
         <!-- 其他行 -->
         </tbody>
