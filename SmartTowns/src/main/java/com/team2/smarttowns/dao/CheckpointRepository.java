@@ -18,5 +18,3 @@ public interface CheckpointRepository {
     List<CheckpointEntity> getCheckpointsByUserId(int userId);
 
 }
-
-

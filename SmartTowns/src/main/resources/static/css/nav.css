@@ -8,6 +8,8 @@
   padding-top: 20px;
   height: 90px;
   background-color: #fff;
+  transition: transform 0.5s ease-in-out; /*transform ease in out*/
+  transform: translateY(0); /* will be seen at begin */
 }
 
 .header .wrapper nav{
@@ -125,4 +127,9 @@ nav .nav-town:hover {
 nav .nav-town a {
   display: block; /* make the whole div clickable */
   color: white;
-} 
+}
+
+.hidden {
+  transform: translateY(-100%); /* 将头部向上移出视野 */
+  transition: transform 0.3s ease-in-out;
+}
