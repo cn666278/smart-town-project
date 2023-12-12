@@ -135,3 +135,16 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+
+DELETE FROM towns;
+INSERT INTO towns (id, name, detail, image)
+VALUES (1, 'London', 'Capital city of England, UK.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/London_UK_Panorama.jpg/640px-London_UK_Panorama.jpg'),
+       (2, 'Manchester', 'Major city in northwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Manchester_Skyline_2019.jpg/640px-Manchester_Skyline_2019.jpg'),
+       (3, 'Birmingham', 'Major city in central England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Birmingham_Skyline_from_Edgbaston_Cricket_Ground_crop.jpg/640px-Birmingham_Skyline_from_Edgbaston_Cricket_Ground_crop.jpg'),
+       (4, 'Liverpool', 'Major city in northwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Liverpool_Skyline.jpg/640px-Liverpool_Skyline.jpg'),
+       (5, 'Bristol', 'City in southwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Bristol_MMB_%22B5_Cabot_Circus%22.jpg/640px-Bristol_MMB_%22B5_Cabot_Circus%22.jpg'),
+       (6, 'Leeds', 'Major city in northern England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Leeds_City_Centre_Skyline.jpg/640px-Leeds_City_Centre_Skyline.jpg'),
+       (7, 'Sheffield', 'City in northern England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Sheffield_City_Centre_Skyline.jpg/640px-Sheffield_City_Centre_Skyline.jpg'),
+       (8, 'Newcastle upon Tyne', 'City in northeast England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Newcastle_upon_Tyne_skyline.jpg/640px-Newcastle_upon_Tyne_skyline.jpg'),
+       (9, 'Nottingham', 'City in central England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Nottingham_Castle_and_Ye_Olde_Trip_to_Jerusalem.jpg/640px-Nottingham_Castle_and_Ye_Olde_Trip_to_Jerusalem.jpg'),
+       (10, 'Cardiff', 'Capital city of Wales, UK.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cardiff_Castle_and_Millennium_Stadium.jpg/640px-Cardiff_Castle_and_Millennium_Stadium.jpg');
