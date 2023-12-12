@@ -100,6 +100,23 @@ public class UserService {
         checkpoint.setDescription(checkpointEntity.getDescription());
         return checkpoint;
     }
+
+    public void updateUser(User user) {
+        UserEntity userEntity = userToEntity(user);
+        userRepository.updateUser(userEntity);
+
+    }
+    public UserEntity userToEntity(User user) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
+        userEntity.setName(user.getName());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setProfileImg(user.getProfileImg());
+        userEntity.setAccount(user.getAccount());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setBadge(user.getBadge());
+        return userEntity;
+    }
 //    public List<Checkpoint> getCheckpointsByUserId(int id) {
 //        List<CheckpointEntity> checkpointEntities = trailRepository.getCheckpointsByUserId(id);
 //        List<Checkpoint> checkpoints = new ArrayList<>();
