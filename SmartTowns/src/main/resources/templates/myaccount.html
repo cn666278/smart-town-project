@@ -180,9 +180,10 @@
 <div class="wrapper">
     <div class="account-header">
         <div class="user-details">
-            <img src="../static/img/Profile.jpg" alt="">
-            <h1>Welcome! username</h1>
-            <a class="editprofile" href="mailto:email@example.com">my email:1223341604@qq.com</a>
+            <img th:src="${user?.profileImg}" alt="">
+            <h1>Welcome! <span th:text="${user?.name}">UserName</span></h1>
+            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user?.email}">
+                1223341604@gmail.com</p></a>
             <p>
                 <a class="editprofile" href="#">Edit Profile</a>
             </p>
@@ -192,7 +193,7 @@
     <div class="box">
         <!--        todo: userId-->
         <a href="#" onclick="showModule('trails'); getUserTrails(userId);">My Trails</a>
-        <a href="#" onclick="showModule('finished')">Finished</a>
+        <a href="#" onclick="showModule('CompletedTrails')">CompletedTrails</a>
         <a href="#" onclick="showModule('medal')">My Medal</a>
         <a href="#" onclick="showModule('collects')">Collects</a>
     </div>
@@ -224,103 +225,22 @@
             </div>
         </div>
 
-        <!-- content of Finished module -->
-        <div class="module" id="finished">
-            <!-- Finished -->
+        <!-- content of CompletedTrails module -->
+        <div class="module" id="CompletedTrails">
+            <!-- CompletedTrails -->
             <div class="item wrapper">
                 <!-- header -->
                 <div class="hd">
-                    <h3>Finished</h3>
+                    <h3>CompletedTrails</h3>
                 </div>
                 <!-- content -->
                 <div class="bd">
                     <ul>
-                        <li>
+                        <li th:each="completedTrail : ${completedTrails}">
                             <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="img"><img th:src="@{${completedTrail.image}}" alt="content2"></div>
                                 <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
+                                    <h4 th:text="${completedTrail.name}">Town Name</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
