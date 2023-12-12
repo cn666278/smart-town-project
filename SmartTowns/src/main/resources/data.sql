@@ -156,6 +156,16 @@ values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
 
+
+delete
+from collection_user;
+insert into collection_user (user_id, checkpoint_id)
+values (1, 1);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 2);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 3);
+
 DELETE FROM towns;
 INSERT INTO towns (id, name, detail, image)
 VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the country and is the largest city in Wales.', 'https://i2.100024.xyz/2023/12/12/gzjfs9.webp'),
@@ -168,6 +178,7 @@ VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the co
        (8, 'Llandudno', 'A seaside resort, town and community in Conwy County Borough, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6zwi.webp'),
        (9, 'Porthmadog', 'A small coastal town and community in the Eifionydd area of Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
        (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
+
 
 delete from user_checkpoint;
 TRUNCATE TABLE user_checkpoint;
@@ -210,3 +221,4 @@ INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (19, 5
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (20, 4, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (21, 3, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (22, 2, 3);
+
