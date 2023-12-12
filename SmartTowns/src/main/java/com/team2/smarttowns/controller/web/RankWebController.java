@@ -45,7 +45,7 @@ public class RankWebController {
         ModelAndView modelAndView = new ModelAndView("rank-town.html");
         //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
 
-        List<UserAccessedCheckpointRank> trails = rankService.getTrailRankListSorted();
+        List<UserAccessedCheckpointRank> trails = rankService.getRankListSorted();
         System.out.println(trails);
         modelAndView.addObject("trails", trails);
         return modelAndView;
