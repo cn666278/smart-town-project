@@ -19,10 +19,13 @@ public class TownService {
         //get data from dao. Then transfer entity to model
         List<TownEntity> townEntities = townRepository.getAllTowns();
 
-        for (TownEntity townEntity : townEntities) {
-            Town town = new Town();
-            townEntityToModel(townEntity, town);
-            towns.add(town);
+        // Alternative method(Lambda method):
+        // townEntities.forEach(townEntity -> towns.add(new Town(townEntity.getId(), townEntity.getName(), townEntity.getImage(), townEntity.getDetail())));
+
+        for (TownEntity townEntity : townEntities) {  // For each townEntity in townEntities
+            Town town = new Town(); // Create a new Town object
+            townEntityToModel(townEntity, town); // Convert the townEntity to a town model
+            towns.add(town); // Add the town to the towns list
         }
 
         return towns;
