@@ -17,13 +17,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/myaccount"};
-//    public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
-    public static final String[] USER_ENDPOINTS_WHITELIST = {};
+            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/trails/**","/rankweb"};
+    public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
 
 
     @Bean
@@ -49,9 +47,13 @@ public class SecurityConfig {
     UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcUserDetails = new JdbcDaoImpl();
         jdbcUserDetails.setDataSource(dataSource);
-        jdbcUserDetails.setUsersByUsernameQuery("select username, password, enabled from users where username=?");
-        jdbcUserDetails.setAuthoritiesByUsernameQuery("select username, authority from user_authorities where username=?");
+        jdbcUserDetails.setUsersByUsernameQuery("select name, password, enabled from users where username=?");
+        jdbcUserDetails.setAuthoritiesByUsernameQuery("select name, authority from user_authorities where username=?");
         return jdbcUserDetails;
     }
 
+    @Autowired
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 }
