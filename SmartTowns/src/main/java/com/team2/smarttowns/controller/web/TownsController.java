@@ -12,15 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TownsController {
 
-    @Autowired
-    private TownRepository townRepository;
     TownService townService;
 
     @GetMapping("/towns")
     public ModelAndView townsPage() {
         ModelAndView modelAndView = new ModelAndView("towns.html");
-        modelAndView.addObject("towns", townRepository.getAllTowns());
+        modelAndView.addObject("towns", townService.getAllTowns());
         return modelAndView;
     }
 
+    @Autowired
+    public TownsController(TownService townService) {
+        this.townService = townService;
+    }
 }
