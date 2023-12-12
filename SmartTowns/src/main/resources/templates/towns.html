@@ -27,7 +27,7 @@
       <!-- Thymeleaf-->
       <li th:each="town : ${towns}">
         <a href="/home">
-          <div class="img"><img th:src="@{${town.image}}" alt="content1"></div>
+          <div class="img"><img th:src="@{${town.image}}" alt="town image"></div>
           <div class="text">
             <h4 th:text="${town.name}">Town Name</h4>
             <p th:text="${town.detail}">details</p>
