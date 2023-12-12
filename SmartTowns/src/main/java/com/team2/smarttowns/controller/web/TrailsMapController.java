@@ -18,6 +18,16 @@ public class TrailsMapController {
         ModelAndView modelAndView = new ModelAndView("trailsmap.html");
         return modelAndView;
     }
+
+    @RequestMapping("/trailsmap/{trailId}")
+    public ModelAndView trailDetails(@PathVariable("trailId") int trailId) {
+        ModelAndView modelAndView = new ModelAndView("trailsmap.html");
+        modelAndView.addObject("trailId", trailId);
+        modelAndView.addObject("trails",trailService.getTrailById(trailId));
+        modelAndView.addObject("checkpoints",checkpointService.getCheckpointsByTrailId(trailId));
+        return modelAndView;
+    }
+
     @Autowired
     public TrailsMapController(CheckpointService checkpointService, TrailService trailService) {
         this.trailService = trailService;
