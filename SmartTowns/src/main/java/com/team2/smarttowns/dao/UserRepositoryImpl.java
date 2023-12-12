@@ -33,7 +33,8 @@ public class UserRepositoryImpl implements UserRepository {
             rs.getString("contact"),
             rs.getString("latitude"),
             rs.getString("longitude"),
-            rs.getString("address")
+            rs.getString("address"),
+            rs.getString("details")
     );
 
     CheckpointRepository checkpointRepository;
