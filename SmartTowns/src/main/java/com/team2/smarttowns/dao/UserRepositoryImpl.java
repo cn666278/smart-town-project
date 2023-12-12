@@ -59,4 +59,9 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 
+    @Autowired
+    public UserRepositoryImpl(JdbcTemplate jdbcTemplate, CheckpointRepository checkpointRepository) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.checkpointRepository=checkpointRepository;
+    }
 }
