@@ -4,6 +4,7 @@ import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.service.RankService;
 import com.team2.smarttowns.service.TrailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,5 +28,11 @@ public class RankApi {
     public RankApi(TrailService trailService, RankService rankService) {
         this.trailService = trailService;
         this.rankService = rankService;
+    }
+    @PostMapping("/api/checkpointUserAccessed")
+    public String checkpointUserAccessed(@RequestParam("userId") int userId) {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(rankService.checkpointUserAccessed(userId)));
+        return gson.toJson(rankService.checkpointUserAccessed(userId));
     }
 }
