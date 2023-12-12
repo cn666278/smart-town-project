@@ -6,6 +6,7 @@ import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.model.UserAccessedCheckpointRank;
+import com.team2.smarttowns.model.UserAccessedTrailRank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,6 +99,25 @@ public class RankService {
         userAccessedCheckpointRanks.sort(Comparator.comparingInt(UserAccessedCheckpointRank::getCount).reversed());
 
         return userAccessedCheckpointRanks;
+    }
+
+    public List<UserAccessedTrailRank> getTrailRankListSorted() {
+        List<User> users = getAllUsers();
+        List<UserAccessedTrailRank> userAccessedTrailRanks = new ArrayList<>();
+
+        // 将User转换为UserAccessedCheckpointRank并加入列表
+        for (User user : users) {
+            UserAccessedTrailRank userAccessedTrailRank = new UserAccessedTrailRank();
+            userAccessedTrailRank.setId(user.getId());
+            userAccessedTrailRank.setName(user.getName());
+            userAccessedTrailRank.setCount(user.getCheckpoints().size());
+            userAccessedTrailRanks.add(userAccessedTrailRank);
+        }
+
+        // 使用Comparator进行排序（按照count字段从大到小）
+        userAccessedTrailRanks.sort(Comparator.comparingInt(UserAccessedTrailRank::getCount).reversed());
+
+        return userAccessedTrailRanks;
     }
 
 
