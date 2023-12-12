@@ -17,7 +17,7 @@
 <div class="banner">
     <div class="wrapper">
         <div class="left">
-            <h2>Smart Towns</h2>
+            <h2>Cardiff</h2>
             <p>Connect with your audience like never before. Engaging both the businesses and consumers, you’re able
                 to communicate directly quickly and efficiently. From message boards for consumers to groups that
                 engage users - as well as direct messaging. We bring people together.</p>
@@ -177,10 +177,10 @@
             </div>
             <div class="bottom">
                 <ul>
-                    <!-- Timeleaf-->
+                    <!-- Thymeleaf-->
                     <li th:each="trail : ${trails}">
                         <a href="/trails">
-                            <div class="img"><img th:src="@{${trails.image}}" alt="content1"></div>
+                            <div class="img"><img th:src="${trail.image}" alt="content1"></div>
                             <div class="text">
                                 <h4 th:text="${trail.name}">Town Name</h4>
                                 <p><span>new</span> - <i>1123</i> view</p>
