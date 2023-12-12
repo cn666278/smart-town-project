@@ -167,8 +167,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 DROP TABLE IF EXISTS `collection_user`;
 CREATE TABLE `collection_user`  (
                                     `id` int(11) NOT NULL AUTO_INCREMENT,
-                                    `user_id` int(11) NULL DEFAULT NULL,
-                                    `checkpoint_id` int(11) NULL DEFAULT NULL,
+                                    `userid` int(11) NULL DEFAULT NULL,
+                                    `trailid` int(11) NULL DEFAULT NULL,
                                     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
