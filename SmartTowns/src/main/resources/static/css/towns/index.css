@@ -1,0 +1,212 @@
+/* CSS for homepage */
+.wrapper {
+    /* change to max-width to make the website customized */
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+body {
+    background-color: #f3f5f7;
+}
+
+/* banner */
+.banner {
+    height: 450px;
+    background-color: #0092cb;
+    opacity: 0.9;
+}
+
+.banner .wrapper{
+    display: flex;
+    justify-content: space-between;
+    height: 450px;
+    width: 1200px;
+    background-image: url(../../img/town0.png);
+}
+
+/* left banner */
+.banner .left {
+    padding: 130px 20px;
+    width: 300px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.42);
+    color: #fff;
+}
+
+/* side nav */
+.banner .left a {
+    display: block;
+    height: 46px;
+    background: url(../../img/right.png) no-repeat right center;
+    line-height: 46px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.banner .left a:hover {
+    background-image: url(../../img/right-hover.png);
+    color: #00a4ff;
+}
+
+/* recommend */
+.recommend {
+    display: flex;
+    margin-top: 11px;
+    padding: 0px 20px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(211, 211, 211, 0.5);
+    /* line-height = box height */
+    line-height: 60px;
+}
+
+.recommend h3 {
+    margin-right: 20px;
+    font-size: 18px;
+    color: #00a4ff;
+}
+
+.recommend ul {
+    flex: 1;
+    display: flex;
+}
+
+.recommend ul li a {
+    padding: 0 24px;
+    border-right: 1px solid #e0e0e0;
+    font-size: 18px;
+}
+
+.recommend ul li:last-child a {
+    border-right: none;
+}
+
+.recommend .modify {
+    font-size: 16px;
+    color: #00a4ff;
+}
+
+.item {
+    margin-top: 15px;
+}
+
+/* hd */
+/* public style */
+.hd {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+}
+
+.hd h3 {
+    font-weight: 400;
+    font-size: 21px;
+}
+
+.hd .more {
+    padding-right: 20px;
+    background: url(../images/more.png) no-repeat right center;
+    font-size: 14px;
+    color: #999;
+}
+
+/* /* items  */
+.bd ul {
+    /* bd - [public] */
+    display: flex;
+    /* flex box change line */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bd li {
+    margin-bottom: 14px;
+    width: 228px;
+    height: 300px;
+    background-color: pink;
+}
+
+.bd li .img {
+    height: 156px;
+}
+
+.bd li .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.bd li .text {
+    padding: 20px;
+    height: 145px;
+    background-color: #fff;
+}
+
+.bd li .text h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.bd li .text p {
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+}
+
+.bd li .text p span {
+    color: #fa6400;
+}
+
+.bd li .text p i {
+    font-style: normal;
+}
+
+/* Newest area*/
+.hd ul {
+    display: flex;
+}
+
+.hd li {
+    margin-right: 60px;
+    font-size: 16px;
+}
+
+.hd li .active {
+    color: white;
+}
+
+.bd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bd .left {
+    width: 228px;
+    /* background-color: pink; */
+}
+
+.bd .left img{
+    width: 100%;
+    height: 98%;
+}
+
+.bd .right img{
+    width: 100%;
+    height: 100%;
+}
+
+.bd .right {
+    width: 957px;
+    /* background-color: yellow; */
+}
+
+.bd .right .top {
+    margin-bottom: 15px;
+    height: 200px;
+}
+
+.bd .down {
+    width: 1200px;
+}
