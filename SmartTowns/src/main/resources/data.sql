@@ -178,6 +178,7 @@ values (1, 2);
 insert into collection_user (user_id, trail_id)
 values (1, 3);
 
+
 delete from user_checkpoint;
 TRUNCATE TABLE user_checkpoint;
 INSERT INTO `user_checkpoint` VALUES (1, 1, 3);
@@ -219,3 +220,4 @@ INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (19, 5
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (20, 4, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (21, 3, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (22, 2, 3);
+
