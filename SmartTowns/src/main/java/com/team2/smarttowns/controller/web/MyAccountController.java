@@ -4,6 +4,7 @@ import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.TrailEntity;
 import com.team2.smarttowns.model.Trail;
+import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.service.TrailService;
 import com.team2.smarttowns.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,12 @@ public class MyAccountController {
 
     @RequestMapping("/myaccount")
     public ModelAndView myaccount() {
-        return new ModelAndView("myaccount.html");
+        ModelAndView modelAndView = new ModelAndView("myaccount.html");
+        modelAndView.addObject("userId",1);
+        User user = userService.getUserById(1);
+        modelAndView.addObject("user", userService.getUserById(1));
+
+        return modelAndView;
     }
 
     @GetMapping("/myaccount/user/{userId}")
@@ -75,10 +81,11 @@ public class MyAccountController {
 
 
     @Autowired
-    public MyAccountController(CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
+    public MyAccountController(UserService userService,CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
         this.checkpointRepository = checkpointRepository;
         this.trailRepository = trailRepository;
         this.trailService = trailService;
+        this.userService = userService;
     }
 }
 
