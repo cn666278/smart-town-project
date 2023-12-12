@@ -25,10 +25,10 @@ public class RankWebController {
         this.rankService = rankService;
     }
 
-    @GetMapping("/rankweb")
+    @GetMapping("/rank-trail")
 //    ResponseEntity<List<Checkpoint>>
-    public ModelAndView rankweb() {
-        ModelAndView modelAndView=new ModelAndView("rank.html");
+    public ModelAndView rankTrailWeb() {
+        ModelAndView modelAndView=new ModelAndView("rank-trail.html");
         //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
 
         List<UserAccessedCheckpointRank> checkpoints=rankService.getRankListSorted();
@@ -39,4 +39,16 @@ public class RankWebController {
         modelAndView.addObject("checkpoints",checkpoints);
         return modelAndView;
     }
+
+    @GetMapping("/rank-town")
+    ModelAndView rankTownWeb() {
+        ModelAndView modelAndView = new ModelAndView("rank-town.html");
+        //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
+
+        List<UserAccessedCheckpointRank> trails = rankService.getTrailRankListSorted();
+        System.out.println(trails);
+        modelAndView.addObject("trails", trails);
+        return modelAndView;
+    }
+
 }
