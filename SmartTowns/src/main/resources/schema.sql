@@ -76,10 +76,10 @@ CREATE TABLE `shop`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for town
+-- Table structure for towns
 -- ----------------------------
-DROP TABLE IF EXISTS `town`;
-CREATE TABLE `town`  (
+DROP TABLE IF EXISTS `towns`;
+CREATE TABLE `towns`  (
                          `id` int(11) NOT NULL,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
