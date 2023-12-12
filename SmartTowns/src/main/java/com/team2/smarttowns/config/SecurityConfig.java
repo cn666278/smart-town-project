@@ -47,8 +47,8 @@ public class SecurityConfig {
     UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcUserDetails = new JdbcDaoImpl();
         jdbcUserDetails.setDataSource(dataSource);
-        jdbcUserDetails.setUsersByUsernameQuery("select username, password, enabled from users where username=?");
-        jdbcUserDetails.setAuthoritiesByUsernameQuery("select username, authority from user_authorities where username=?");
+        jdbcUserDetails.setUsersByUsernameQuery("select name, password, enabled from users where username=?");
+        jdbcUserDetails.setAuthoritiesByUsernameQuery("select name, authority from user_authorities where username=?");
         return jdbcUserDetails;
     }
 

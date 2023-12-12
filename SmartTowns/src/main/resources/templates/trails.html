@@ -498,4 +498,10 @@
             trails = data;
         }
     });
+
+    function jump(button) {
+        var checkpointId = button.getAttribute("data-id");
+        console.log("Checkpoint ID: " + checkpointId);
+        window.open("http://localhost:8080/checkpoint/" + checkpointId);
+    }
 </script>

@@ -20,7 +20,7 @@ values ('National Museum Cardiff',
         'Cardiff CF10 3NP');
 insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Bay',
-        'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-2.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/440px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.',
         'https://www.visitcardiff.com/explore/cardiff-bay/',
         '51.4647° N',
@@ -135,7 +135,7 @@ values ('National Museum Cardiff',
         'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.');
 insert into trail (name,image,details)
 values ('Cardiff Bay',
-        'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Bay-2.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/440px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
 delete
 from roles;
