@@ -18,6 +18,9 @@ public class TownRepositoryImpl implements TownRepository{
         setTownMapper();
     }
 
+    /**
+     * Sets the townRowMapper to be used by the jdbcTemplate
+     */
     private void setTownMapper(){
         townRowMapper = (resultSet, i) -> {
             int id = resultSet.getInt("id");
