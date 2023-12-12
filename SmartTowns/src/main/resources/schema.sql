@@ -66,7 +66,7 @@ CREATE TABLE `roles`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop`  (
-                         `id` int(11) NOT NULL,
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `longitude` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `latitude` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `shop`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `town`;
 CREATE TABLE `town`  (
-                         `id` int(11) NOT NULL,
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -92,11 +92,11 @@ CREATE TABLE `town`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `trail`;
 CREATE TABLE `trail`  (
-                          `Id` int(11) NOT NULL,
+                          `id` int(11) NOT NULL AUTO_INCREMENT,
                           `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           `details` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                          PRIMARY KEY (`Id`) USING BTREE
+                          PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -104,7 +104,7 @@ CREATE TABLE `trail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `trail_checkpoint`;
 CREATE TABLE `trail_checkpoint`  (
-                                     `id` int(11) NOT NULL,
+                                     `id` int(11) NOT NULL AUTO_INCREMENT,
                                      `checkpoint_id` int(11) NULL DEFAULT NULL,
                                      `trail_id` int(11) NULL DEFAULT NULL,
                                      PRIMARY KEY (`id`) USING BTREE
@@ -167,6 +167,13 @@ CREATE TABLE `users_roles`  (
 -- View structure for user_authorities
 -- ----------------------------
 DROP VIEW IF EXISTS `user_authorities`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_authorities` AS select `u`.`username` AS `username`,concat('ROLE_',`r`.`name`) AS `authority` from ((`users` `u` join `users_roles` `ur` on(`u`.`id` = `ur`.`user_id`)) join `roles` `r` on(`ur`.`role_id` = `r`.`id`));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_authorities` AS
+SELECT
+    `u`.`name` AS `name`,
+    CONCAT('ROLE_', `r`.`name`) AS `authority`
+FROM
+    ((`users` `u`
+        JOIN `users_roles` `ur` ON (`u`.`id` = `ur`.`user_id`))
+        JOIN `roles` `r` ON (`ur`.`role_id` = `r`.`id`));
 
 SET FOREIGN_KEY_CHECKS = 1;
