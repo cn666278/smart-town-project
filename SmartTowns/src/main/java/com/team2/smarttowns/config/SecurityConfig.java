@@ -17,10 +17,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/trails/**","/rankweb"};
+            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/trails/**","/error","/rankweb","/trailsmap/**","/js/**"};
     public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
 
 
