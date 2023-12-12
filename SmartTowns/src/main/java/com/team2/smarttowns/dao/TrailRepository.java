@@ -20,7 +20,7 @@ public interface TrailRepository {
     List<Integer> getCompletedTrailsByUserId(int id);
 
     //get user collected trails by user id
-    List<TrailEntity> getCollectedTrailsByUserId(int userId);
+    List<TrailEntity> getCollectedTrailsByUserId(int userid);
 
 //    void addTrail(TrailEntity trailEntity);
 //    void updateTrail(TrailEntity trailEntity);
