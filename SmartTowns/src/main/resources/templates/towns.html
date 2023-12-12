@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/home/base.css">
+  <link rel="stylesheet" href="../static/css/towns/index.css">
+  <title>Towns Page</title>
+</head>
+
+<body>
+<!-- header-nav -->
+  <div th:replace="~{fragments/header :: headerBlock}"/>
+
+
+<!-- Trails -->
+<div class="item wrapper">
+  <!-- header -->
+  <div class="hd">
+    <h3>Towns</h3>
+    <a href="" class="more">view all</a>
+  </div>
+  <!-- content -->
+  <div class="bd">
+    <ul>
+      <!-- Thymeleaf-->
+      <li th:each="town : ${towns}">
+        <a href="/home">
+          <div class="img"><img th:src="${town.image}" alt="town image"></div>
+          <div class="text">
+            <h4 th:text="${town.name}">Town Name</h4>
+            <p th:text="${town.detail}">details</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+</body>
+
+<div th:replace="~{fragments/footer :: footerBlock}"/>
+
+</html>
