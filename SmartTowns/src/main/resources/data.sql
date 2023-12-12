@@ -1,5 +1,6 @@
 delete
 from checkpoint;
+truncate table checkpoint;
 insert into checkpoint(name, image, description, contact, latitude, longitude, address)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
@@ -99,6 +100,7 @@ values ('Cardiff Bay Barrage',
         'Cardiff CF10 4LY');
 delete
 from users;
+truncate table users;
 insert into users (name, password, profile_img, account, email, badge)
 values ('admin1',
         '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
@@ -122,6 +124,7 @@ values ('user1',
             'dragon hero');
 delete
 from trail;
+truncate table trail;
 insert into trail (name,image,details)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
@@ -143,6 +146,7 @@ values ('USER');
 
 delete
 from users_roles;
+truncate table users_roles;
 insert into users_roles (user_id, role_id)
 values (1, 1);
 insert into users_roles (user_id, role_id)
@@ -151,6 +155,7 @@ insert into users_roles (user_id, role_id)
 values (2, 2);
 
 delete from user_checkpoint;
+truncate table user_checkpoint;
 INSERT INTO `user_checkpoint` VALUES (1, 1, 3);
 INSERT INTO `user_checkpoint` VALUES (2, 1, 4);
 INSERT INTO `user_checkpoint` VALUES (3, 1, 5);

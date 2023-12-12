@@ -80,20 +80,12 @@ public class RankService {
         users.sort(descendingOrderComparator);
     }
 
-    /**
-     * get a sorted list in descending order  of data, each data contains user's name and the number of checkpoints he/she has accessed
-     *
-     */
-    List<User> getRankList() {
-        List<User> users = getAllUsers();
-        sortUsersByCheckpointCountDescending(users);
-        return users;
-    }
-
 
     public List<UserAccessedCheckpointRank> getRankListSorted() {
-        List<User> users = getRankList();
+        List<User> users = getAllUsers();
         List<UserAccessedCheckpointRank> userAccessedCheckpointRanks = new ArrayList<>();
+
+        // 将User转换为UserAccessedCheckpointRank并加入列表
         for (User user : users) {
             UserAccessedCheckpointRank userAccessedCheckpointRank = new UserAccessedCheckpointRank();
             userAccessedCheckpointRank.setId(user.getId());
@@ -101,6 +93,10 @@ public class RankService {
             userAccessedCheckpointRank.setCount(user.getCheckpoints().size());
             userAccessedCheckpointRanks.add(userAccessedCheckpointRank);
         }
+
+        // 使用Comparator进行排序（按照count字段从大到小）
+        userAccessedCheckpointRanks.sort(Comparator.comparingInt(UserAccessedCheckpointRank::getCount).reversed());
+
         return userAccessedCheckpointRanks;
     }
 
