@@ -142,7 +142,7 @@ CREATE TABLE `user_checkpoint`  (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
                           `id` int(11) NOT NULL AUTO_INCREMENT,
-                          `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                          `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
                           `password` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
                           `enabled` tinyint(1) NOT NULL DEFAULT 1,
                           `profile_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
