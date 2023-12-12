@@ -170,23 +170,23 @@
             width: 100%;
             height: 100%;
         }
-        /* 样式用于对话框 */
+
         .dialog {
             width: 400px;
-            max-height: 80vh; /* 设置最大高度，以防止对话框过长 */
-            overflow-y: auto; /* 添加滚动条以适应内容超过最大高度的情况 */
+            max-height: 80vh; /* Set the maximum height to prevent the dialog box from being too long */
+            overflow-y: auto; /* Add scrollbars to accommodate when the content exceeds the maximum height */
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            position: absolute; /* 改为绝对定位，相对于浏览器窗口定位 */
+            position: absolute; /* Change to absolute positioning, positioning relative to the browser window */
             left: 50%;
             top: 50%;
-            transform: translate(-50%, -50%); /* 居中显示 */
+            transform: translate(-50%, -50%); /* display centre */
         }
 
-        /* 隐藏对话框 */
+        /* hide the dialong */
         .hidden {
             display: none;
         }
@@ -198,8 +198,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
-            z-index: 999; /* 设置比对话框的z-index低，使得遮罩层在下层 */
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
 </head>
@@ -235,7 +235,8 @@
                     <label for="profilePhoto">Profile Photo URL:</label>
                     <input type="text" id="profilePhoto" name="profilePhoto"><br>
 
-                    <button type="button" onclick="updateAccount()">Update Account</button><br>
+                    <button type="button" onclick="updateAccount()">Update Account</button>
+                    <br>
                 </form>
             </div>
 
@@ -538,10 +539,14 @@
         // 获取用户路径的 JavaScript 代码
     }
 
+
+    // track for button click events
     var overlay = document.getElementById('overlay');
     var showDialogButton = document.getElementById('showDialogButton');
     var dialog = document.getElementById('dialog');
     var closeDialogButton = document.getElementById('closeDialogButton');
+
+
 
     showDialogButton.addEventListener('click', function () {
         dialog.classList.remove('hidden');
@@ -566,7 +571,74 @@
             closeDialog();
         }
     });
+
+
+    //get user data by access /api/getuser
+    function getUserData() {
+        fetch('/api/getuser')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+                // Populate the dialog fields with user data
+                document.getElementById('username').value = data.name;
+                document.getElementById('password').value = data.password;
+                document.getElementById('email').value = data.email;
+                document.getElementById('profilePhoto').value = data.profileImg;
+
+                // You might want to update the image source directly as well
+                document.querySelector('.user-details img').src = data.profileImg;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    //update user info by post user to /api/updateuser
+    /*
+
+       public String getUserById(@RequestParam("userId") int userId,
+                              @RequestParam("name") String name,
+                              @RequestParam("password") String password,
+//                              @RequestParam("profileImg") String profileImg,
+                              @RequestParam("email") String email) {
+     */
+    function updateAccount() {
+        console.log("1");
+        var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
+
+        fetch('/api/updateuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+                body: JSON.stringify({
+                userId: userId,
+                name: username,
+                password: password,
+                email: email})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert("Update Success!");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Update Failed!");
+            });
+    }
+    console.log("3");
+    window.onload = function () {
+        getUserData();
+    };
 </script>
+
 
 </body>
 
