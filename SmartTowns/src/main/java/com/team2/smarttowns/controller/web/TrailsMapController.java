@@ -8,9 +8,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class TrailsMapController {
+
+    TrailService trailService;
+
+    CheckpointService checkpointService;
+
     @RequestMapping("/trailsmap")
     public ModelAndView trailsmap() {
         ModelAndView modelAndView = new ModelAndView("trailsmap.html");
         return modelAndView;
+    }
+    @Autowired
+    public TrailsMapController(CheckpointService checkpointService, TrailService trailService) {
+        this.trailService = trailService;
+        this.checkpointService = checkpointService;
     }
 }
