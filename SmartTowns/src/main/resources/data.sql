@@ -138,13 +138,13 @@ values (2, 2);
 
 DELETE FROM towns;
 INSERT INTO towns (id, name, detail, image)
-VALUES (1, 'London', 'Capital city of England, UK.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/London_UK_Panorama.jpg/640px-London_UK_Panorama.jpg'),
-       (2, 'Manchester', 'Major city in northwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Manchester_Skyline_2019.jpg/640px-Manchester_Skyline_2019.jpg'),
-       (3, 'Birmingham', 'Major city in central England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Birmingham_Skyline_from_Edgbaston_Cricket_Ground_crop.jpg/640px-Birmingham_Skyline_from_Edgbaston_Cricket_Ground_crop.jpg'),
-       (4, 'Liverpool', 'Major city in northwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Liverpool_Skyline.jpg/640px-Liverpool_Skyline.jpg'),
-       (5, 'Bristol', 'City in southwest England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Bristol_MMB_%22B5_Cabot_Circus%22.jpg/640px-Bristol_MMB_%22B5_Cabot_Circus%22.jpg'),
-       (6, 'Leeds', 'Major city in northern England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Leeds_City_Centre_Skyline.jpg/640px-Leeds_City_Centre_Skyline.jpg'),
-       (7, 'Sheffield', 'City in northern England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Sheffield_City_Centre_Skyline.jpg/640px-Sheffield_City_Centre_Skyline.jpg'),
-       (8, 'Newcastle upon Tyne', 'City in northeast England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Newcastle_upon_Tyne_skyline.jpg/640px-Newcastle_upon_Tyne_skyline.jpg'),
-       (9, 'Nottingham', 'City in central England.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Nottingham_Castle_and_Ye_Olde_Trip_to_Jerusalem.jpg/640px-Nottingham_Castle_and_Ye_Olde_Trip_to_Jerusalem.jpg'),
-       (10, 'Cardiff', 'Capital city of Wales, UK.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cardiff_Castle_and_Millennium_Stadium.jpg/640px-Cardiff_Castle_and_Millennium_Stadium.jpg');
+VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the country and is the largest city in Wales.', 'https://i2.100024.xyz/2023/12/12/gzjfs9.webp'),
+       (2, 'Swansea', 'A coastal city in South Wales, located on the Gower Peninsula.', 'https://i2.100024.xyz/2023/12/12/gzitdu.webp'),
+       (3, 'Newport', 'A city in South East Wales, located on the River Usk.', 'https://i2.100024.xyz/2023/12/12/gzift8.webp'),
+       (4, 'Wrexham', 'A town in North Wales, located near the border with England.', 'https://i2.100024.xyz/2023/12/12/gzhgi4.webp'),
+       (5, 'Aberystwyth', 'A historic market town, administrative centre and holiday resort within Ceredigion, West Wales.', 'https://i2.100024.xyz/2023/12/12/gzgzo6.webp'),
+       (6, 'Bangor', 'A city in North West Wales, located on the coast of the Menai Strait.', 'https://i2.100024.xyz/2023/12/12/gzgmju.webp'),
+       (7, 'Caernarfon', 'A royal town, community and port in Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz7ft8.webp'),
+       (8, 'Llandudno', 'A seaside resort, town and community in Conwy County Borough, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6zwi.webp'),
+       (9, 'Porthmadog', 'A small coastal town and community in the Eifionydd area of Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
+       (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
