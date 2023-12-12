@@ -33,36 +33,28 @@
     </style>
 </head>
 <body>
-
+<!-- header-nav -->
+<div th:replace="~{fragments/header :: headerBlock}"/>
 <h1>ranklist</h1>
 
 <table>
-    <thead>
-    <tr>
-        <p th:text="${checkpoints}">checkpoints</p>
-        <th>list</th>
-        <th>username</th>
-        <th>Checkpoints</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>admin1</td>
-        <td>6</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>User1</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>User2</td>
-        <td>4</td>
-    </tr>
-    <!-- 添加更多的排行信息 -->
-    </tbody>
+    <table>
+        <thead>
+        <tr>
+            <th>list</th>
+            <th>username</th>
+            <th>Checkpoint</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="checkpoint, iterStat : ${checkpoints}">
+            <td th:text="${iterStat.index + 1}">1</td>
+            <td th:text="${checkpoint.name}">checkpoint.name</td>
+            <td th:text="${checkpoint.count}">checkpoint.count</td>
+        </tr>
+        <!-- 其他行 -->
+        </tbody>
+    </table>
 </table>
 
 </body>
