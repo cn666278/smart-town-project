@@ -15,4 +15,6 @@ public interface CheckpointRepository {
 
     List<CheckpointEntity> getCheckpointsByTrailId(int trailId);
     List<CheckpointEntity> getUserAccessedCheckpointsByUserId(int userId);
+
+    List<CheckpointEntity> getCheckpointsByUserId(int trailId);
 }

@@ -156,3 +156,14 @@ DROP VIEW IF EXISTS `user_authorities`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_authorities` AS select `u`.`name` AS `user`,concat('ROLE_',`r`.`name`) AS `authority` from ((`users` `u` join `users_roles` `ur` on(`u`.`id` = `ur`.`user_id`)) join `roles` `r` on(`ur`.`role_id` = `r`.`id`));
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+DROP TABLE IF EXISTS `collection_user`;
+CREATE TABLE `collection_user`  (
+                                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                                    `userid` int(11) NULL DEFAULT NULL,
+                                    `trailid` int(11) NULL DEFAULT NULL,
+                                    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
