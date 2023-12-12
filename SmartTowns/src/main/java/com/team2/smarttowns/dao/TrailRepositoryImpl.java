@@ -2,7 +2,6 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.TrailEntity;
-import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -84,7 +83,7 @@ public class TrailRepositoryImpl implements TrailRepository {
                     CheckpointEntity checkpoint = new CheckpointEntity();
                     checkpoint.setId(rs.getInt("id"));
                     checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("img"));
+                    checkpoint.setImage(rs.getString("image"));
                     checkpoint.setDescription(rs.getString("description"));
                     checkpoint.setContact(rs.getString("contact"));
                     checkpoint.setLatitude(rs.getString("latitude"));
@@ -175,7 +174,7 @@ public class TrailRepositoryImpl implements TrailRepository {
     @Override
     public List<CheckpointEntity> getCheckpointsByUserId(int userId) {
         List<CheckpointEntity> checkpointEntities = new ArrayList<>();
-        String sql = "SELECT c.* FROM checkpoints c " +
+        String sql = "SELECT c.* FROM checkpoint c " +
                 "INNER JOIN user_checkpoint uc ON c.id = uc.checkpoint_id " +
                 "WHERE uc.user_id = ?";
         try (Connection conn = getConnection();
@@ -189,7 +188,7 @@ public class TrailRepositoryImpl implements TrailRepository {
                     checkpoint.setLatitude(rs.getString("latitude"));
                     checkpoint.setLongitude(rs.getString("longitude"));
                     checkpoint.setName(rs.getString("name"));
-                    checkpoint.setImage(rs.getString("img"));
+                    checkpoint.setImage(rs.getString("image"));
                     checkpoint.setDescription(rs.getString("description"));
                     checkpoint.setAddress(rs.getString("address"));
                     checkpointEntities.add(checkpoint);
@@ -231,5 +230,17 @@ public class TrailRepositoryImpl implements TrailRepository {
         String sql = "SELECT * FROM trail WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, trailRowMapper, id);
     }
+
+    //get user collected trails by user id
+    @Override
+    public List<TrailEntity> getCollectedTrailsByUserId(int userId) {
+        String sql = "SELECT t.* FROM trail t " +
+                "INNER JOIN u.collection_user ut ON t.id = ut.trailid " +
+                "WHERE ut.userid = ?";
+        return jdbcTemplate.query(sql, trailRowMapper, userId);
+    }
+
 }
+
+
 

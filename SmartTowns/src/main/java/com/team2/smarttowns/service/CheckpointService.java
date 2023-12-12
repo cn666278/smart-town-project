@@ -3,7 +3,9 @@ package com.team2.smarttowns.service;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
 import com.team2.smarttowns.entity.CheckpointEntity;
+import com.team2.smarttowns.entity.TrailEntity;
 import com.team2.smarttowns.model.Checkpoint;
+import com.team2.smarttowns.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +26,13 @@ public class CheckpointService {
         //CheckpointRepositoryImpl checkpointRepository = new CheckpointRepositoryImpl();
         List<CheckpointEntity> checkpointEntities = checkpointRepository.getCheckpointsByTrailId(trailId);
         for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            Checkpoint checkpoint = tranferCheckpointEntityToModel(checkpointEntity);
+            Checkpoint checkpoint = transferCheckpointEntityToModel(checkpointEntity);
             checkpoints.add(checkpoint);
         }
         return checkpoints;
     }
 
-    public Checkpoint tranferCheckpointEntityToModel(CheckpointEntity checkpointEntity) {
+    public Checkpoint transferCheckpointEntityToModel(CheckpointEntity checkpointEntity) {
         Checkpoint checkpoint = new Checkpoint();
         checkpoint.setId(checkpointEntity.getId());
         checkpoint.setLatitude(checkpointEntity.getLatitude());
@@ -40,5 +42,6 @@ public class CheckpointService {
         checkpoint.setDescription(checkpointEntity.getDescription());
         return checkpoint;
     }
+
 
 }

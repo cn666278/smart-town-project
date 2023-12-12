@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="/css/materialize.min.css">
+<script src="/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -264,6 +267,10 @@
             height: 100%;
         }
 
+        nav{
+            line-height: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -461,4 +468,10 @@
             trails = data;
         }
     });
+
+    function jump(button) {
+        var checkpointId = button.getAttribute("data-id");
+        console.log("Checkpoint ID: " + checkpointId);
+        window.open("http://localhost:8080/checkpoint/" + checkpointId);
+    }
 </script>
