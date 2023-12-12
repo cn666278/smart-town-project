@@ -15,7 +15,7 @@
             color: #fff;
             text-align: center;
             padding: 10px;
-            height: 350px;
+            height: 400px;
         }
 
         .user-details {
@@ -47,6 +47,7 @@
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            line-height: 20px;
         }
 
         section {
@@ -169,24 +170,81 @@
             width: 100%;
             height: 100%;
         }
+        /* 样式用于对话框 */
+        .dialog {
+            width: 400px;
+            max-height: 80vh; /* 设置最大高度，以防止对话框过长 */
+            overflow-y: auto; /* 添加滚动条以适应内容超过最大高度的情况 */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            position: absolute; /* 改为绝对定位，相对于浏览器窗口定位 */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* 居中显示 */
+        }
 
+        /* 隐藏对话框 */
+        .hidden {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+            z-index: 999; /* 设置比对话框的z-index低，使得遮罩层在下层 */
+        }
     </style>
 </head>
 <body>
-
+<div class="overlay" id="overlay"></div>
 <!-- header-nav -->
 <div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
+
     <div class="account-header">
-        <div class="user-details">
-            <img th:src="${user?.profileImg}" alt="">
-            <h1>Welcome! <span th:text="${user?.name}">UserName</span></h1>
-            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user?.email}">
+
+        <div class="user-details" style="color:black">
+            <img th:src="${user.profileImg}" alt="">
+            <h1>Welcome! <span th:text="${user.name}">UserName</span></h1>
+            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user.email}">
                 1223341604@gmail.com</p></a>
-            <p>
-                <a class="editprofile" href="#">Edit Profile</a>
+            <div id="dialog" class="dialog hidden">
+                <!-- 对话框内容 -->
+                <p>Edit Your Info</p>
+                <!-- 关闭按钮 -->
+                <span id="closeDialogButton" style="cursor: pointer; color:black;">x</span>
+                <form id="Edit your information Form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="profilePhoto">Profile Photo URL:</label>
+                    <input type="text" id="profilePhoto" name="profilePhoto"><br>
+
+                    <button type="button" onclick="updateAccount()">Update Account</button><br>
+                </form>
+            </div>
+
+
+            <p class="editconfigbutton">
+                <!-- 编辑按钮 -->
+                <button id="showDialogButton" type="button" onclick="">click me!</button>
             </p>
+
         </div>
     </div>
 
@@ -476,23 +534,39 @@
         document.getElementById(moduleName).style.display = 'block';
     }
 
-    //get data from /api/trails/GetUserTrails
     function getUserTrails(userId) {
-        var myTrails = [];
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/api/trails/GetUserTrails?userId=" + userId, false);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                myTrails = JSON.parse(xhr.responseText);
-            }
-        }
-        xhr.send();
-        return myTrails;
+        // 获取用户路径的 JavaScript 代码
     }
 
+    var overlay = document.getElementById('overlay');
+    var showDialogButton = document.getElementById('showDialogButton');
+    var dialog = document.getElementById('dialog');
+    var closeDialogButton = document.getElementById('closeDialogButton');
 
+    showDialogButton.addEventListener('click', function () {
+        dialog.classList.remove('hidden');
+        overlay.style.display = 'block';
+    });
+
+    function closeDialog() {
+        dialog.classList.add('hidden');
+        overlay.style.display = 'none';
+    }
+
+    closeDialogButton.addEventListener('click', closeDialog);
+
+    overlay.addEventListener('click', function (event) {
+        if (event.target === overlay) {
+            closeDialog();
+        }
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === dialog) {
+            closeDialog();
+        }
+    });
 </script>
-
 
 </body>
 
