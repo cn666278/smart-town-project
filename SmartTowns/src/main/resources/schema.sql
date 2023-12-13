@@ -155,10 +155,10 @@ CREATE TABLE `users_roles`  (
 DROP VIEW IF EXISTS `user_authorities`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_authorities` AS
 SELECT
-    `u`.`name` AS `name`,
+    `u`.`name` AS `username`,
     CONCAT('ROLE_', `r`.`name`) AS `authority`
 FROM
-    ((`users` `u`
+    ((`user` `u`
         JOIN `users_roles` `ur` ON (`u`.`id` = `ur`.`user_id`))
         JOIN `roles` `r` ON (`ur`.`role_id` = `r`.`id`));
 
