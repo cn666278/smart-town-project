@@ -112,12 +112,46 @@
 <div id="container">
     <div id="map"></div>
     <div class="flex-container">
-        <div class="rectangle">Check Point 1</div>
-        <div class="rectangle">Check Point 2</div>
-        <div class="rectangle">Check Point 3</div>
-        <div class="rectangle">Check Point 4</div>
-        <div class="rectangle">Check Point 5</div>
-        <div class="rectangle">Check Point 6</div>
+        <ul class="collapsible" style="flex-basis: 100%; color: #0d1d29">
+            <li>
+                <div class="collapsible-header" style="color: black">
+                    <i class="material-icons">info</i>
+                    <h4 th:text="${trails.name}">Trail Name</h4>
+                    <span class="new badge blue" data-badge-caption="checkpoints"
+                          th:text="${trails.checkpoints.size()}">size of checkpoints{</span></div>
+                <!--                <div class="collapsible-body" style="color: black"><p>Lorem ipsum dolor sit amet.</p></div>-->
+            </li>
+            <li th:each="checkpoint : ${checkpoints}">
+                <div th:attr="data-checkpoint-id=${checkpoint.id}">
+                    <div class="collapsible-header" style="color: black">
+                        <i class="material-icons">place</i>
+                        <span th:text="${checkpoint.name}">####</span>
+                        <span class="badge" style="color: black">
+                            <i class="material-icons" style="color: black">explore</i>
+                        </span>
+                    </div>
+
+                    <div class="collapsible-body">
+                        <div class="collapsible-body-inside">
+                            <div class="collapsible-body-image-container">
+                                <img class="materialboxed" width="250" th:src="@{${checkpoint.image}}">
+                            </div>
+                            <div class="collapsible-body-info-container">
+                                <p class="name" th:text="'Name:'+${checkpoint.name}">Name</p>
+                                <p class="location"
+                                   th:text="'Location: ' + ${checkpoint.latitude} + ', ' + ${checkpoint.longitude}">
+                                    Location</p>
+                                <p class="description " th:text="${checkpoint.description}">Description</p>
+
+                                <a class="btn filled icon-left" th:attr="data-checkpoint-id=${checkpoint.id}">
+                                    <i class="material-icons">add_location_alt</i>show on map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     <div id="jump-to-map-button">Jump to Map App</div>
 </div>
