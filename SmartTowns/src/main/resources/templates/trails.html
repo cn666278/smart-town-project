@@ -67,6 +67,24 @@
             background-color: #D9EAD3; /* Different background to highlight user rank */
         }
 
+        /* Style for View All Button */
+        .view-all-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .view-all-button:hover {
+            background-color: #45a049; /* Darker shade for hover */
+        }
+
+
         .trail-details-section {
             margin-top: 120px;
             position: relative; /* Position relative to place it correctly in the flow */
@@ -385,12 +403,16 @@
 
     <!-- Rank Sidebar -->
     <div id="rank-sidebar">
+        <!-- View All Button -->
+        <button class="view-all-button"><a href="/rank-trail">View All</a></button>
+
         <div class="rank">1. User A</div>
         <div class="rank">2. User B</div>
         <div class="rank">3. User C</div>
         <!-- Highlight the user's rank if it's not in the top three -->
         <div class="rank user-rank">Your Rank: #5</div>
     </div>
+
 </div>
 </body>
 
