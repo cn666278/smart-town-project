@@ -216,6 +216,25 @@
             margin: 8px 0;
             box-sizing: border-box;
         }
+
+        /* css for button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -235,7 +254,7 @@
             <div id="dialog" class="dialog hidden">
                 <p>Edit Your Information</p>
                 <!-- close button -->
-                <span id="closeDialogButton" style="cursor: pointer; color:black;">x</span>
+                <span id="closeDialogButton" class="close-button" style="cursor: pointer; color:black;">✖</span>
                 <form id="Edit your information Form">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required><br>
@@ -603,11 +622,11 @@
             success: function(data) {
                 console.log('Success:', data);
                 alert("Update Success!");
-                window.location.reload();
+                // window.location.reload();
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                showAlert("Update Failed.");
+                alert("Update Failed.");
             }
         });
     }
