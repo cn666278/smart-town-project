@@ -40,6 +40,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     CheckpointRepository checkpointRepository;
 
+
+
     @Override
     public List<UserEntity> getAllUsers() {
         String sql = "SELECT * FROM user";
