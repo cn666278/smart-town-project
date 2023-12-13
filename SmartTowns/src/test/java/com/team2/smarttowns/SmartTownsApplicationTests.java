@@ -163,13 +163,7 @@ class SmartTownsApplicationTests {
     }
 
     @Test
-    void testGetIdByName(){
-        int admin1 = userRepository.getIdByName("admin1");
-        System.out.println(admin1);
-    }
-    @Test
-    void testGetCheckpointAmountByUserId(){
-        int amount = userRepository.getCheckpointAmountByUserId(1);
-        System.out.println(amount);
+    void testGetUserInfoByName(){
+        System.out.println(userRepository.getUserInfoByName("admin1"));
     }
 }
