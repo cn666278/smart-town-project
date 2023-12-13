@@ -2,6 +2,7 @@ package com.team2.smarttowns;
 
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
+import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.service.UserService;
@@ -19,7 +20,8 @@ import java.util.List;
 
 @SpringBootTest
 class SmartTownsApplicationTests {
-    @Autowired
+
+    private TrailRepository trailRepository;
     private CheckpointRepository checkpointRepository;
 
 
@@ -103,7 +105,6 @@ class SmartTownsApplicationTests {
         System.out.println(encodedPassword);
     }
 
-
     @Test
     void testUpdateUser() {
         //'user1',
@@ -118,5 +119,100 @@ class SmartTownsApplicationTests {
         user.setEmail("1111111@qq.com");
         userservice.updateUser(user);
     }
+    /**
+     * Test for TrailService
+     *
+     */
 
+    @Test
+    void testTrailService() {
+        // TrailService = new TrailService();
+        // List<Trail> trails = trailService.getTrailsByUserId(1);
+        // for (Trail trail : trails) {
+        //     System.out.println(trail);
+        // }
+    }
+
+
+    @Test
+    void testTrailRepository() {
+        // List<Integer> list = trailRepository.getTrailsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testTrailRepository2() {
+        // List<Integer> list = trailRepository.getCompletedTrailsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testTrailRepository3() {
+        // List<CheckpointEntity> list = trailRepository.getCheckpointsByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+
+    /**
+     * Test for CheckpointService
+     */
+
+    @Test
+    void testCheckpointService() {
+        // CheckpointService checkpointService = new CheckpointService();
+        // List<Checkpoint> checkpoints = checkpointService.getCheckpointsByTrailId(1);
+        // for (Checkpoint checkpoint : checkpoints) {
+        //     System.out.println(checkpoint);
+        // }
+    }
+
+    /**
+     * Test for CheckpointRepository
+     */
+
+    @Test
+    void testCheckpointRepository() {
+        // List<CheckpointEntity> list = checkpointRepository.getCheckpointsByTrailId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Test
+    void testCheckpointRepository2() {
+        // List<Integer> list = checkpointRepository.getByUserId(1);
+        // list.forEach(System.out::println);
+    }
+
+    @Autowired
+    public SmartTownsApplicationTests(CheckpointRepository checkpointRepository, TrailRepository trailRepository) {
+        this.checkpointRepository = checkpointRepository;
+        this.trailRepository=trailRepository;
+    }
+
+  @Test
+     * Test for TrailService
+    void testUpdateUser() {
+     *
+        //'user1',
+     */
+        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+
+        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+    @Test
+        //        123,
+    void testTrailService() {
+        //        'user@cardiff.ac.uk',
+        // TrailService = new TrailService();
+        //        'dragon hero'
+        // List<Trail> trails = trailService.getTrailsByUserId(1);
+
+        // for (Trail trail : trails) {
+        User user = userservice.getUserById(1);
+        //     System.out.println(trail);
+        user.setName("user1");
+        // }
+        user.setEmail("1111111@qq.com");
+    }
+        userservice.updateUser(user);
+
+    }
 }
