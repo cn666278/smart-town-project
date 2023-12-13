@@ -31,7 +31,7 @@ public class TrailRepositoryImpl implements TrailRepository {
         trail.setId(rs.getInt("id"));
         trail.setName(rs.getString("name"));
         trail.setImage(rs.getString("image"));
-        trail.setDetails(rs.getString("details"));
+        trail.setDetails(rs.getString("detail"));
         return trail;
     };
 
