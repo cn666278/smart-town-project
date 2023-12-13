@@ -14,6 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @ClassName UserService
+ * @Description User Service. Use to get data from dao and transfer entity to model
+ *
+ * @version 1.0
+ *
+ **/
 @Service
 public class UserService {
 

@@ -56,6 +56,15 @@ public class TrailRepositoryImpl implements TrailRepository {
         return checkpoint;
     };
 
+    /**
+     * Get all trails
+     * @return a list of trails entity
+     *
+     * @version 1.0
+     * @see TrailEntity
+     *
+     * @author CHENKE SUN
+     */
     @Override
     public List<TrailEntity> getAllTrails() {
         String sql = "SELECT * FROM trails";
@@ -65,7 +74,13 @@ public class TrailRepositoryImpl implements TrailRepository {
     /**
      * Get all checkpoints of a trail by trail id
      * @param id
-     * @return
+     * @return a list of checkpoints entity
+     *
+     * @version 1.0
+     * @see CheckpointEntity
+     * @see TrailEntity
+     *
+     * @author CHENKE SUN
      */
     @Override
     public List<CheckpointEntity> getCheckpointsByTrailId(int id) {

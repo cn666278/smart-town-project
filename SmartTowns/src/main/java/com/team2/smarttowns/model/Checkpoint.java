@@ -4,6 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @ClassName Checkpoint
+ * @Description Checkpoint model. User as viewmodel
+ * @Author CHENKE SUN
+ *
+ * @version 1.0
+ *
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

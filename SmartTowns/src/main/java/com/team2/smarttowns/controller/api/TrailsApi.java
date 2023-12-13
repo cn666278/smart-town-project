@@ -9,6 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Trails api
+ * Get all trails data
+ * Get all trails data by user id
+ * Get all completed trails data by user id
+ * @see TrailService
+ *
+ * @version 1.0
+ * @author CHENKE SUN
+ */
 @RestController
 public class TrailsApi {
         TrailService trailService;
