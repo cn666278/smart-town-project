@@ -24,7 +24,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
             rs.getString("latitude"),
             rs.getString("longitude"),
             rs.getString("address"),
-            rs.getString("detail")
+            rs.getString("details")
     );; // an interface for mapping rows of a database results set to Java objects
 
     @Autowired
