@@ -233,9 +233,8 @@
             <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user.email}">
                 1223341604@gmail.com</p></a>
             <div id="dialog" class="dialog hidden">
-                <!-- 对话框内容 -->
-                <p>Edit Your Info</p>
-                <!-- 关闭按钮 -->
+                <p>Edit Your Information</p>
+                <!-- close button -->
                 <span id="closeDialogButton" style="cursor: pointer; color:black;">x</span>
                 <form id="Edit your information Form">
                     <label for="username">Username:</label>
@@ -250,14 +249,16 @@
                     <label for="profilePhoto">Profile Photo URL:</label>
                     <input type="text" id="profilePhoto" name="profilePhoto"><br>
 
-                    <button type="button" onclick="updateAccount()">Update Account</button>
+                    <input type="submit" value="Submit" onclick="validateForm();updateAccount()">
+
+<!--                    <button type="button" onclick="updateAccount()">Update Account</button>-->
                     <br>
                 </form>
             </div>
 
 
+            <!-- edit button -->
             <p class="editconfigbutton">
-                <!-- 编辑按钮 -->
                 <button id="showDialogButton" type="button" onclick="">click me!</button>
             </p>
         </div>
@@ -551,23 +552,30 @@
 
     //get data from /api/trails/GetUserTrails
     function getUserTrails(userId) {
-        // 获取用户路径的 JavaScript 代码
+
     }
 
-
+    /**
+     * Dialog box implementation
+     */
     // track for button click events
     var overlay = document.getElementById('overlay');
     var showDialogButton = document.getElementById('showDialogButton');
     var dialog = document.getElementById('dialog');
     var closeDialogButton = document.getElementById('closeDialogButton');
 
-
-
+    /**
+     * Create a dialog-like user interface
+     */
     showDialogButton.addEventListener('click', function () {
         dialog.classList.remove('hidden');
         overlay.style.display = 'block';
     });
 
+
+    /**
+     * Close the dialog box
+     */
     function closeDialog() {
         dialog.classList.add('hidden');
         overlay.style.display = 'none';
@@ -588,7 +596,10 @@
     });
 
 
-    //get user data by access /api/getuser
+
+    /**
+     * Get user data from the server
+     */
     function getUserData() {
         fetch('/api/getuser')
             .then(response => response.json())
@@ -637,8 +648,8 @@
             },
             success: function(data) {
                 console.log('Success:', data);
-                alert("Update Success!");
-                window.location.reload();
+                // alert("Update Success!");
+                // window.location.reload();
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
