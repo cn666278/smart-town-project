@@ -14,6 +14,22 @@
 
         h1 {
             text-align: center;
+            border: 2px solid #3498db; /* 设置边框颜色 */
+            padding: 10px;
+            border-radius: 20px; /* 设置边框圆角，值可以调整 */
+            display: inline-block; /* 防止边框拉长 */
+        }
+        p {
+            text-align: center;
+            font-size: 18px; /* Resize text */
+            color: #555; /* Adjust text color */
+        }
+        /* Sets the upper and lower margins of the table container */
+        .table-container {
+            margin-top: 100px; /* Upper margin */
+            margin-bottom: 100px; /* Lower margin height */
+            width: 85%; /* Sets the width of the table container and can be adjusted as needed */
+            margin: 20px auto; /* Set the left and right margins to auto to achieve horizontal centering */
         }
 
         table {
@@ -31,18 +47,31 @@
         th {
             background-color: #f2f2f2;
         }
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 100%; /* Ensure the image takes the full width of its container */
+            max-width: 800px; /* Adjust the maximum width as needed */
+            height: auto; /* Maintain the aspect ratio of the image */
+        }
     </style>
 </head>
 <body>
 <!-- header-nav -->
 <div th:replace="~{fragments/header :: headerBlock}"/>
 <h1>ranklist</h1>
+<!-- Add text column -->
+<p>Here is a ranklist of checkpoint.The top three numbers of checkpoint for all users are shown here</p>
 
-<table>
+<!-- Table container -->
+<div class="table-container">
     <table>
         <thead>
         <tr>
-            <th>list</th>
+            <th>No</th>
             <th>username</th>
             <th>Checkpoint</th>
         </tr>
@@ -56,9 +85,13 @@
         <!-- Other rows -->
         </tbody>
     </table>
-</table>
-<!-- Add a backbutton -->
-<button> <a href="/trails">Go Back</a> </button>
+    <!-- Add a backbutton -->
+    <button> <a href="/towns">Go Back</a> </button>
+    <!-- Image container -->
+    <div class="image-container">
+        <img src="../static/img/rank2.jpg" alt="Description of your image">
+    </div>
+</div>
 </body>
 <footer>
     <!-- footer -->
