@@ -69,7 +69,7 @@ public class RankService {
         checkpoint.setLatitude(checkpointEntity.getLatitude());
         checkpoint.setLongitude(checkpointEntity.getLongitude());
         checkpoint.setAddress(checkpointEntity.getAddress());
-        checkpoint.setDetail(checkpointEntity.getDetail());
+        checkpoint.setDetail(checkpointEntity.getDetails());
         return (checkpoint);
     }
 
