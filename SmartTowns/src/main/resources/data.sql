@@ -125,15 +125,15 @@ values ('user1',
 delete
 from trail;
 TRUNCATE TABLE trail;
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
         'Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located in the city centre of Cardiff, Wales.');
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('National Museum Cardiff',
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/46/de/c6/spring-sunshine.jpg',
         'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.');
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('Cardiff Bay',
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/440px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
@@ -219,3 +219,4 @@ INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (19, 5
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (20, 4, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (21, 3, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (22, 2, 3);
+

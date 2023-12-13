@@ -6,6 +6,7 @@ import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.model.UserAccessedCheckpointRank;
+import com.team2.smarttowns.model.UserAccessedTrailRank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class RankService {
     public List<Checkpoint> getAllUserCheckpoints() {
         List<Checkpoint> checkpoints = new ArrayList<>();
 
-        // 需要所有用户访问过的检查点
+        // Requires checkpoints visited by all users
         List<CheckpointEntity> checkpointEntities = checkpointRepository.getAllCheckpoints();
 
         for (CheckpointEntity checkpointEntity : checkpointEntities) {
@@ -46,7 +47,7 @@ public class RankService {
     public List<Checkpoint> checkpointUserAccessed(int userID) {
         List<Checkpoint> checkpoints = new ArrayList<>();
 
-        // 需要用户访问过的检查点
+        // A checkpoint that the user has visited is required
         List<CheckpointEntity> checkpointEntities = checkpointRepository.getUserAccessedCheckpointsByUserId(userID);
 
         for (CheckpointEntity checkpointEntity : checkpointEntities) {
@@ -73,10 +74,10 @@ public class RankService {
     }
 
     public static void sortUsersByCheckpointCountDescending(List<User> users) {
-        // 使用Comparator.comparingInt创建一个降序比较器，比较List<Checkpoint>的大小
+        // Use Comparator.comparingInt to create a descending comparator that compares the size of List<Checkpoint>
         Comparator<User> descendingOrderComparator = Comparator.comparingInt(user -> user.getCheckpoints().size());
 
-        // 使用Collections.sort方法对List进行排序
+        // Sort the List using the Collections.sort method
         users.sort(descendingOrderComparator);
     }
 
@@ -85,7 +86,7 @@ public class RankService {
         List<User> users = getAllUsers();
         List<UserAccessedCheckpointRank> userAccessedCheckpointRanks = new ArrayList<>();
 
-        // 将User转换为UserAccessedCheckpointRank并加入列表
+        // Converts the User UserAccessedCheckpointRank and join the list
         for (User user : users) {
             UserAccessedCheckpointRank userAccessedCheckpointRank = new UserAccessedCheckpointRank();
             userAccessedCheckpointRank.setId(user.getId());
@@ -94,10 +95,29 @@ public class RankService {
             userAccessedCheckpointRanks.add(userAccessedCheckpointRank);
         }
 
-        // 使用Comparator进行排序（按照count字段从大到小）
+        // Sort by Comparator (from largest to smallest by count field)
         userAccessedCheckpointRanks.sort(Comparator.comparingInt(UserAccessedCheckpointRank::getCount).reversed());
 
         return userAccessedCheckpointRanks;
+    }
+
+    public List<UserAccessedTrailRank> getTrailRankListSorted() {
+        List<User> users = getAllUsers();
+        List<UserAccessedTrailRank> userAccessedTrailRanks = new ArrayList<>();
+
+        // Converts the User UserAccessedCheckpointRank and join the list
+        for (User user : users) {
+            UserAccessedTrailRank userAccessedTrailRank = new UserAccessedTrailRank();
+            userAccessedTrailRank.setId(user.getId());
+            userAccessedTrailRank.setName(user.getName());
+            userAccessedTrailRank.setCount(user.getCheckpoints().size());
+            userAccessedTrailRanks.add(userAccessedTrailRank);
+        }
+
+        // Sort by Comparator (from largest to smallest by count field)
+        userAccessedTrailRanks.sort(Comparator.comparingInt(UserAccessedTrailRank::getCount).reversed());
+
+        return userAccessedTrailRanks;
     }
 
 
