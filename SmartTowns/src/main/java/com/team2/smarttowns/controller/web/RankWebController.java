@@ -27,25 +27,35 @@ public class RankWebController {
     }
 
     @GetMapping("/rank-trail")
-//    ResponseEntity<List<Checkpoint>>
     public ModelAndView rankTrailWeb(Principal principal) {
-        ModelAndView modelAndView=new ModelAndView("rank-trail.html");
-        //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
-        if (principal!=null){
+        // 创建一个 ModelAndView 对象，指定使用 "rank-trail.html" 模板
+        ModelAndView modelAndView = new ModelAndView("rank-trail.html");
+
+        // 如果用户已经登录
+        if (principal != null) {
+            // 从 Principal 对象中获取用户名
             String name = principal.getName();
+            // 通过用户名获取用户的 ID
             int userId = rankService.getIdByName(name);
+            // 获取用户完成的检查点数量
             int amount = rankService.getCheckpointAmountByUserId(userId);
-            modelAndView.addObject("currentUsername",name);
-            modelAndView.addObject("currentUserFinishedCheckpointAmount",amount);
+
+            // 将当前用户名和已完成的检查点数量添加到模型中，以在视图中使用
+            modelAndView.addObject("currentUsername", name);
+            modelAndView.addObject("currentUserFinishedCheckpointAmount", amount);
         }
-        List<UserAccessedCheckpointRank> checkpoints=rankService.getRankListSorted();
+
+        // 获取已排序的检查点排名列表
+        List<UserAccessedCheckpointRank> checkpoints = rankService.getRankListSorted();
         System.out.println(checkpoints);
-//        for (Checkpoint checkpoint : checkpoints) {
-//            System.out.println(checkpoint);
-//        }
-        modelAndView.addObject("checkpoints",checkpoints);
+
+        // 将检查点列表添加到模型中，以在视图中使用
+        modelAndView.addObject("checkpoints", checkpoints);
+
+        // 返回包含模型和视图的 ModelAndView 对象
         return modelAndView;
     }
+
 
     @GetMapping("/rank-town")
     ModelAndView rankTownWeb() {
