@@ -544,34 +544,32 @@
     function updateAccount() {
         // todo change to real userid
         var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var email = document.getElementById('email').value;
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
+        var email = document.getElementById('email').value
         var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
 
-        fetch('/api/updateuser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-                body: JSON.stringify({
+        $.ajax({
+            url: '/api/updateuser',
+            type: 'POST',
+            data: {
                 userId: userId,
                 name: username,
                 password: password,
-                email: email})
-        })
-            .then(response => response.json())
-            .then(data => {
+                email: email
+            },
+            success: function(data) {
                 console.log('Success:', data);
                 alert("Update Success!");
                 window.location.reload();
-            })
-            .catch((error) => {
+            },
+            error: function(xhr, status, error) {
                 console.error('Error:', error);
                 alert("Update Failed!");
-            });
+            }
+        });
     }
-    console.log("3");
+
     window.onload = function () {
         getUserData();
     };
