@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="validation.js" defer></script>
     <meta charset="UTF-8">
     <title>MyAccount Page</title>
     <style>
@@ -573,6 +574,25 @@
     window.onload = function () {
         getUserData();
     };
+
+
+
+    /**
+     * Validate the content entered in the input box is a valid image URL
+     */
+    function validateForm(){
+        const profilePhotoInput = document.getElementById('profilePhoto');
+        const profilePhotoURL = profilePhotoInput.value.trim();
+
+        //Use a simple regular expression to verify that the image URL is valid
+        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
+        if (imageURLRegex.test(profilePhotoURL)){
+            return true;
+        }else{
+            alert('Please enter a valid image URL.');
+            return false;
+        }
+    }
 </script>
 
 
