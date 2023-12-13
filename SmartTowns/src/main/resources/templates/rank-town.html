@@ -14,6 +14,18 @@
         h1 {
             text-align: center;
         }
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .table-container {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            width: 80%;
+            margin: 20px auto;
+        }
 
         table {
             width: 100%;
@@ -48,6 +60,11 @@
 <div th:replace="~{fragments/header :: headerBlock}"/>
 <h1>ranklist</h1>
 
+<!-- Add text column -->
+<p>Here is a ranklist of trails.</p>
+
+<!-- Table container -->
+<div class="table-container">
 <table>
     <table>
         <thead>
@@ -72,6 +89,7 @@
 <!-- Image container -->
 <div class="image-container">
     <img src="../static/img/rank1.jpg" alt="Description of your image">
+</div>
 </div>
 </body>
 <footer>

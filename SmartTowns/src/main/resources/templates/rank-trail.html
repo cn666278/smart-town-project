@@ -15,10 +15,17 @@
         h1 {
             text-align: center;
         }
-        /* 设置表格容器的上下内边距 */
+        p {
+            text-align: center;
+            font-size: 18px; /* Resize text */
+            color: #555; /* Adjust text color */
+        }
+        /* Sets the upper and lower margins of the table container */
         .table-container {
-            margin-top: 100px; /* 上方空白高度 */
-            margin-bottom: 100px; /* 下方空白高度 */
+            margin-top: 100px; /* Upper margin */
+            margin-bottom: 100px; /* Lower margin height */
+            width: 80%; /* Sets the width of the table container and can be adjusted as needed */
+            margin: 20px auto; /* Set the left and right margins to auto to achieve horizontal centering */
         }
 
         table {
@@ -52,9 +59,11 @@
 <!-- header-nav -->
 <div th:replace="~{fragments/header :: headerBlock}"/>
 <h1>ranklist</h1>
-<!-- 表格容器 -->
+<!-- Add text column -->
+<p>Here is a ranklist of checkpoints.</p>
 
-<table>
+<!-- Table container -->
+<div class="table-container">
     <table>
         <thead>
         <tr>
@@ -72,12 +81,12 @@
         <!-- Other rows -->
         </tbody>
     </table>
-</table>
-<!-- Add a backbutton -->
-<button> <a href="/trails">Go Back</a> </button>
-<!-- Image container -->
-<div class="image-container">
-    <img src="../static/img/rank2.jpg" alt="Description of your image">
+    <!-- Add a backbutton -->
+    <button> <a href="/towns">Go Back</a> </button>
+    <!-- Image container -->
+    <div class="image-container">
+        <img src="../static/img/rank2.jpg" alt="Description of your image">
+    </div>
 </div>
 </body>
 <footer>
