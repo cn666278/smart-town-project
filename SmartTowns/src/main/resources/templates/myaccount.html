@@ -171,22 +171,79 @@
             height: 100%;
         }
 
+        .dialog {
+            width: 400px;
+            max-height: 80vh; /* Set the maximum height to prevent the dialog box from being too long */
+            overflow-y: auto; /* Add scrollbars to accommodate when the content exceeds the maximum height */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            position: absolute; /* Change to absolute positioning, positioning relative to the browser window */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* display centre */
+        }
+
+        /* hide the dialong */
+        .hidden {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
-
+<div class="overlay" id="overlay"></div>
 <!-- header-nav -->
 <div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
+
     <div class="account-header">
-        <div class="user-details">
-            <img th:src="${user?.profileImg}" alt="">
-            <h1>Welcome! <span th:text="${user?.name}">UserName</span></h1>
-            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user?.email}">
+
+        <div class="user-details" style="color:black">
+            <img th:src="${user.profileImg}" alt="">
+            <h1>Welcome! <span th:text="${user.name}">UserName</span></h1>
+            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user.email}">
                 1223341604@gmail.com</p></a>
-            <p>
-                <a class="editprofile" href="#">Edit Profile</a>
+            <div id="dialog" class="dialog hidden">
+                <!-- 对话框内容 -->
+                <p>Edit Your Info</p>
+                <!-- 关闭按钮 -->
+                <span id="closeDialogButton" style="cursor: pointer; color:black;">x</span>
+                <form id="Edit your information Form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="profilePhoto">Profile Photo URL:</label>
+                    <input type="text" id="profilePhoto" name="profilePhoto"><br>
+
+                    <button type="button" onclick="updateAccount()">Update Account</button>
+                    <br>
+                </form>
+            </div>
+
+
+            <p class="editconfigbutton">
+                <!-- 编辑按钮 -->
+                <button id="showDialogButton" type="button" onclick="">click me!</button>
             </p>
         </div>
     </div>
@@ -447,7 +504,77 @@
         return myTrails;
     }
 
+    window.addEventListener('click', function (event) {
+        if (event.target === dialog) {
+            closeDialog();
+        }
+    });
 
+
+    //get user data by access /api/getuser
+    function getUserData() {
+        fetch('/api/getuser')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+                // Populate the dialog fields with user data
+                document.getElementById('username').value = data.name;
+                document.getElementById('password').value = data.password;
+                document.getElementById('email').value = data.email;
+                document.getElementById('profilePhoto').value = data.profileImg;
+
+                // You might want to update the image source directly as well
+                document.querySelector('.user-details img').src = data.profileImg;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    //update user info by post user to /api/updateuser
+    /*
+
+       public String getUserById(@RequestParam("userId") int userId,
+                              @RequestParam("name") String name,
+                              @RequestParam("password") String password,
+//                              @RequestParam("profileImg") String profileImg,
+                              @RequestParam("email") String email) {
+     */
+    function updateAccount() {
+        // todo change to real userid
+        var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
+
+        fetch('/api/updateuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+                body: JSON.stringify({
+                userId: userId,
+                name: username,
+                password: password,
+                email: email})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert("Update Success!");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Update Failed!");
+            });
+    }
+    console.log("3");
+    window.onload = function () {
+        getUserData();
+    };
 </script>
 
 
