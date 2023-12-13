@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="../static/css/home/base.css">
     <link rel="stylesheet" href="../static/css/home/index.css">
     <title>Smart Towns Home Page</title>
+    <style>
+        .text-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favorite-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #aaa; /* Default color */
+            margin-left: 10px; /* Space between the title and the button */
+        }
+
+        .favorite-button.active {
+            color: pink; /* Color when set as collect */
+            background-color: transparent; /* Makes background color transparent */
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -181,18 +204,29 @@
                     <li th:each="trail : ${trails}">
                         <a href="/trails/1">
                             <div class="img"><img th:src="${trail.image}" alt="content1"></div>
-                            <div class="text">
-                                <h4 th:text="${trail.name}">Trail Name</h4>
-                                <p><span>new</span> - <i>1123</i> view</p>
-                            </div>
                         </a>
+                            <div class="text">
+                                <div class="text-header">
+                                    <h4 th:text="${trail.name}">Trail Name</h4>
+                                    <!-- Favorite Button -->
+                                    <button class="favorite-button" onclick="toggleFavorite(this)">
+                                        ❤
+                                    </button>
+                                </div>
+                                <p><span>new</span> - <i>1123</i> views</p>
+                            </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function toggleFavorite(button) {
+        button.classList.toggle('active');
+    }
 
+</script>
 </body>
 
 <div th:replace="~{fragments/footer :: footerBlock}"/>
