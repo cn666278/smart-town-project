@@ -28,33 +28,28 @@ public class RankWebController {
 
     @GetMapping("/rank-trail")
     public ModelAndView rankTrailWeb(Principal principal) {
-        // 创建一个 ModelAndView 对象，指定使用 "rank-trail.html" 模板
+        // Create a ModelAndView object, specifying the "rank-trail.html" template
         ModelAndView modelAndView = new ModelAndView("rank-trail.html");
 
-        // 如果用户已经登录
+        // If the user is already logged in
         if (principal != null) {
-            // 从 Principal 对象中获取用户名
+            // Retrieve the username from the Principal object
             String name = principal.getName();
-            // 通过用户名获取用户的 ID
-            int userId = rankService.getIdByName(name);
-            // 获取用户完成的检查点数量
-            int amount = rankService.getCheckpointAmountByUserId(userId);
-
-            // 将当前用户名和已完成的检查点数量添加到模型中，以在视图中使用
-            modelAndView.addObject("currentUsername", name);
-            modelAndView.addObject("currentUserFinishedCheckpointAmount", amount);
+            UserAccessedCheckpointRank userInfoByName = rankService.getUserInfoByName(name);
+            modelAndView.addObject("currentUser", userInfoByName);
         }
 
-        // 获取已排序的检查点排名列表
+        // Get the sorted list of checkpoints based on user access
         List<UserAccessedCheckpointRank> checkpoints = rankService.getRankListSorted();
         System.out.println(checkpoints);
 
-        // 将检查点列表添加到模型中，以在视图中使用
+        // Add the list of checkpoints to the model for use in the view
         modelAndView.addObject("checkpoints", checkpoints);
 
-        // 返回包含模型和视图的 ModelAndView 对象
+        // Return the ModelAndView object containing the model and view
         return modelAndView;
     }
+
 
 
     @GetMapping("/rank-town")

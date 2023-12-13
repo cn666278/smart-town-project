@@ -127,11 +127,7 @@ public class RankService {
         return UserService.getAllUsers();
     }
 
-    public int getIdByName(String name) {
-        return userRepository.getIdByName(name);
-    }
-
-    public int getCheckpointAmountByUserId(int userId) {
-        return userRepository.getCheckpointAmountByUserId(userId);
+    public UserAccessedCheckpointRank getUserInfoByName(String name) {
+        return userRepository.getUserInfoByName(name);
     }
 }

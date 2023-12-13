@@ -85,8 +85,8 @@
         <!-- Other rows -->
         </tbody>
     </table>
-    <div style="color: #7e0007">Current User: <span th:text="${currentUsername}"></span></div>
-    <div style="color: #7e0007">Finished Checkpoints Amount: <span th:text="${currentUserFinishedCheckpointAmount}"></span></div>
+    <div style="color: #7e0007">Current User: <span th:text="${currentUser.name}"></span></div>
+    <div style="color: #7e0007">Finished Checkpoints Amount: <span th:text="${currentUser.count}"></span></div>
     <!-- Add a backbutton -->
     <button> <a href="/towns">Go Back</a> </button>
     <!-- Image container -->
