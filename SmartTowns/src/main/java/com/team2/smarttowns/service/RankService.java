@@ -1,7 +1,7 @@
 package com.team2.smarttowns.service;
 
 import com.team2.smarttowns.dao.CheckpointRepository;
-import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
+import com.team2.smarttowns.dao.UserRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.Checkpoint;
 import com.team2.smarttowns.model.User;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -25,10 +24,12 @@ public class RankService {
     private final CheckpointRepository checkpointRepository;
 
     UserService UserService;
+    private final UserRepository userRepository;
     @Autowired
-    public RankService(CheckpointRepository checkpointRepository, UserService UserService) {
+    public RankService(CheckpointRepository checkpointRepository, UserService UserService, UserRepository userRepository) {
         this.checkpointRepository = checkpointRepository;
         this.UserService=UserService;
+        this.userRepository = userRepository;
     }
 
     public List<Checkpoint> getAllUserCheckpoints() {
@@ -69,7 +70,7 @@ public class RankService {
         checkpoint.setLatitude(checkpointEntity.getLatitude());
         checkpoint.setLongitude(checkpointEntity.getLongitude());
         checkpoint.setAddress(checkpointEntity.getAddress());
-        checkpoint.setDetail(checkpointEntity.getDetail());
+        checkpoint.setDetail(checkpointEntity.getDetails());
         return (checkpoint);
     }
 
@@ -124,5 +125,9 @@ public class RankService {
     List<User> getAllUsers()
     {
         return UserService.getAllUsers();
+    }
+
+    public UserAccessedCheckpointRank getUserInfoByName(String name) {
+        return userRepository.getUserInfoByName(name);
     }
 }

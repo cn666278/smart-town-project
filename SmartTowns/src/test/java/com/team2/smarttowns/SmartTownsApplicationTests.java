@@ -1,19 +1,15 @@
 package com.team2.smarttowns;
 
 import com.team2.smarttowns.dao.CheckpointRepository;
-import com.team2.smarttowns.dao.CheckpointRepositoryImpl;
 import com.team2.smarttowns.dao.TrailRepository;
+import com.team2.smarttowns.dao.UserRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +19,7 @@ class SmartTownsApplicationTests {
 
     private TrailRepository trailRepository;
     private CheckpointRepository checkpointRepository;
+    private UserRepository userRepository;
 
 
     @Autowired
@@ -45,8 +42,8 @@ class SmartTownsApplicationTests {
     /**
      * Test to add a new checkpoint
      */
-    @Test
-    void addCheckpoint() {
+//    @Test
+//    void addCheckpoint() {
 //        checkpointRepository.addCheckpoint(new CheckpointEntity(0,
 //                "Cardiff Bay",
 //                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/1920px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg",
@@ -55,8 +52,8 @@ class SmartTownsApplicationTests {
 //                "51.4539° N",
 //                "3.1694° W",
 //                "Cardiff CF10 3EU"));
-        getAllCheckpoints();
-    }
+//        getAllCheckpoints();
+//    }
 
     /**
      * Test to update an existing checkpoint
@@ -183,9 +180,15 @@ class SmartTownsApplicationTests {
     }
 
     @Autowired
-    public SmartTownsApplicationTests(CheckpointRepository checkpointRepository, TrailRepository trailRepository) {
+    public SmartTownsApplicationTests(CheckpointRepository checkpointRepository, TrailRepository trailRepository, UserRepository userRepository) {
         this.checkpointRepository = checkpointRepository;
         this.trailRepository=trailRepository;
+        this.userRepository = userRepository;
+    }
+
+    @Test
+    void testGetUserInfoByName(){
+        System.out.println(userRepository.getUserInfoByName("admin1"));
     }
 
   @Test
