@@ -95,6 +95,12 @@ public class UserRepositoryImpl implements UserRepository {
         jdbcTemplate.update(sql, userId, roleId);
     }
 
+    @Override
+    public UserEntity getUserByUsername(String name){
+        String sql = "SELECT * FROM user WHERE name = ?";
+        return jdbcTemplate.queryForObject(sql, userRowMapper, name);
+    }
+
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
         //get from user_checkpoint
@@ -107,4 +113,6 @@ public class UserRepositoryImpl implements UserRepository {
         this.jdbcTemplate = jdbcTemplate;
         this.checkpointRepository = checkpointRepository;
     }
+
+
 }

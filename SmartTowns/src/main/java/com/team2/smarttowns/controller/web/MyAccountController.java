@@ -4,6 +4,7 @@ import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.TrailEntity;
 import com.team2.smarttowns.model.Trail;
+import com.team2.smarttowns.model.User;
 import com.team2.smarttowns.service.TrailService;
 import com.team2.smarttowns.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +30,21 @@ public class MyAccountController {
     TrailService trailService;
 
     @RequestMapping("/myaccount")
-    public ModelAndView myaccount() {
-        return new ModelAndView("myaccount.html");
+    public ModelAndView myaccount(Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("myaccount.html");
+
+        if (principal != null) {
+            // get user by username,email and profileImg
+            String username = principal.getName();
+            User user = userService.getUserByUsername(username);
+            modelAndView.addObject("user", user);
+
+
+
+        }
+        return modelAndView;
     }
+
 
     @GetMapping("/myaccount/user/{userId}")
     public ModelAndView myaccountUser(@PathVariable("userId") int userId) {
@@ -75,10 +89,11 @@ public class MyAccountController {
 
 
     @Autowired
-    public MyAccountController(CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
+    public MyAccountController(UserService userService,CheckpointRepository checkpointRepository, TrailService trailService, TrailRepository trailRepository) {
         this.checkpointRepository = checkpointRepository;
         this.trailRepository = trailRepository;
         this.trailService = trailService;
+        this.userService = userService;
     }
 }
 

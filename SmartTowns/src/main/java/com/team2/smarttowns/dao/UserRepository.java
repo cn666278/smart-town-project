@@ -15,4 +15,6 @@ public interface UserRepository {
     int addUser(UserEntity user);
 
     void assignRole4User(int userId, int roleId);
+
+    UserEntity getUserByUsername(String name);
 }

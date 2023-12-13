@@ -119,4 +119,15 @@ public class UserService {
         // role_id = 2 => user;
         userRepository.assignRole4User(id,2);
     }
+
+    /**
+     * get user by username
+     * @param name
+     * @return
+     */
+    public User getUserByUsername(String name) {
+        UserEntity userEntity = userRepository.getUserByUsername(name);
+        User user = userEntityToModel(userEntity);
+        return user;
+    }
 }
