@@ -15,4 +15,8 @@ public interface UserRepository {
     int addUser(UserEntity user);
 
     void assignRole4User(int userId, int roleId);
+
+    int getIdByName(String name);
+
+    int getCheckpointAmountByUserId(int userId);
 }

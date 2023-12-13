@@ -125,4 +125,12 @@ public class RankService {
     {
         return UserService.getAllUsers();
     }
+
+    public int getIdByName(String name) {
+        return UserService.getIdByName(name);
+    }
+
+    public int getCheckpointAmountByUserId(int userId) {
+        return UserService.getCheckpointAmountByUserId(userId);
+    }
 }

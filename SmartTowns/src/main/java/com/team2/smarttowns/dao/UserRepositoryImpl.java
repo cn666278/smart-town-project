@@ -95,6 +95,20 @@ public class UserRepositoryImpl implements UserRepository {
         jdbcTemplate.update(sql, userId, roleId);
     }
 
+    @Override
+    public int getIdByName(String name) {
+        String sql = "SELECT id FROM user WHERE name = ?";
+        Integer i = jdbcTemplate.queryForObject(sql, Integer.class, name);
+        return i != null ? i : 0;
+    }
+
+    @Override
+    public int getCheckpointAmountByUserId(int userId) {
+        String sql = "SELECT COUNT(*) FROM user_checkpoint WHERE user_id = ?";
+        Integer i = jdbcTemplate.queryForObject(sql, Integer.class, userId);
+        return i != null ? i : 0;
+    }
+
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
         //get from user_checkpoint
