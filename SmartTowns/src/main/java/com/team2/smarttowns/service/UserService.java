@@ -120,11 +120,4 @@ public class UserService {
         userRepository.assignRole4User(id,2);
     }
 
-    public int getIdByName(String name) {
-        return userRepository.getIdByName(name);
-    }
-
-    public int getCheckpointAmountByUserId(int userId) {
-        return userRepository.getCheckpointAmountByUserId(userId);
-    }
 }
