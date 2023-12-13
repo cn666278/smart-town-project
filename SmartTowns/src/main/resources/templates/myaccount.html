@@ -692,7 +692,6 @@
         var password = document.getElementById('password').value
         var email = document.getElementById('email').value
         var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
-
         $.ajax({
             url: '/api/updateuser',
             type: 'POST',
@@ -775,7 +774,6 @@
                             // If all the validations passed, return true
                             console.log('All validations passed.');
                             updateAccount();
-                            return true;
                         }
                     }
                 }
