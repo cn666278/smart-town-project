@@ -160,10 +160,17 @@
 <div th:replace="~{fragments/footer :: footerBlock}"/>
 
 <script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-    }).addTo(map);
+
+    function convertDMSToDD(dms, direction) {
+        let dd = parseFloat(dms);
+
+        if (direction === "S" || direction === "W") {
+            dd = dd * -1;
+        } // No need for N or E as they are defaults to positive
+
+        return dd;
+    }
+
 
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
@@ -180,6 +187,52 @@
         }
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }, false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        var bounds = L.latLngBounds();
+        var checkpointMarkers = {};
+        checkpoints.forEach(function (checkpoint) {
+            let latitudeDMS = checkpoint.latitude.split("°")[0];
+            let latitudeDirection = checkpoint.latitude.slice(-1);
+            let latitude = convertDMSToDD(latitudeDMS, latitudeDirection);
+
+            let longitudeDMS = checkpoint.longitude.split("°")[0];
+            let longitudeDirection = checkpoint.longitude.slice(-1);
+            let longitude = convertDMSToDD(longitudeDMS, longitudeDirection);
+
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`); // 输出坐标
+
+            var latLng = L.latLng(latitude, longitude);
+            var marker = L.marker(latLng).addTo(map);
+            checkpointMarkers[checkpoint.id] = marker;
+            bounds.extend(latLng);
+        });
+
+        console.log(bounds);
+        map.fitBounds(bounds);
+        console.log()
+
+        var elems = document.querySelectorAll('.collapsible');
+        var instances = M.Collapsible.init(elems, {
+            // specify options here
+        });
+
+
+        document.querySelectorAll('.collapsible-body-info-container .btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var checkpointId = this.getAttribute('data-checkpoint-id');
+                if (checkpointMarkers[checkpointId]) {
+                    map.flyTo(checkpointMarkers[checkpointId].getLatLng(), 20);
+                }
+            });
+        });
+
+    });
 
 </script>
 
