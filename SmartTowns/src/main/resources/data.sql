@@ -99,9 +99,8 @@ values ('Cardiff Bay Barrage',
         '3.1667° W',
         'Cardiff CF10 4LY');
 delete
-from user;
-TRUNCATE TABLE user;
-insert into user (name, password, profile_img, account, email, badge)
+from users;
+insert into users (name, password, profile_img, account, email, badge)
 values ('admin1',
         '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
@@ -159,11 +158,11 @@ values (2, 2);
 
 delete
 from collection_user;
-insert into collection_user (user_id, checkpoint_id)
+insert into collection_user (user_id, trail_id)
 values (1, 1);
-insert into collection_user (user_id, checkpoint_id)
+insert into collection_user (user_id, trail_id)
 values (1, 2);
-insert into collection_user (user_id, checkpoint_id)
+insert into collection_user (user_id, trail_id)
 values (1, 3);
 
 DELETE FROM towns;
