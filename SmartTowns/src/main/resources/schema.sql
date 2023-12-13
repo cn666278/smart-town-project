@@ -119,6 +119,7 @@ CREATE TABLE `user`  (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+                         `enabled` boolean NOT NULL DEFAULT true,
                          `profile_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `account` int(11) NULL DEFAULT NULL,
                          `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -137,21 +138,6 @@ CREATE TABLE `user_checkpoint`  (
                                     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Table structure for users
--- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users`  (
-                          `id` int(11) NOT NULL AUTO_INCREMENT,
-                          `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-                          `password` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-                          `enabled` tinyint(1) NOT NULL DEFAULT 1,
-                          `profile_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                          `account` int(11) NULL DEFAULT NULL,
-                          `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                          `badge` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                          PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for users_roles
@@ -170,10 +156,10 @@ CREATE TABLE `users_roles`  (
 DROP VIEW IF EXISTS `user_authorities`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `user_authorities` AS
 SELECT
-    `u`.`name` AS `name`,
+    `u`.`name` AS `username`,
     CONCAT('ROLE_', `r`.`name`) AS `authority`
 FROM
-    ((`users` `u`
+    ((`user` `u`
         JOIN `users_roles` `ur` ON (`u`.`id` = `ur`.`user_id`))
         JOIN `roles` `r` ON (`ur`.`role_id` = `r`.`id`));
 
@@ -184,7 +170,7 @@ DROP TABLE IF EXISTS `collection_user`;
 CREATE TABLE `collection_user`  (
                                     `id` int(11) NOT NULL AUTO_INCREMENT,
                                     `user_id` int(11) NULL DEFAULT NULL,
-                                    `checkpoint_id` int(11) NULL DEFAULT NULL,
+                                    `trail_id` int(11) NULL DEFAULT NULL,
                                     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 

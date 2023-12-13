@@ -15,17 +15,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
 
-    private RowMapper<UserEntity> userRowMapper=(rs, i) -> new UserEntity(
+    private RowMapper<UserEntity> userRowMapper = (rs, i) -> new UserEntity(
             rs.getInt("id"),
             rs.getString("name"),
             rs.getString("password"),
+            rs.getBoolean("enabled"),
             rs.getString("profile_img"),
             rs.getString("account"),
             rs.getString("email"),
             rs.getString("badge")
     );
 
-    private RowMapper<CheckpointEntity> checkpointEntityRowMapper=(rs, i) -> new CheckpointEntity(
+    private RowMapper<CheckpointEntity> checkpointEntityRowMapper = (rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
             rs.getString("image"),
@@ -39,33 +40,71 @@ public class UserRepositoryImpl implements UserRepository {
 
     CheckpointRepository checkpointRepository;
 
+
+
     @Override
     public List<UserEntity> getAllUsers() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM user";
         return jdbcTemplate.query(sql, userRowMapper);
     }
 
     @Override
     public UserEntity getUserByAccount(String account) {
-        String sql = "SELECT * FROM users WHERE account = ?";
+        String sql = "SELECT * FROM user WHERE account = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper, account);
     }
 
     @Override
     public UserEntity getUserById(int id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT * FROM user WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
+
+    /**
+     * for registration
+     * @param user
+     * @return userId for add new users_roles record
+     */
+    @Override
+    public int addUser(UserEntity user) {
+        // SQL query to insert user information into the 'user' table
+        String sql = "INSERT INTO user (name,email,password) VALUES (?,?,?)";
+
+        // Execute the SQL update using Spring JDBC's JdbcTemplate
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword());
+
+        // SQL query to retrieve the maximum 'id' from the 'user' table
+        String sql2 = "SELECT MAX(id) FROM user";
+
+        // Retrieve and return the maximum 'id' using Spring JDBC
+        int maxId = jdbcTemplate.queryForObject(sql2, Integer.class);
+        return maxId;
+    }
+
+    /**
+     * to assign user to certain role(admin,user,...)
+     * @param userId
+     * @param roleId
+     */
+    @Override
+    public void assignRole4User(int userId, int roleId) {
+        // SQL query to insert user and role association into the 'users_roles' table
+        String sql = "INSERT INTO users_roles (user_id,role_id) VALUES (?,?)";
+
+        // Execute the SQL update using Spring JDBC's JdbcTemplate
+        jdbcTemplate.update(sql, userId, roleId);
+    }
+
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
         //get from user_checkpoint
         String sql = "SELECT * FROM checkpoint WHERE id IN (SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?)";
-        return jdbcTemplate.query(sql,checkpointEntityRowMapper, id);
+        return jdbcTemplate.query(sql, checkpointEntityRowMapper, id);
     }
 
     @Autowired
     public UserRepositoryImpl(JdbcTemplate jdbcTemplate, CheckpointRepository checkpointRepository) {
         this.jdbcTemplate = jdbcTemplate;
-        this.checkpointRepository=checkpointRepository;
+        this.checkpointRepository = checkpointRepository;
     }
 }

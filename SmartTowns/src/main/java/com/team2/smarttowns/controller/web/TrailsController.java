@@ -30,6 +30,7 @@ public class TrailsController {
         modelAndView.addObject("trailId", trailId);
         Gson gson = new Gson();
         modelAndView.addObject("trails",trailService.getTrailById(trailId));
+        modelAndView.addObject("checkpoints",checkpointService.getCheckpointsByTrailId(trailId));
         return modelAndView;
     }
 
