@@ -13,10 +13,12 @@
 
         h1 {
             text-align: center;
-            border: 2px solid #3498db; /* 设置边框颜色 */
+            border: 2px solid #3498db;
             padding: 10px;
-            border-radius: 20px; /* 设置边框圆角，值可以调整 */
-            display: inline-block; /* 防止边框拉长 */
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         p {
             text-align: center;
@@ -25,10 +27,10 @@
         }
 
         .table-container {
-            margin-top: 100px;
-            margin-bottom: 100px;
-            width: 85%;
-            margin: 20px auto;
+            margin-top: 100px; /* Upper margin */
+            margin-bottom: 100px; /* Lower margin height */
+            width: 85%; /* Sets the width of the table container and can be adjusted as needed */
+            margin: 20px auto; /* Set the left and right margins to auto to achieve horizontal centering */
         }
 
         table {
@@ -65,7 +67,7 @@
 <h1>ranklist</h1>
 
 <!-- Add text column -->
-<p>Here is a ranklist of trails.</p>
+<p>Here is a ranklist of trails.The top three numbers of trail for all users are shown here.</p>
 
 <!-- Table container -->
 <div class="table-container">
@@ -73,7 +75,7 @@
     <table>
         <thead>
         <tr>
-            <th>list</th>
+            <th>No</th>
             <th>username</th>
             <th>trail</th>
         </tr>
