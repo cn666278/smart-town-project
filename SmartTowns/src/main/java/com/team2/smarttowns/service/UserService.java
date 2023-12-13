@@ -119,4 +119,5 @@ public class UserService {
         // role_id = 2 => user;
         userRepository.assignRole4User(id,2);
     }
+
 }

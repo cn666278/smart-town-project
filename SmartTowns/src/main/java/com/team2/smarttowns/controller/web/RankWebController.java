@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -26,19 +27,30 @@ public class RankWebController {
     }
 
     @GetMapping("/rank-trail")
-//    ResponseEntity<List<Checkpoint>>
-    public ModelAndView rankTrailWeb() {
-        ModelAndView modelAndView=new ModelAndView("rank-trail.html");
-        //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
+    public ModelAndView rankTrailWeb(Principal principal) {
+        // Create a ModelAndView object, specifying the "rank-trail.html" template
+        ModelAndView modelAndView = new ModelAndView("rank-trail.html");
 
-        List<UserAccessedCheckpointRank> checkpoints=rankService.getRankListSorted();
+        // If the user is already logged in
+        if (principal != null) {
+            // Retrieve the username from the Principal object
+            String name = principal.getName();
+            UserAccessedCheckpointRank userInfoByName = rankService.getUserInfoByName(name);
+            modelAndView.addObject("currentUser", userInfoByName);
+        }
+
+        // Get the sorted list of checkpoints based on user access
+        List<UserAccessedCheckpointRank> checkpoints = rankService.getRankListSorted();
         System.out.println(checkpoints);
-//        for (Checkpoint checkpoint : checkpoints) {
-//            System.out.println(checkpoint);
-//        }
-        modelAndView.addObject("checkpoints",checkpoints);
+
+        // Add the list of checkpoints to the model for use in the view
+        modelAndView.addObject("checkpoints", checkpoints);
+
+        // Return the ModelAndView object containing the model and view
         return modelAndView;
     }
+
+
 
     @GetMapping("/rank-town")
     ModelAndView rankTownWeb() {

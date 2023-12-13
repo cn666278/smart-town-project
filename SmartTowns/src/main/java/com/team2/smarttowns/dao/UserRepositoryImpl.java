@@ -2,6 +2,7 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.UserEntity;
+import com.team2.smarttowns.model.UserAccessedCheckpointRank;
 import org.apache.tomcat.util.digester.RuleSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -95,6 +96,18 @@ public class UserRepositoryImpl implements UserRepository {
         jdbcTemplate.update(sql, userId, roleId);
     }
 
+    @Override
+    public UserAccessedCheckpointRank getUserInfoByName(String name) {
+        String userInfoSql = "SELECT id, name, (SELECT COUNT(*) FROM user_checkpoint WHERE user_id = u.id) AS checkpointAmount FROM user u WHERE name = ?";
+
+        return jdbcTemplate.queryForObject(userInfoSql, new Object[]{name}, (rs, rowNum) -> {
+            UserAccessedCheckpointRank userInfo = new UserAccessedCheckpointRank();
+            userInfo.setId(rs.getInt("id"));
+            userInfo.setName(rs.getString("name"));
+            userInfo.setCount(rs.getInt("checkpointAmount"));
+            return userInfo;
+        });
+    }
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
         //get from user_checkpoint
