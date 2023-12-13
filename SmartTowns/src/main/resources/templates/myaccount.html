@@ -648,12 +648,12 @@
             },
             success: function(data) {
                 console.log('Success:', data);
-                // alert("Update Success!");
-                // window.location.reload();
+                alert("Update Success!");
+                window.location.reload();
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert("Update Failed!");
+                showAlert("Update Failed.");
             }
         });
     }
