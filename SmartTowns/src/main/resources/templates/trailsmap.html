@@ -6,9 +6,13 @@
     <title>Trails Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
     <link rel="stylesheet" href="/css/materialize.min.css">
     <script src="/js/materialize.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var checkpoints = /*[[${checkpoints}]]*/ [];
+        /*]]>*/
+    </script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body, html {
@@ -61,6 +65,38 @@
 
         nav {
             line-height: 20px;
+        }
+
+        .collapsible-header {
+            flex-basis: 98%;
+            margin: 0 auto; /* Centers the header */
+            display: flex; /* Enables flexible box layout */
+            align-items: center; /* Vertically centers the content within the header */
+            justify-content: center; /* Horizontally centers the content within the header */
+        }
+
+        .collapsible-body-image-container {
+            padding: 10px;
+        }
+
+        .collapsible-body-inside {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            margin: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .collapsible-body-info-container {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .collapsible-body-info-container p {
+            margin: 0;
+            color: black;
         }
     </style>
 </head>
