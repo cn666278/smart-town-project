@@ -590,7 +590,25 @@
 
 
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('sumbit-button').addEventListener('click', validateForm);
+    });
 
+    function showToast(message) {
+        var toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(function() {
+            toast.className += " show";
+        }, 100);
+        setTimeout(function() {
+            toast.className = toast.className.replace("show", "");
+            setTimeout(function() {
+                document.body.removeChild(toast);
+            }, 500);
+        }, 3000);
+    }
     /**
      * Get user data from the server
      */
@@ -598,7 +616,7 @@
         fetch('/api/getuser')
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                // console.log('Success:', data);
 
                 // Populate the dialog fields with user data
                 document.getElementById('username').value = data.name;
@@ -642,7 +660,10 @@
             },
             success: function(data) {
                 console.log('Success:', data);
-                alert("Update Success!");
+                //alert("Update Success!");
+                showToast("Update Success!");
+                closeDialog();
+                updateUserInfoOnPage();
                 // window.location.reload();
             },
             error: function(xhr, status, error) {
