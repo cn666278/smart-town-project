@@ -6,8 +6,8 @@ values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
         'Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located in the city centre of Cardiff, Wales.',
         'https://www.cardiffcastle.com',
-        '55.3781° N',
-        '3.4360° W',
+        '51.482231° N',
+        '3.181177° W',
         'Castle St, Cardiff CF10 3RB');
 
 insert into checkpoint(name, image, description, contact, latitude, longitude, address)
