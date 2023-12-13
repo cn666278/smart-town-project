@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
