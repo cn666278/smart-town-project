@@ -268,7 +268,9 @@
                     <label for="profilePhoto">Profile Photo URL:</label>
                     <input type="text" id="profilePhoto" name="profilePhoto"><br>
 
-                    <button type="button" onclick="updateAccount()">Update Account</button>
+                    <input type="submit" value="Submit" onclick="validateForm()">
+
+<!--                    <button type="button" onclick="updateAccount()">Update Account</button>-->
                     <br>
                 </form>
             </div>
@@ -638,21 +640,61 @@
 
 
     /**
-     * Validate the content entered in the input box is a valid image URL
+     * Validate the form
      */
-    function validateForm(){
-        const profilePhotoInput = document.getElementById('profilePhoto');
-        const profilePhotoURL = profilePhotoInput.value.trim();
+    function validateForm() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const emailInput = document.getElementById('email');
 
-        //Use a simple regular expression to verify that the image URL is valid
-        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
-        if (imageURLRegex.test(profilePhotoURL)){
-            return true;
-        }else{
-            alert('Please enter a valid image URL.');
-            return false;
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const email = emailInput.value.trim();
+
+        // Validate username
+        if (username.length < 3) {
+            alert('Username must be at least 3 characters long.');
         }
+        else if (username.length > 3 && username.length < 20) {
+            // Validate password
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+            }else if (password.length > 6 && password.length < 12) {
+                // Validate password strength
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must contain at least one uppercase and lowercase letter.');
+                } else {
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                    } else if (emailRegex.test(email)) {
+                        // Validate profile photo URL
+                        const profilePhotoInput = document.getElementById('profilePhoto');
+                        const profilePhotoURL = profilePhotoInput.value.trim();
+                        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
+                        if (!imageURLRegex.test(profilePhotoURL)) {
+                            alert('Please enter a valid image URL.');
+                        } else {
+                            // If all the validations passed, return true
+                            updateAccount();
+                            return true;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
+        // If all the validations passed, return true
+        return true;
     }
+
+
+
 </script>
 
 
