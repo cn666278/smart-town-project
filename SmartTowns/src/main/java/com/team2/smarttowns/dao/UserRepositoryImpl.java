@@ -115,6 +115,16 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.query(sql, checkpointEntityRowMapper, id);
     }
 
+    /**
+     * update user info use this userEntity.id's user
+     * @param userEntity user
+     */
+    @Override
+    public void updateUser(UserEntity userEntity) {
+        String sql = "UPDATE users SET name = ?, password = ?, profile_img = ?, account = ?, email = ?, badge = ? WHERE id = ?";
+        jdbcTemplate.update(sql, userEntity.getName(), userEntity.getPassword(), userEntity.getProfileImg(), userEntity.getAccount(), userEntity.getEmail(), userEntity.getBadge(), userEntity.getId());
+    }
+
     @Autowired
     public UserRepositoryImpl(JdbcTemplate jdbcTemplate, CheckpointRepository checkpointRepository) {
         this.jdbcTemplate = jdbcTemplate;

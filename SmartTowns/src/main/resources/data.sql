@@ -235,6 +235,14 @@ VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the co
        (9, 'Porthmadog', 'A small coastal town and community in the Eifionydd area of Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
        (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
 
+delete
+from collection_user;
+insert into collection_user (user_id, trail_id)
+values (1, 1);
+insert into collection_user (user_id, trail_id)
+values (1, 2);
+insert into collection_user (user_id, trail_id)
+values (1, 3);
 
 delete from user_checkpoint;
 TRUNCATE TABLE user_checkpoint;
