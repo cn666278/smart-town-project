@@ -750,8 +750,12 @@
             // Validate password
             if (password.length < 6) {
                 alert('Password must be at least 6 characters long.');
-            }else if (password.length > 6 && password.length < 12) {
+            }else if (
+                // password.length > 6 && password.length < 12
+                true
+            ) {
                 // Validate password strength
+                console.log("password.length > 6 && password.length < 12");
                 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
                 if (!passwordRegex.test(password)) {
                     alert('Password must contain at least one uppercase and lowercase letter.');
@@ -769,6 +773,7 @@
                             alert('Please enter a valid image URL.');
                         } else {
                             // If all the validations passed, return true
+                            console.log('All validations passed.');
                             updateAccount();
                             return true;
                         }
