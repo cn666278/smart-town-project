@@ -125,15 +125,15 @@ values ('user1',
 delete
 from trail;
 TRUNCATE TABLE trail;
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('Cardiff Castle',
         'https://www.visitcardiff.com/app/uploads/2019/06/Cardiff-Castle-2.jpg',
         'Cardiff Castle (Welsh: Castell Caerdydd) is a medieval castle and Victorian Gothic revival mansion located in the city centre of Cardiff, Wales.');
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('National Museum Cardiff',
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/46/de/c6/spring-sunshine.jpg',
         'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.');
-insert into trail (name,image,details)
+insert into trail (name,image,detail)
 values ('Cardiff Bay',
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/440px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
@@ -155,6 +155,30 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+
+
+delete
+from collection_user;
+insert into collection_user (user_id, checkpoint_id)
+values (1, 1);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 2);
+insert into collection_user (user_id, checkpoint_id)
+values (1, 3);
+
+DELETE FROM towns;
+INSERT INTO towns (id, name, detail, image)
+VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the country and is the largest city in Wales.', 'https://i2.100024.xyz/2023/12/12/gzjfs9.webp'),
+       (2, 'Swansea', 'A coastal city in South Wales, located on the Gower Peninsula.', 'https://i2.100024.xyz/2023/12/12/gzitdu.webp'),
+       (3, 'Newport', 'A city in South East Wales, located on the River Usk.', 'https://i2.100024.xyz/2023/12/12/gzift8.webp'),
+       (4, 'Wrexham', 'A town in North Wales, located near the border with England.', 'https://i2.100024.xyz/2023/12/12/gzhgi4.webp'),
+       (5, 'Aberystwyth', 'A historic market town, administrative centre and holiday resort within Ceredigion, West Wales.', 'https://i2.100024.xyz/2023/12/12/gzgzo6.webp'),
+       (6, 'Bangor', 'A city in North West Wales, located on the coast of the Menai Strait.', 'https://i2.100024.xyz/2023/12/12/gzgmju.webp'),
+       (7, 'Caernarfon', 'A royal town, community and port in Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz7ft8.webp'),
+       (8, 'Llandudno', 'A seaside resort, town and community in Conwy County Borough, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6zwi.webp'),
+       (9, 'Porthmadog', 'A small coastal town and community in the Eifionydd area of Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
+       (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
+
 
 delete from user_checkpoint;
 TRUNCATE TABLE user_checkpoint;
@@ -197,3 +221,4 @@ INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (19, 5
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (20, 4, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (21, 3, 3);
 INSERT INTO `trail_checkpoint` (`id`, `checkpoint_id`, `trail_id`) VALUES (22, 2, 3);
+

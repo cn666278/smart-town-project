@@ -61,11 +61,11 @@ CREATE TABLE `shop`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for town
+-- Table structure for towns
 -- ----------------------------
-DROP TABLE IF EXISTS `town`;
-CREATE TABLE `town`  (
-                         `id` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `towns`;
+CREATE TABLE `towns`  (
+                         `id` int(11) NOT NULL,
                          `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                          `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `trail`  (
                           `id` int(11) NOT NULL AUTO_INCREMENT,
                           `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                          `details` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+                          `detail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -160,5 +160,16 @@ FROM
     ((`users` `u`
         JOIN `users_roles` `ur` ON (`u`.`id` = `ur`.`user_id`))
         JOIN `roles` `r` ON (`ur`.`role_id` = `r`.`id`));
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+DROP TABLE IF EXISTS `collection_user`;
+CREATE TABLE `collection_user`  (
+                                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                                    `user_id` int(11) NULL DEFAULT NULL,
+                                    `checkpoint_id` int(11) NULL DEFAULT NULL,
+                                    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

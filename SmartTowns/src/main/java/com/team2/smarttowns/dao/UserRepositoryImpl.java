@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
             rs.getString("latitude"),
             rs.getString("longitude"),
             rs.getString("address"),
-            rs.getString("detail")
+            rs.getString("details")
     );
 
     CheckpointRepository checkpointRepository;
