@@ -716,7 +716,14 @@
             }
         });
     }
-
+    function updateUserInfoOnPage() {
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value;
+        document.querySelector('.user-details h1 span').textContent = username;
+        document.querySelector('.user-details .editprofile p').textContent = email;
+        document.querySelector('.user-details img').src = profilePhoto;
+    }
     window.onload = function () {
         getUserData();
     };
