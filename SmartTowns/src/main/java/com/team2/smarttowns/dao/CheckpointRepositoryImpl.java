@@ -1,7 +1,6 @@
 package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
-import com.team2.smarttowns.service.CheckpointService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,12 +18,13 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private RowMapper<CheckpointEntity> checkpointMapper = (rs, i) -> new CheckpointEntity(
             rs.getInt("id"),
             rs.getString("name"),
-            rs.getString("img"),
+            rs.getString("image"),
             rs.getString("description"),
             rs.getString("contact"),
             rs.getString("latitude"),
             rs.getString("longitude"),
-            rs.getString("address")
+            rs.getString("address"),
+            rs.getString("details")
     );; // an interface for mapping rows of a database results set to Java objects
 
     @Autowired
@@ -47,7 +47,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
 
     @Override
     public void addCheckpoint(CheckpointEntity checkpointEntity) {
-        String sql = "INSERT INTO checkpoint (name,img,description,contact,latitude,longitude,address) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO checkpoint (name,image,description,contact,latitude,longitude,address) VALUES (?,?,?,?,?,?,?)";
         jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDescription(),
                 checkpointEntity.getContact(), checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress());
     }
@@ -55,7 +55,7 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
 
     @Override
     public void updateCheckpoint(CheckpointEntity checkpointEntity) {
-        String sql = "UPDATE checkpoint SET name = ?, img = ?, description = ?, contact = ?, latitude = ?,longitude=?,address=? WHERE id = ?";
+        String sql = "UPDATE checkpoint SET name = ?, image = ?, description = ?, contact = ?, latitude = ?,longitude=?,address=? WHERE id = ?";
         jdbc.update(sql, checkpointEntity.getName(), checkpointEntity.getImage(), checkpointEntity.getDescription(), checkpointEntity.getContact(),
                 checkpointEntity.getLatitude(), checkpointEntity.getLongitude(), checkpointEntity.getAddress(), checkpointEntity.getId());
     }
@@ -92,7 +92,16 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         String sql = "SELECT c.*\n" +
                 "FROM checkpoint c\n" +
                 "JOIN user_checkpoint uc ON c.id = uc.checkpoint_id\n" +
-                "WHERE uc.user_id = YOUR_USER_ID;";
+                "WHERE uc.user_id = ?;";
         return jdbc.query(sql, checkpointMapper);
+    }
+
+    @Override
+    public List<CheckpointEntity> getCheckpointsByUserId(int trailId) {
+        String sql = "SELECT c.*\n" +
+                "FROM checkpoint c\n" +
+                "JOIN trail_checkpoint tc ON c.id = tc.checkpoint_id\n" +
+                "WHERE tc.trail_id = ?";
+        return jdbc.query(sql, checkpointMapper, trailId);
     }
 }
