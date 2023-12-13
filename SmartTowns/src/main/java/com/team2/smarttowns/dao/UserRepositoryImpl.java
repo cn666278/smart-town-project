@@ -98,15 +98,15 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int getIdByName(String name) {
         String sql = "SELECT id FROM user WHERE name = ?";
-        Integer i = jdbcTemplate.queryForObject(sql, Integer.class, name);
-        return i != null ? i : 0;
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, name);
+        return id != null ? id : 0;
     }
 
     @Override
     public int getCheckpointAmountByUserId(int userId) {
         String sql = "SELECT COUNT(*) FROM user_checkpoint WHERE user_id = ?";
-        Integer i = jdbcTemplate.queryForObject(sql, Integer.class, userId);
-        return i != null ? i : 0;
+        Integer amount = jdbcTemplate.queryForObject(sql, Integer.class, userId);
+        return amount != null ? amount : 0;
     }
 
 

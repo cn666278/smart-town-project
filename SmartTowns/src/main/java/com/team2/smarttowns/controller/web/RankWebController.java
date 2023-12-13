@@ -28,14 +28,16 @@ public class RankWebController {
 
     @GetMapping("/rank-trail")
 //    ResponseEntity<List<Checkpoint>>
-    public ModelAndView rankTrailWeb(Principal p) {
+    public ModelAndView rankTrailWeb(Principal principal) {
         ModelAndView modelAndView=new ModelAndView("rank-trail.html");
         //List<Checkpoint> checkpoints = rankService.getAllUserCheckpoints();
-        String name = p.getName();
-        int userId = rankService.getIdByName(name);
-        int amount = rankService.getCheckpointAmountByUserId(userId);
-        modelAndView.addObject("currentUsername",name);
-        modelAndView.addObject("currentUserFinishedCheckpointAmount",amount);
+        if (principal!=null){
+            String name = principal.getName();
+            int userId = rankService.getIdByName(name);
+            int amount = rankService.getCheckpointAmountByUserId(userId);
+            modelAndView.addObject("currentUsername",name);
+            modelAndView.addObject("currentUserFinishedCheckpointAmount",amount);
+        }
         List<UserAccessedCheckpointRank> checkpoints=rankService.getRankListSorted();
         System.out.println(checkpoints);
 //        for (Checkpoint checkpoint : checkpoints) {
