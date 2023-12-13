@@ -14,11 +14,22 @@
 
     <!-- Register -->
     <div class="container_form container--signup">
-        <form th:action="@{/register}" method="post" name="register" class="form" id="form1">
+        <form action="/submitRegistration" method="post" name="register" class="form" id="form1" th:object="${user}">
             <h2 class="form_title">Register</h2>
-            <input type="text" name="username" class="input" placeholder="Username" required />
-            <input type="email" name="email" class="input" placeholder="Email" required />
-            <input type="password" name="password" class="input" placeholder="Password" required />
+            <label>Username (max 20char):
+                <input th:field="*{name}" type="text">
+            </label><br>
+            <div th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Username Error</div>
+            <label>Email:
+                <input th:field="*{email}" type="text">
+            </label><br>
+            <div th:errors="*{email}" th:if="${#fields.hasErrors('email')}">email Error</div>
+
+            <label>Password:
+                <input th:field="*{password}" type="password">
+            </label><br>
+            <div th:errors="*{password}" th:if="${#fields.hasErrors('password')}">password Error</div>
+
             <input name="submit" class="btn" type="submit" value="Register" />
         </form>
         <br/><br/>

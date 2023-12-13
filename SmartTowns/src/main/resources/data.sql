@@ -99,23 +99,23 @@ values ('Cardiff Bay Barrage',
         '3.1667° W',
         'Cardiff CF10 4LY');
 delete
-from users;
-TRUNCATE TABLE users;
-insert into users (name, password, profile_img, account, email, badge)
+from user;
+TRUNCATE TABLE user;
+insert into user (name, password, profile_img, account, email, badge)
 values ('admin1',
         '$2a$10$AIuHeSPZqM1Zr66XH8a5WOti7NrSb00tqRhEeKBig8qOx.5C79rcq',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         001,
         'admin@cardiff.ac.uk',
         'dragon hero');
-insert into users (name, password, profile_img, account, email, badge)
+insert into user (name, password, profile_img, account, email, badge)
 values ('user1',
         '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
         'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
         123,
         'user@cardiff.ac.uk',
         'dragon hero');
-    insert into users (name, password, profile_img, account, email, badge)
+    insert into user (name, password, profile_img, account, email, badge)
     values ('user2',
             '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
             'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
