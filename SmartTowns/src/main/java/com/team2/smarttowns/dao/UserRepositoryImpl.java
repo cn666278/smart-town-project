@@ -19,6 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
             rs.getInt("id"),
             rs.getString("name"),
             rs.getString("password"),
+            rs.getBoolean("enabled"),
             rs.getString("profile_img"),
             rs.getString("account"),
             rs.getString("email"),
@@ -43,19 +44,19 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<UserEntity> getAllUsers() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM user";
         return jdbcTemplate.query(sql, userRowMapper);
     }
 
     @Override
     public UserEntity getUserByAccount(String account) {
-        String sql = "SELECT * FROM users WHERE account = ?";
+        String sql = "SELECT * FROM user WHERE account = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper, account);
     }
 
     @Override
     public UserEntity getUserById(int id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT * FROM user WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 

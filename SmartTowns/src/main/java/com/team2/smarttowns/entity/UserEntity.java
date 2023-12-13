@@ -12,6 +12,7 @@ public class UserEntity{
     private int id;
     private String name;
     private String password;
+    private boolean enabled;
     private String profileImg;
     private String account;
     private String email;
