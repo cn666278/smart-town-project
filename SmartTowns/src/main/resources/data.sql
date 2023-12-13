@@ -159,11 +159,11 @@ values (2, 2);
 
 delete
 from collection_user;
-insert into collection_user (user_id, trail_id)
+insert into collection_user (user_id, checkpoint_id)
 values (1, 1);
-insert into collection_user (user_id, trail_id)
+insert into collection_user (user_id, checkpoint_id)
 values (1, 2);
-insert into collection_user (user_id, trail_id)
+insert into collection_user (user_id, checkpoint_id)
 values (1, 3);
 
 DELETE FROM towns;
