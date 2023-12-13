@@ -21,11 +21,12 @@ public class UserService {
     UserRepository userRepository;
 
     CheckpointRepository checkpointRepository;
+
     @Autowired
     public UserService(TrailRepositoryImpl trailRepository, UserRepository userRepository, CheckpointRepository checkpointRepository) {
-        this.trailRepository=trailRepository;
-        this.userRepository=userRepository;
-        this.checkpointRepository=checkpointRepository;
+        this.trailRepository = trailRepository;
+        this.userRepository = userRepository;
+        this.checkpointRepository = checkpointRepository;
     }
 
     /**
@@ -44,6 +45,7 @@ public class UserService {
 
     /**
      * get user by user id
+     *
      * @param id userId
      * @return User
      */
@@ -65,6 +67,7 @@ public class UserService {
         }
         return users;
     }
+
     public List<Checkpoint> getUserCheckpointsByUserId(int id) {
         List<CheckpointEntity> checkpointEntities = trailRepository.getCheckpointsByUserId(id);
         List<Checkpoint> checkpoints = new ArrayList<>();
@@ -73,7 +76,6 @@ public class UserService {
         }
         return checkpoints;
     }
-
 
 
     private User userEntityToModel(UserEntity userEntity) {
@@ -105,4 +107,16 @@ public class UserService {
 //        List<Checkpoint> checkpoints = new ArrayList<>();
 //
 //    }
+
+    /**
+     * add record to user table and users_roles table
+     * @param user
+     */
+    public void addUser(UserEntity user) {
+        int id = userRepository.addUser(user);
+
+        // role_id = 1 => admin;
+        // role_id = 2 => user;
+        userRepository.assignRole4User(id,2);
+    }
 }

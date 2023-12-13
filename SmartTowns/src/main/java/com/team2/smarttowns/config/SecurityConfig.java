@@ -20,8 +20,8 @@ public class SecurityConfig {
     private DataSource dataSource;
 
     public static final String[] ENDPOINTS_WHITELIST = {"/checkpoint/**", "/about", "/home",
-            "/towns", "/trails", "/trailsmap","/static/**","/css/**","/img/**","/js/**","/trails/**",
-            "/error","/rank-trail","/rank-town","/trailsmap/**"};
+            "/towns", "/trails", "/trailsmap", "/static/**", "/css/**", "/img/**", "/js/**", "/trails/**",
+            "/error", "/rank-trail", "/rank-town", "/trailsmap/**", "/register", "/submitRegistration"};
     public static final String[] USER_ENDPOINTS_WHITELIST = {"/myaccount"};
 
 
@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form
                         .loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/myaccount",true));
+                        .defaultSuccessUrl("/myaccount", true));
         return http.build();
     }
 
@@ -49,7 +49,7 @@ public class SecurityConfig {
         JdbcDaoImpl jdbcUserDetails = new JdbcDaoImpl();
         jdbcUserDetails.setDataSource(dataSource);
         jdbcUserDetails.setUsersByUsernameQuery("select name, password, enabled from user where name=?");
-        jdbcUserDetails.setAuthoritiesByUsernameQuery("select name, authority from user_authorities where name=?");
+        jdbcUserDetails.setAuthoritiesByUsernameQuery("select username, authority from user_authorities where username=?");
         return jdbcUserDetails;
     }
 
