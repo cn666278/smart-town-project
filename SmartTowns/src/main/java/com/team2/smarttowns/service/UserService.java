@@ -205,9 +205,9 @@ for(TrailEntity trailEntity1:trailEntity){
      * @param name
      * @return
      */
-    public User getUserByUsername(String name) {
-        UserEntity userEntity = userRepository.getUserByUsername(name);
-        User user = userEntityToModel(userEntity);
-        return user;
-    }
+//    public User getUserByUsername(String name) {
+//        UserEntity userEntity = userRepository.getUserByUsername(name);
+//        User user = userEntityToModel(userEntity);
+//        return user;
+//    }
 }

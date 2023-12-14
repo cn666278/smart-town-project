@@ -446,7 +446,8 @@
                         <!-- The first medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/medal.png" alt="Medal 1" style="width: 70%; height: 90%"></div>
+                                <div class="img"><img src="../static/img/medal.png" alt="Medal 1"
+                                                      style="width: 70%; height: 90%"></div>
                                 <div class="text">
                                     <h4>Medal 1 - Cardiff Castle</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
@@ -457,7 +458,8 @@
                         <!-- The second medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/medal2.png" alt="Medal 2" style="width: 70%; height: 90%"></div>
+                                <div class="img"><img src="../static/img/medal2.png" alt="Medal 2"
+                                                      style="width: 70%; height: 90%"></div>
                                 <div class="text">
                                     <h4>Medal 2 - National Museum Cardiff</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
@@ -468,7 +470,8 @@
                         <!-- The third medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/medal3.png" alt="Medal 3" style="width: 50%; height: 90%"></div>
+                                <div class="img"><img src="../static/img/medal3.png" alt="Medal 3"
+                                                      style="width: 50%; height: 90%"></div>
                                 <div class="text">
                                     <h4>Medal 3 - Cardiff Bay</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
@@ -476,23 +479,23 @@
                             </a>
                         </li>
 
-<!--                        &lt;!&ndash; The fourth medal &ndash;&gt;-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <div class="img"><img src="../static/img/medal4.png" alt="Medal 4"></div>-->
-<!--                                <div class="text">-->
-<!--                                    <h4>Medal 4</h4>-->
-<!--                                    <p><span>new</span> - <i>1123</i> view</p>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </li>-->
+                        <!--                        &lt;!&ndash; The fourth medal &ndash;&gt;-->
+                        <!--                        <li>-->
+                        <!--                            <a href="#">-->
+                        <!--                                <div class="img"><img src="../static/img/medal4.png" alt="Medal 4"></div>-->
+                        <!--                                <div class="text">-->
+                        <!--                                    <h4>Medal 4</h4>-->
+                        <!--                                    <p><span>new</span> - <i>1123</i> view</p>-->
+                        <!--                                </div>-->
+                        <!--                            </a>-->
+                        <!--                        </li>-->
                     </ul>
                 </div>
             </div>
         </div>
 
         <!-- content -->
-<!--    <div class="module" id="collects">-->
+        <!--    <div class="module" id="collects">-->
 
         <!-- content of Collection module -->
         <div class="module" id="collects">
@@ -746,7 +749,7 @@
     /**
      * Dialog box implementation
      */
-    // track for button click events
+        // track for button click events
     var overlay = document.getElementById('overlay');
     var showDialogButton = document.getElementById('showDialogButton');
     var dialog = document.getElementById('dialog');
@@ -778,7 +781,6 @@
     });
 
 
-
     document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('sumbit-button').addEventListener('click', validateForm);
     });
@@ -788,16 +790,17 @@
         toast.className = "toast";
         toast.textContent = message;
         document.body.appendChild(toast);
-        setTimeout(function() {
+        setTimeout(function () {
             toast.className += " show";
         }, 100);
-        setTimeout(function() {
+        setTimeout(function () {
             toast.className = toast.className.replace("show", "");
-            setTimeout(function() {
+            setTimeout(function () {
                 document.body.removeChild(toast);
             }, 500);
         }, 3000);
     }
+
     /**
      * Get user data from the server
      */
@@ -840,120 +843,119 @@
                 console.error('Error:', error);
             }
         });
+    }
 
-        //update user info by post user to /api/updateuser
-        /*
+    //update user info by post user to /api/updateuser
+    /*
 
-       public String getUserById(@RequestParam("userId") int userId,
-                              @RequestParam("name") String name,
-                              @RequestParam("password") String password,
+   public String getUserById(@RequestParam("userId") int userId,
+                          @RequestParam("name") String name,
+                          @RequestParam("password") String password,
 //                              @RequestParam("profileImg") String profileImg,
-                              @RequestParam("email") String email) {
+                          @RequestParam("email") String email) {
+ */
+    function updateAccount() {
+        // todo change to real userid
+        var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
+        var email = document.getElementById('email').value
+        var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
+        $.ajax({
+            url: '/api/updateuser',
+            type: 'POST',
+            data: {
+                userId: userId,
+                name: username,
+                password: password,
+                email: email
+            },
+            success: function (data) {
+                console.log('Success:', data);
+                //alert("Update Success!");
+                showToast("Update Success!");
+                closeDialog();
+                updateUserInfoOnPage();
+                // window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                alert("Update Failed.");
+            }
+        });
+    }
+
+    function updateUserInfoOnPage() {
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value;
+        document.querySelector('.user-details h1 span').textContent = username;
+        document.querySelector('.user-details .editprofile p').textContent = email;
+        document.querySelector('.user-details img').src = profilePhoto;
+    }
+
+    window.onload = function () {
+        getUserData();
+    };
+
+
+    /**
+     * Validate the form
      */
-        function updateAccount() {
-            // todo change to real userid
-            var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
-            var username = document.getElementById('username').value
-            var password = document.getElementById('password').value
-            var email = document.getElementById('email').value
-            var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
-            $.ajax({
-                url: '/api/updateuser',
-                type: 'POST',
-                data: {
-                    userId: userId,
-                    name: username,
-                    password: password,
-                    email: email
-                },
-                success: function (data) {
-                    console.log('Success:', data);
-                    //alert("Update Success!");
-                    showToast("Update Success!");
-                    closeDialog();
-                    updateUserInfoOnPage();
-                    // window.location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error:', error);
-                    alert("Update Failed.");
-                }
-            });
-        }
+    function validateForm() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const emailInput = document.getElementById('email');
 
-        function updateUserInfoOnPage() {
-            var username = document.getElementById('username').value;
-            var email = document.getElementById('email').value;
-            var profilePhoto = document.getElementById('profilePhoto').value;
-            document.querySelector('.user-details h1 span').textContent = username;
-            document.querySelector('.user-details .editprofile p').textContent = email;
-            document.querySelector('.user-details img').src = profilePhoto;
-        }
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const email = emailInput.value.trim();
 
-        window.onload = function () {
-            getUserData();
-        };
-
-
-        /**
-         * Validate the form
-         */
-        function validateForm() {
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const emailInput = document.getElementById('email');
-
-            const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
-            const email = emailInput.value.trim();
-
-            // Validate username
-            if (username.length < 3) {
-                alert('Username must be at least 3 characters long.');
-            } else if (username.length > 3 && username.length < 20) {
-                // Validate password
-                if (password.length < 6) {
-                    alert('Password must be at least 6 characters long.');
-                } else if (
-                    // password.length > 6 && password.length < 12
-                    true
-                ) {
-                    // Validate password strength
-                    console.log("password.length > 6 && password.length < 12");
-                    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
-                    if (!passwordRegex.test(password)) {
-                        alert('Password must contain at least one uppercase and lowercase letter.');
-                    } else {
-                        // Validate email
-                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (!emailRegex.test(email)) {
-                            alert('Please enter a valid email address.');
-                        } else if (emailRegex.test(email)) {
-                            // Validate profile photo URL
-                            const profilePhotoInput = document.getElementById('profilePhoto');
-                            const profilePhotoURL = profilePhotoInput.value.trim();
-                            const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
-                            if (!imageURLRegex.test(profilePhotoURL)) {
-                                alert('Please enter a valid image URL.');
-                            } else {
-                                // If all the validations passed, return true
-                                console.log('All validations passed.');
-                                updateAccount();
-                            }
+        // Validate username
+        if (username.length < 3) {
+            alert('Username must be at least 3 characters long.');
+        } else if (username.length > 3 && username.length < 20) {
+            // Validate password
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+            } else if (
+                // password.length > 6 && password.length < 12
+                true
+            ) {
+                // Validate password strength
+                console.log("password.length > 6 && password.length < 12");
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must contain at least one uppercase and lowercase letter.');
+                } else {
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                    } else if (emailRegex.test(email)) {
+                        // Validate profile photo URL
+                        const profilePhotoInput = document.getElementById('profilePhoto');
+                        const profilePhotoURL = profilePhotoInput.value.trim();
+                        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
+                        if (!imageURLRegex.test(profilePhotoURL)) {
+                            alert('Please enter a valid image URL.');
+                        } else {
+                            // If all the validations passed, return true
+                            console.log('All validations passed.');
+                            updateAccount();
                         }
                     }
-
                 }
 
             }
 
-
-            // If all the validations passed, return true
-            return true;
         }
+
+
+        // If all the validations passed, return true
+        return true;
+
     }
-
-
 
 
 </script>
