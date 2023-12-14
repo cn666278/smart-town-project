@@ -120,4 +120,7 @@ public class UserService {
         userRepository.assignRole4User(id,2);
     }
 
+    public int getUserIdByName(String name) {
+        return userRepository.getUserIdByName(name);
+    }
 }

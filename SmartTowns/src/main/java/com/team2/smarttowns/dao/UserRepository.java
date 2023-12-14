@@ -17,4 +17,6 @@ public interface UserRepository {
 
     void assignRole4User(int userId, int roleId);
     UserAccessedCheckpointRank getUserInfoByName(String name);
+
+    int getUserIdByName(String name);
 }

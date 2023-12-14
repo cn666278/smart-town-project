@@ -56,8 +56,3 @@ button:hover {
     font-weight: bold;
     color: #333;
 }
-
-#canvas {
-    display: block;
-    margin: 0 auto;
-}

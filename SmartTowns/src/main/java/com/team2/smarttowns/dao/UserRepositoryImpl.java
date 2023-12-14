@@ -42,7 +42,6 @@ public class UserRepositoryImpl implements UserRepository {
     CheckpointRepository checkpointRepository;
 
 
-
     @Override
     public List<UserEntity> getAllUsers() {
         String sql = "SELECT * FROM user";
@@ -63,6 +62,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * for registration
+     *
      * @param user
      * @return userId for add new users_roles record
      */
@@ -84,6 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * to assign user to certain role(admin,user,...)
+     *
      * @param userId
      * @param roleId
      */
@@ -107,6 +108,13 @@ public class UserRepositoryImpl implements UserRepository {
             userInfo.setCount(rs.getInt("checkpointAmount"));
             return userInfo;
         });
+    }
+
+    @Override
+    public int getUserIdByName(String name) {
+        String sql = "SELECT id FROM user WHERE name = ?";
+        int userId = jdbcTemplate.queryForObject(sql, Integer.class, name);
+        return userId;
     }
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {

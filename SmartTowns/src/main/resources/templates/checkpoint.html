@@ -25,10 +25,14 @@
     <!--mostly from external library-->
     <script th:inline="javascript">
         let backendId =  /*[[${id}]]*/ '';
-
+        let userId = /*[[${userId}]]*/ '';
         let scanningEnabled = true;
 
         function startScanning() {
+            if (!userId) {
+                window.location.href = '/login';
+                return;
+            }
             let video = document.createElement("video");
             let canvasElement = document.getElementById("canvas");
             let canvas = canvasElement.getContext("2d");
@@ -80,7 +84,6 @@
 
                         scanningEnabled = false;
                         let checkpointId = code.data.replace('http://localhost:8080/checkpoint/', '');
-                        let userId = 1;
                         if (checkpointId == backendId) {
                             console.log(111)
                             fetch(`/checkpoint/${checkpointId}/${userId}`, {
@@ -94,11 +97,7 @@
                                 }),
                             }).then(() => {
                                     window.alert('Congratulations! You have finished the checkpoint!');
-
-                                    let parentElement = canvasElement.parentElement;
-                                    parentElement.removeChild(video);
-                                    parentElement.removeChild(canvasElement);
-                                    parentElement.removeChild(outputContainer);
+                                    window.location.href = window.location.href;
                                 }
                             );
                         }
