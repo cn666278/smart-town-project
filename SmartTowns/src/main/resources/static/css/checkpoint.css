@@ -1,29 +1,62 @@
-.wrapper {
-    font-family: Inter, sans-serif;
-    margin: 20px auto;
-    width: 1200px;
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
     padding: 0;
 }
 
 .checkpointPic {
-    width: 60%;
-    max-width: 574px; /* set maximum width for the image */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     display: block;
     margin: 0 auto;
 }
 
 .checkpointName {
     font-size: 36px;
-    font-weight: bolder;
+    font-weight: bold;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .title {
     font-size: 24px;
     font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.content {
-    font-size: 15px;
-    margin-bottom: 30px;
+ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#loadingMessage, #outputMessage {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#outputData {
+    font-weight: bold;
+    color: #333;
+}
+
+#canvas {
+    display: block;
+    margin: 0 auto;
 }
