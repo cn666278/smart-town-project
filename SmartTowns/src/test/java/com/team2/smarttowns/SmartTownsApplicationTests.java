@@ -4,11 +4,14 @@ import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.dao.UserRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
+import com.team2.smarttowns.model.User;
+import com.team2.smarttowns.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -17,6 +20,13 @@ class SmartTownsApplicationTests {
     private TrailRepository trailRepository;
     private CheckpointRepository checkpointRepository;
     private UserRepository userRepository;
+
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private UserService userservice;
 
     /**
      * Test to retrieve all checkpoints
@@ -92,6 +102,20 @@ class SmartTownsApplicationTests {
         System.out.println(encodedPassword);
     }
 
+//    @Test
+//    void testUpdateUser() {
+//        //'user1',
+//        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+//        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+//        //        123,
+//        //        'user@cardiff.ac.uk',
+//        //        'dragon hero'
+//
+//        User user = userservice.getUserById(1);
+//        user.setName("user1");
+//        user.setEmail("1111111@qq.com");
+//        userservice.updateUser(user);
+//    }
     /**
      * Test for TrailService
      *
@@ -166,4 +190,31 @@ class SmartTownsApplicationTests {
     void testGetUserInfoByName(){
         System.out.println(userRepository.getUserInfoByName("admin1"));
     }
+//  @Test
+//
+//    void testUpdateUser() {
+//     *
+//        //'user1',
+//     */
+//        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+//
+//        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+//    @Test
+//        //        123,
+//    void testTrailService() {
+//        //        'user@cardiff.ac.uk',
+//        // TrailService = new TrailService();
+//        //        'dragon hero'
+//        // List<Trail> trails = trailService.getTrailsByUserId(1);
+//
+//        // for (Trail trail : trails) {
+//        User user = userservice.getUserById(1);
+//        //     System.out.println(trail);
+//        user.setName("user1");
+//        // }
+//        user.setEmail("1111111@qq.com");
+//    }
+//        userservice.updateUser(user);
+//
+//    }
 }

@@ -7,6 +7,14 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @ClassName Trail
+ * @Description Trail model. User as viewmodel
+ * @Author CHENKE SUN
+ *
+ * @version 1.0
+ *
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

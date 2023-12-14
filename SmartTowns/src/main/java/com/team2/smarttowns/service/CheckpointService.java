@@ -13,6 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @ClassName CheckpointService
+ * @Description Checkpoint Service. Use to get data from dao and transfer entity to model
+ * @Author CHENKE SUN
+ *
+ * @version 1.0
+ *
+ **/
 @Service
 public class CheckpointService {
 
@@ -20,6 +28,18 @@ public class CheckpointService {
     @Autowired
     private CheckpointRepository checkpointRepository;
 
+    /**
+     * Get all checkpoints by trail id
+     * @param trailId
+     * @return List<Checkpoint>
+     *     List of checkpoints
+     *
+     * @version 1.0
+     * @auther CHENKE SUN
+     * @see Checkpoint
+     * @see CheckpointEntity
+     *
+     */
     public List<Checkpoint> getCheckpointsByTrailId(int trailId) {
         List<Checkpoint> checkpoints = new ArrayList<>();
         //get data from dao. Then transfer entity to model

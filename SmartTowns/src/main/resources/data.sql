@@ -128,14 +128,22 @@ values (2,
         123,
         'user@cardiff.ac.uk',
         'dragon hero');
+    insert into user (id, name, password, profile_img, account, email, badge)
+    values (3,
+            'user2',
+            '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+            'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+            124,
+            '1@qq.com',
+            'dragon hero');
 insert into user (id, name, password, profile_img, account, email, badge)
-values (3,
-        'user2',
-        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
-        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
-        124,
-        '1@qq.com',
-        'dragon hero');
+values (4,
+       'Joe',
+       '$2a$10$DWqR71nLUR9S7XXF9tdzt.6jzEwcHkx6cbtHwGOWZA9q.EXASFT5G',
+'http://localhost:8080/static/img/Profile.jpg',
+       123,
+       '1223341604@gmail.com',
+         'dragon hero');
 delete
 from trail;
 TRUNCATE TABLE trail;
@@ -212,6 +220,10 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+insert into users_roles (user_id, role_id)
+values (3, 2);
+insert into users_roles (user_id, role_id)
+values (4, 2);
 
 
 delete
@@ -248,6 +260,14 @@ VALUES (1, 'Cardiff',
         'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
        (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
 
+delete
+from collection_user;
+insert into collection_user (user_id, trail_id)
+values (1, 1);
+insert into collection_user (user_id, trail_id)
+values (1, 2);
+insert into collection_user (user_id, trail_id)
+values (1, 3);
 
 delete
 from user_checkpoint;

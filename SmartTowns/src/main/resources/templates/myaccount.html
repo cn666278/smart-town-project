@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="validation.js" defer></script>
     <meta charset="UTF-8">
     <title>MyAccount Page</title>
     <style>
@@ -15,7 +17,7 @@
             color: #fff;
             text-align: center;
             padding: 10px;
-            height: 350px;
+            height: 400px;
         }
 
         .user-details {
@@ -170,30 +172,165 @@
             height: 100%;
         }
 
+        .dialog {
+            width: 400px;
+            max-height: 80vh; /* Set the maximum height to prevent the dialog box from being too long */
+            overflow-y: auto; /* Add scrollbars to accommodate when the content exceeds the maximum height */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            position: absolute; /* Change to absolute positioning, positioning relative to the browser window */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* display centre */
+        }
+
+        /* hide the dialong */
+        .hidden {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        /* css for button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: visibility 0s, opacity 0.5s linear;
+            opacity: 0;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .text-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favorite-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #aaa; /* Default color */
+        }
+
+        .favorite-button.active {
+            color: pink; /* Color when set as collect */
+            background-color: transparent; /* Makes background color transparent */
+        }
+
     </style>
 </head>
 <body>
-
+<div class="overlay" id="overlay"></div>
 <!-- header-nav -->
 <div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="wrapper">
+
     <div class="account-header">
-        <div class="user-details">
-            <img th:src="${user?.profileImg}" alt="">
-            <h1>Welcome! <span th:text="${user?.name}">UserName</span></h1>
-            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user?.email}">
+
+        <div class="user-details" style="color:black">
+            <img th:src="${user.profileImg}" alt="">
+            <h1>Welcome! <span th:text="${user.name}">UserName</span></h1>
+            <a class="editprofile" href="mailto:email@example.com">my email: <p th:text="${user.email}">
                 1223341604@gmail.com</p></a>
-            <p>
-                <a class="editprofile" href="#">Edit Profile</a>
+            <div id="dialog" class="dialog hidden">
+                <p>Edit Your Information</p>
+                <!-- close button -->
+                <span id="closeDialogButton" class="close-button" style="cursor: pointer; color:black;">✖</span>
+                <form id="Edit your information Form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="profilePhoto">Profile Photo URL:</label>
+                    <input type="text" id="profilePhoto" name="profilePhoto"><br>
+
+                    <input type="button" value="Submit" id="sumbit-button" onclick="validateForm()">
+
+                    <!--                    <button type="button" onclick="updateAccount()">Update Account</button>-->
+                    <br>
+                </form>
+            </div>
+
+
+            <!-- edit button -->
+            <p class="editconfigbutton">
+                <button id="showDialogButton" type="button" onclick="">click me!</button>
             </p>
         </div>
     </div>
-
+    <div id="toast" class="toast hidden">Update Successful!</div>
     <div class="box">
         <!--        todo: userId-->
-        <a href="#" onclick="showModule('trails'); getUserTrails(userId);">My Trails</a>
-        <a href="#" onclick="showModule('CompletedTrails')">CompletedTrails</a>
+        <a href="#" onclick="showModule('trails');">My Trails</a>
+        <a href="#" onclick="showModule('CompletedTrails')">Completed Trails</a>
         <a href="#" onclick="showModule('medal')">My Medal</a>
         <a href="#" onclick="showModule('collects')">Collects</a>
     </div>
@@ -211,11 +348,38 @@
                 <!-- content -->
                 <div class="bd">
                     <ul>
-                        <li th:each="myTrail : ${myTrails}">
+                        <li th:each="myTrail, iterStat : ${myTrails}" th:if="${iterStat.count <= 7}">
                             <a href="#">
-                                <div class="img"><img th:src="@{${myTrail}}" alt="content1"></div>
+                                <div class="img"><img th:src="@{${myTrail.image}}" alt="content1"></div>
                                 <div class="text">
                                     <h4 th:text="${myTrail.name}">Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
@@ -236,11 +400,29 @@
                 <!-- content -->
                 <div class="bd">
                     <ul>
-                        <li th:each="completedTrail : ${completedTrails}">
+                        <li th:each="completedTrail, iterStat : ${completedTrails}" th:if="${iterStat.count <= 4}">
                             <a href="#">
                                 <div class="img"><img th:src="@{${completedTrail.image}}" alt="content2"></div>
                                 <div class="text">
                                     <h4 th:text="${completedTrail.name}">Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/slide1.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
@@ -261,203 +443,92 @@
                 <!-- content -->
                 <div class="bd">
                     <ul>
+                        <!-- The first medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="img"><img src="../static/img/medal.png" alt="Medal 1"
+                                                      style="width: 70%; height: 90%"></div>
                                 <div class="text">
-                                    <h4>Town Name</h4>
+                                    <h4>Medal 1 - Cardiff Castle</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
                         </li>
+
+                        <!-- The second medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                                <div class="img"><img src="../static/img/medal2.png" alt="Medal 2"
+                                                      style="width: 70%; height: 90%"></div>
                                 <div class="text">
-                                    <h4>Town Name</h4>
+                                    <h4>Medal 2 - National Museum Cardiff</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
                         </li>
+
+                        <!-- The third medal -->
                         <li>
                             <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                                <div class="img"><img src="../static/img/medal3.png" alt="Medal 3"
+                                                      style="width: 50%; height: 90%"></div>
                                 <div class="text">
-                                    <h4>Town Name</h4>
+                                    <h4>Medal 3 - Cardiff Bay</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
+
+                        <!--                        &lt;!&ndash; The fourth medal &ndash;&gt;-->
+                        <!--                        <li>-->
+                        <!--                            <a href="#">-->
+                        <!--                                <div class="img"><img src="../static/img/medal4.png" alt="Medal 4"></div>-->
+                        <!--                                <div class="text">-->
+                        <!--                                    <h4>Medal 4</h4>-->
+                        <!--                                    <p><span>new</span> - <i>1123</i> view</p>-->
+                        <!--                                </div>-->
+                        <!--                            </a>-->
+                        <!--                        </li>-->
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- content -->
+        <!--    <div class="module" id="collects">-->
+
         <!-- content of Collection module -->
         <div class="module" id="collects">
             <!-- Collects -->
-            <div class="item wrapper">
+            <div class="wrapper">
                 <!-- header -->
                 <div class="hd">
                     <h3>Collects</h3>
                 </div>
                 <!-- content -->
                 <div class="bd">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="right">
+                        <div class="bottom">
+                            <ul>
+                                <!-- Thymeleaf-->
+                                <li th:each="myTrail, iterStat : ${myTrails}" th:if="${iterStat.count <= 4}">
+                                    <a href="/trails/1">
+                                        <div class="img"><img th:src="${myTrail.image}" alt="content1"></div>
+                                    </a>
+                                    <div class="text">
+                                        <div class="text-header">
+                                            <h4 th:text="${myTrail.name}">Trail Name</h4>
+                                            <!-- Favorite Button -->
+                                            <button class="favorite-button" onclick="toggleFavorite(this)">
+                                                ❤
+                                            </button>
+                                        </div>
+                                        <p><span>new</span> - <i>1123</i> views</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -466,6 +537,11 @@
 </div>
 
 <script>
+
+    function toggleFavorite(button) {
+        button.classList.toggle('active');
+    }
+
     function showModule(moduleName) {
         // Hides all elements with class="module"
         document.querySelectorAll('.module').forEach(function (module) {
@@ -478,16 +554,364 @@
 
     //get data from /api/trails/GetUserTrails
     function getUserTrails(userId) {
-        var myTrails = [];
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/api/trails/GetUserTrails?userId=" + userId, false);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                myTrails = JSON.parse(xhr.responseText);
-            }
+
+    }
+
+    /**
+     * Dialog box implementation
+     */
+        // track for button click events
+    var overlay = document.getElementById('overlay');
+    var showDialogButton = document.getElementById('showDialogButton');
+    var dialog = document.getElementById('dialog');
+    var closeDialogButton = document.getElementById('closeDialogButton');
+
+    /**
+     * Create a dialog-like user interface
+     */
+    showDialogButton.addEventListener('click', function () {
+        dialog.classList.remove('hidden');
+        overlay.style.display = 'block';
+    });
+
+
+    /**
+     * Close the dialog box
+     */
+    function closeDialog() {
+        dialog.classList.add('hidden');
+        overlay.style.display = 'none';
+    }
+
+    closeDialogButton.addEventListener('click', closeDialog);
+
+    overlay.addEventListener('click', function (event) {
+        if (event.target === overlay) {
+            closeDialog();
         }
-        xhr.send();
-        return myTrails;
+    });
+
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('sumbit-button').addEventListener('click', validateForm);
+    });
+
+    function showToast(message) {
+        var toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(function () {
+            toast.className += " show";
+        }, 100);
+        setTimeout(function () {
+            toast.className = toast.className.replace("show", "");
+            setTimeout(function () {
+                document.body.removeChild(toast);
+            }, 500);
+        }, 3000);
+    }
+
+
+    //update user info by post user to /api/updateuser
+    /*
+
+       public String getUserById(@RequestParam("userId") int userId,
+                              @RequestParam("name") String name,
+                              @RequestParam("password") String password,
+//                              @RequestParam("profileImg") String profileImg,
+                              @RequestParam("email") String email) {
+     */
+    function updateAccount() {
+        // todo change to real userid
+        var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
+        var email = document.getElementById('email').value
+        var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
+        $.ajax({
+            url: '/api/updateuser',
+            type: 'POST',
+            data: {
+                userId: userId,
+                name: username,
+                password: password,
+                email: email
+            },
+            success: function (data) {
+                console.log('Success:', data);
+                //alert("Update Success!");
+                showToast("Update Success!");
+                closeDialog();
+                updateUserInfoOnPage();
+                // window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                alert("Update Failed.");
+            }
+        });
+    }
+
+    function updateUserInfoOnPage() {
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value;
+        document.querySelector('.user-details h1 span').textContent = username;
+        document.querySelector('.user-details .editprofile p').textContent = email;
+        document.querySelector('.user-details img').src = profilePhoto;
+    }
+
+    window.onload = function () {
+        getUserData();
+    };
+
+
+    /**
+     * Validate the form
+     */
+    function validateForm() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const emailInput = document.getElementById('email');
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const email = emailInput.value.trim();
+
+        // Validate username
+        if (username.length < 3) {
+            alert('Username must be at least 3 characters long.');
+        } else if (username.length > 3 && username.length < 20) {
+            // Validate password
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+            } else if (
+                // password.length > 6 && password.length < 12
+                true
+            ) {
+                // Validate password strength
+                console.log("password.length > 6 && password.length < 12");
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must contain at least one uppercase and lowercase letter.');
+                } else {
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                    } else if (emailRegex.test(email)) {
+                        // Validate profile photo URL
+                        const profilePhotoInput = document.getElementById('profilePhoto');
+                        const profilePhotoURL = profilePhotoInput.value.trim();
+                        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
+                        if (!imageURLRegex.test(profilePhotoURL)) {
+                            alert('Please enter a valid image URL.');
+                        } else {
+                            // If all the validations passed, return true
+                            console.log('All validations passed.');
+                            updateAccount();
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
+        // If all the validations passed, return true
+        return true;
+    }
+
+    /**
+     * Dialog box implementation
+     */
+        // track for button click events
+    var overlay = document.getElementById('overlay');
+    var showDialogButton = document.getElementById('showDialogButton');
+    var dialog = document.getElementById('dialog');
+    var closeDialogButton = document.getElementById('closeDialogButton');
+
+    /**
+     * Create a dialog-like user interface
+     */
+    showDialogButton.addEventListener('click', function () {
+        dialog.classList.remove('hidden');
+        overlay.style.display = 'block';
+    });
+
+
+    /**
+     * Close the dialog box
+     */
+    function closeDialog() {
+        dialog.classList.add('hidden');
+        overlay.style.display = 'none';
+    }
+
+    closeDialogButton.addEventListener('click', closeDialog);
+
+    overlay.addEventListener('click', function (event) {
+        if (event.target === overlay) {
+            closeDialog();
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('sumbit-button').addEventListener('click', validateForm);
+    });
+
+    function showToast(message) {
+        var toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(function () {
+            toast.className += " show";
+        }, 100);
+        setTimeout(function () {
+            toast.className = toast.className.replace("show", "");
+            setTimeout(function () {
+                document.body.removeChild(toast);
+            }, 500);
+        }, 3000);
+    }
+
+    /**
+     * Get user data from the server
+     */
+    function getUserData() {
+        fetch('/api/getuser')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+                // Populate the dialog fields with user data
+                document.getElementById('username').value = data.name;
+                document.getElementById('password').value = data.password;
+                document.getElementById('email').value = data.email;
+                document.getElementById('profilePhoto').value = data.profileImg;
+
+                // You might want to update the image source directly as well
+                document.querySelector('.user-details img').src = data.profileImg;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    //update user info by post user to /api/updateuser
+    /*
+
+   public String getUserById(@RequestParam("userId") int userId,
+                          @RequestParam("name") String name,
+                          @RequestParam("password") String password,
+//                              @RequestParam("profileImg") String profileImg,
+                          @RequestParam("email") String email) {
+ */
+    function updateAccount() {
+        // todo change to real userid
+        var userId = 1; // You might want to retrieve the actual userId from your data or adjust this value
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
+        var email = document.getElementById('email').value
+        var profilePhoto = document.getElementById('profilePhoto').value; // Assuming this is the correct ID
+        $.ajax({
+            url: '/api/updateuser',
+            type: 'POST',
+            data: {
+                userId: userId,
+                name: username,
+                password: password,
+                email: email
+            },
+            success: function (data) {
+                console.log('Success:', data);
+                //alert("Update Success!");
+                showToast("Update Success!");
+                closeDialog();
+                updateUserInfoOnPage();
+                // window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                alert("Update Failed.");
+            }
+        });
+    }
+
+    function updateUserInfoOnPage() {
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var profilePhoto = document.getElementById('profilePhoto').value;
+        document.querySelector('.user-details h1 span').textContent = username;
+        document.querySelector('.user-details .editprofile p').textContent = email;
+        document.querySelector('.user-details img').src = profilePhoto;
+    }
+
+    window.onload = function () {
+        getUserData();
+    };
+
+
+    /**
+     * Validate the form
+     */
+    function validateForm() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const emailInput = document.getElementById('email');
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const email = emailInput.value.trim();
+
+        // Validate username
+        if (username.length < 3) {
+            alert('Username must be at least 3 characters long.');
+        } else if (username.length > 3 && username.length < 20) {
+            // Validate password
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+            } else if (
+                // password.length > 6 && password.length < 12
+                true
+            ) {
+                // Validate password strength
+                console.log("password.length > 6 && password.length < 12");
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must contain at least one uppercase and lowercase letter.');
+                } else {
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                    } else if (emailRegex.test(email)) {
+                        // Validate profile photo URL
+                        const profilePhotoInput = document.getElementById('profilePhoto');
+                        const profilePhotoURL = profilePhotoInput.value.trim();
+                        const imageURLRegex = /\.(jpeg|jpg|gif|png)$/i;
+                        if (!imageURLRegex.test(profilePhotoURL)) {
+                            alert('Please enter a valid image URL.');
+                        } else {
+                            // If all the validations passed, return true
+                            console.log('All validations passed.');
+                            updateAccount();
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
+        // If all the validations passed, return true
+        return true;
+
     }
 
 
