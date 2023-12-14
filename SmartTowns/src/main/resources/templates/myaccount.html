@@ -271,11 +271,11 @@
             background: none;
             cursor: pointer;
             font-size: 24px;
-            color: #aaa; /* Default color */
+            color: pink; /* Default color */
         }
 
         .favorite-button.active {
-            color: pink; /* Color when set as collect */
+            color: #aaa; /* Color when set as collect */
             background-color: transparent; /* Makes background color transparent */
         }
 
@@ -349,7 +349,7 @@
                 <div class="bd">
                     <ul>
                         <li th:each="myTrail, iterStat : ${myTrails}" th:if="${iterStat.count <= 7}">
-                            <a href="#">
+                            <a href="/trails/1">
                                 <div class="img"><img th:src="@{${myTrail.image}}" alt="content1"></div>
                                 <div class="text">
                                     <h4 th:text="${myTrail.name}">Town Name</h4>
@@ -358,7 +358,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/trails/2">
                                 <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
                                 <div class="text">
                                     <h4>Trail</h4>
@@ -367,7 +367,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/trails/3">
                                 <div class="img"><img src="../static/img/town2.jpg" alt="content1"></div>
                                 <div class="text">
                                     <h4>Trail</h4>
@@ -376,7 +376,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/trails/1">
                                 <div class="img"><img src="../static/img/town3.jpg" alt="content1"></div>
                                 <div class="text">
                                     <h4>Trail</h4>
@@ -401,7 +401,7 @@
                 <div class="bd">
                     <ul>
                         <li th:each="completedTrail, iterStat : ${completedTrails}" th:if="${iterStat.count <= 4}">
-                            <a href="#">
+                            <a href="/trails/1">
                                 <div class="img"><img th:src="@{${completedTrail.image}}" alt="content2"></div>
                                 <div class="text">
                                     <h4 th:text="${completedTrail.name}">Town Name</h4>
