@@ -60,7 +60,7 @@
                     loadingMessage.hidden = true;
                     canvasElement.hidden = false;
                     outputContainer.hidden = false;
-                    wrapper.hidden = true; // 隐藏检查点信息部分
+                    wrapper.hidden = true;
 
                     canvasElement.height = video.videoHeight;
                     canvasElement.width = video.videoWidth;
@@ -92,8 +92,14 @@
                                     checkpointId: checkpointId,
                                     userId: userId,
                                 }),
-                            }).then(
-                                window.alert('Congratulations! You have finished the checkpoint!')
+                            }).then(() => {
+                                    window.alert('Congratulations! You have finished the checkpoint!');
+
+                                    let parentElement = canvasElement.parentElement;
+                                    parentElement.removeChild(video);
+                                    parentElement.removeChild(canvasElement);
+                                    parentElement.removeChild(outputContainer);
+                                }
                             );
                         }
                     } else {
