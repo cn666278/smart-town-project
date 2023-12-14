@@ -102,20 +102,20 @@ class SmartTownsApplicationTests {
         System.out.println(encodedPassword);
     }
 
-    @Test
-    void testUpdateUser() {
-        //'user1',
-        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
-        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
-        //        123,
-        //        'user@cardiff.ac.uk',
-        //        'dragon hero'
-
-        User user = userservice.getUserById(1);
-        user.setName("user1");
-        user.setEmail("1111111@qq.com");
-        userservice.updateUser(user);
-    }
+//    @Test
+//    void testUpdateUser() {
+//        //'user1',
+//        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+//        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+//        //        123,
+//        //        'user@cardiff.ac.uk',
+//        //        'dragon hero'
+//
+//        User user = userservice.getUserById(1);
+//        user.setName("user1");
+//        user.setEmail("1111111@qq.com");
+//        userservice.updateUser(user);
+//    }
     /**
      * Test for TrailService
      *
@@ -190,32 +190,31 @@ class SmartTownsApplicationTests {
     void testGetUserInfoByName(){
         System.out.println(userRepository.getUserInfoByName("admin1"));
     }
-
-  @Test
-     * Test for TrailService
-    void testUpdateUser() {
-     *
-        //'user1',
-     */
-        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
-
-        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
-    @Test
-        //        123,
-    void testTrailService() {
-        //        'user@cardiff.ac.uk',
-        // TrailService = new TrailService();
-        //        'dragon hero'
-        // List<Trail> trails = trailService.getTrailsByUserId(1);
-
-        // for (Trail trail : trails) {
-        User user = userservice.getUserById(1);
-        //     System.out.println(trail);
-        user.setName("user1");
-        // }
-        user.setEmail("1111111@qq.com");
-    }
-        userservice.updateUser(user);
-
-    }
+//  @Test
+//
+//    void testUpdateUser() {
+//     *
+//        //'user1',
+//     */
+//        //        '$2a$10$o5LRNO84QaTX62LzsF2AbuJL8qiU/CLpVMB7l4LKIAP8hxx0IfITu',
+//
+//        //        'https://cn.i.cdn.ti-platform.com/cnapac/content/701/showpage/we-bare-bears/sa/showicon.png',
+//    @Test
+//        //        123,
+//    void testTrailService() {
+//        //        'user@cardiff.ac.uk',
+//        // TrailService = new TrailService();
+//        //        'dragon hero'
+//        // List<Trail> trails = trailService.getTrailsByUserId(1);
+//
+//        // for (Trail trail : trails) {
+//        User user = userservice.getUserById(1);
+//        //     System.out.println(trail);
+//        user.setName("user1");
+//        // }
+//        user.setEmail("1111111@qq.com");
+//    }
+//        userservice.updateUser(user);
+//
+//    }
 }

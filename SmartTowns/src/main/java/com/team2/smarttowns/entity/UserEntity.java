@@ -8,6 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+/**
+ * @ClassName UserEntity
+ * @Description User Entity stored in database
+ *
+ * @version 1.0
+ *
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

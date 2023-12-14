@@ -14,6 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * This class is responsible for handling all web requests related to trails.
+ *
+ * @version 1.0
+ * @see TrailService
+ * @see CheckpointService
+ * @see UserService
+ * @see Checkpoint
+ *
+ * @version 1.0
+ *
+ * @author CHENKE SUN
+ */
 @RestController
 public class TrailsController {
     TrailService trailService;
