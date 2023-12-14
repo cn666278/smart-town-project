@@ -31,31 +31,34 @@ public class MyAccountController {
     TrailService trailService;
 
     @RequestMapping("/myaccount")
-    public ModelAndView myaccount(Principal principal) {
+    public ModelAndView myaccount() {
         ModelAndView modelAndView = new ModelAndView("myaccount.html");
+        modelAndView.addObject("userId",1);
+        User user = userService.getUserById(1);
+        modelAndView.addObject("user", userService.getUserById(1));
+        modelAndView.addObject("myTrails", trailService.getAllTrails());
+        modelAndView.addObject("completedTrails", trailService.getAllTrails());
 
-        if (principal != null) {
-            // get user by username,email and profileImg
-            String username = principal.getName();
-            User user = userService.getUserByUsername(username);
-            modelAndView.addObject("user", user);
+        // get user trails by the checkpoints user visited
+//        List<TrailEntity> userTrails1 = trailRepository.getTrailsByUserId(1);
+//        List<Trail> userTrails = new ArrayList<>();
+//        for (TrailEntity trailEntity : userTrails1) {
+//            Trail trail = trailService.transferTrailEntityToModel(trailEntity);
+//            userTrails.add(trail);
+//        }
+//        modelAndView.addObject("myTrails", userTrails);
 
+        // get user collected trails by user id
+//        List<Integer> userCompletedTrails = trailRepository.getCompletedTrailsByUserId(1);
+//        List<Trail> completedTrails = new ArrayList<>();
+//
+//        for (Integer trailId : userCompletedTrails) {
+//            Trail trail = trailService.getTrailById(trailId);
+//            completedTrails.add(trail);
+//        }
+//        modelAndView.addObject("completedTrails", completedTrails);
 
-
-        }
         return modelAndView;
-    }
-
-    @GetMapping("/api/users")
-    public String getAllUserDataApi() {
-        Gson gson = new Gson();
-        return gson.toJson(userService.getAllUsers());
-    }
-
-    @GetMapping("/api/getuser")
-    public String getUserDataApi(@PathVariable("userId") int userId) {
-        Gson gson = new Gson();
-        return gson.toJson(userService.getUserById(userId));
     }
 
     @GetMapping("/myaccount/user/{userId}")
@@ -66,13 +69,26 @@ public class MyAccountController {
         return modelAndView;
     }
 
+    @GetMapping("/myaccount/myTrails/{userid}")
+    public ModelAndView myTrailsPage(@PathVariable int userid) {
+        ModelAndView modelAndView = new ModelAndView("myaccount.html");
+
+        List<TrailEntity> userTrails1 = trailRepository.getTrailsByUserId(userid);
+        List<Trail> userTrails = new ArrayList<>();
+        for (TrailEntity trailEntity : userTrails1) {
+            Trail trail = trailService.transferTrailEntityToModel(trailEntity);
+            userTrails.add(trail);
+        }
+        modelAndView.addObject("myTrails", userTrails);
+        return modelAndView;
+    }
+
 
     @GetMapping("/myaccount/completedTrails/{userid}")
     public ModelAndView completedTrailsPage(@PathVariable int userid) {
         ModelAndView modelAndView = new ModelAndView("myaccount.html");
 
         List<Integer> userCompletedTrails = trailRepository.getCompletedTrailsByUserId(userid);
-//
         List<Trail> completedTrails = new ArrayList<>();
 
         for (Integer trailId : userCompletedTrails) {

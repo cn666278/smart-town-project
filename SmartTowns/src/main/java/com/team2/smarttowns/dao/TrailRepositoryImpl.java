@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * TrailRepository reads data from the database and returns the data to the controller.
@@ -56,16 +58,31 @@ public class TrailRepositoryImpl implements TrailRepository {
         return checkpoint;
     };
 
+    /**
+     * Get all trails
+     * @return a list of trails entity
+     *
+     * @version 1.0
+     * @see TrailEntity
+     *
+     * @author CHENKE SUN
+     */
     @Override
     public List<TrailEntity> getAllTrails() {
-        String sql = "SELECT * FROM trails";
+        String sql = "SELECT * FROM trail";
         return jdbcTemplate.query(sql, trailRowMapper);
     }
 
     /**
      * Get all checkpoints of a trail by trail id
      * @param id
-     * @return
+     * @return a list of checkpoints entity
+     *
+     * @version 1.0
+     * @see CheckpointEntity
+     * @see TrailEntity
+     *
+     * @author CHENKE SUN
      */
     @Override
     public List<CheckpointEntity> getCheckpointsByTrailId(int id) {
@@ -119,26 +136,27 @@ public class TrailRepositoryImpl implements TrailRepository {
     }
 
     /**
-     * get user trails by the checkpoints user visited
+     * get user trails ,but no checkpoints. Will get in service
      *
      * @param UserId user id
      */
     @Override
-    public List<Integer> getTrailsByUserId(int UserId) {
-        // get user checkpoints by user id
-        List<CheckpointEntity> checkpointEntities = getCheckpointsByUserId(UserId);
-
-        // get a return list of trail id
-        List<Integer> trailIds = new ArrayList<>();
-        // save the trail id for each checkpoint
+    public List<TrailEntity> getTrailByUserId(int UserId) {
+        List<CheckpointEntity> checkpointEntities=getCheckpointsByUserId(UserId);
+        Set<Integer> trailIds= new HashSet<>();
         for (CheckpointEntity checkpointEntity : checkpointEntities) {
-            int checkpointEntityId = checkpointEntity.getId();
-            // get trail by checkpoint id
-            int trailId = getTrailIdByCheckpointId(checkpointEntityId);
+            int checkpointEntityId=checkpointEntity.getId();
+            //get trail by trail id
+            int trailId=getTrailIdByCheckpointId(checkpointEntityId);
             trailIds.add(trailId);
         }
+        List<TrailEntity> trails=new ArrayList<>();
+        for (Integer trailId : trailIds) {
+            TrailEntity trailEntity=getTrailById(trailId);
+            trails.add(trailEntity);
+        }
+        return trails;
 
-        return trailIds;
     }
 
     @Override
@@ -231,11 +249,19 @@ public class TrailRepositoryImpl implements TrailRepository {
         return jdbcTemplate.queryForObject(sql, trailRowMapper, id);
     }
 
+    @Override
+    public List<TrailEntity> getTrailsByUserId(int id) {
+        String sql = "SELECT t.* FROM trail t " +
+                "INNER JOIN user_checkpoint uc ON t.id = uc.trail_id " +
+                "WHERE uc.user_id = ?";
+        return jdbcTemplate.query(sql, trailRowMapper, id);
+    }
+
     //get user collected trails by user id
     @Override
     public List<TrailEntity> getCollectedTrailsByUserId(int userId) {
         String sql = "SELECT t.* FROM trail t " +
-                "INNER JOIN u.collection_user ut ON t.id = ut.trailid " +
+                "INNER JOIN u.collection_user ut ON t.id = ut.trail_id " +
                 "WHERE ut.userid = ?";
         return jdbcTemplate.query(sql, trailRowMapper, userId);
     }

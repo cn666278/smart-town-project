@@ -154,10 +154,53 @@ insert into trail (name,image,detail)
 values ('National Museum Cardiff',
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/46/de/c6/spring-sunshine.jpg',
         'Witness one of Europe''s finest art collections. Five hundred years of magnificent paintings, drawings, sculpture, silver and ceramics from Wales and across the world, including one of Europe''s best collections of Impressionist art.');
+insert into trail (name, image, detail)
+values ('Queen Street in Cardiff',
+        'https://i2.100024.xyz/2023/12/14/a133a6.webp',
+        'Queen Street is a vibrant shopping street in the heart of Cardiff. It offers a variety of retail options, from high street favorites to unique boutiques, along with cafes and street performers, making it a lively destination for both locals and visitors.');
 insert into trail (name,image,detail)
 values ('Cardiff Bay',
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg/440px-Cardiff_Bay_121020_2469_%2850599762103%29_-_Flickr_-_Richard_Szwejkowski.jpg',
         'Cardiff Bay (Welsh: Bae Caerdydd) is the area of water created by the Cardiff Barrage in south Cardiff, the capital of Wales.');
+insert into trail (name, image, detail)
+values ('Bute Park',
+        'https://i2.100024.xyz/2023/12/14/8wx97w.webp',
+        'Bute Park, in the heart of the city, is a sprawling public park with extensive walking trails, beautiful gardens, and historical landmarks.');
+
+insert into trail (name, image, detail)
+values ('Roath Park',
+        'https://i2.100024.xyz/2023/12/14/8wwy3s.webp',
+        'Roath Park offers picturesque lakeside walks and a variety of wildlife. It is a perfect place for a peaceful stroll or a family picnic.');
+
+insert into trail (name, image, detail)
+values ('Taff Trail',
+        'https://i2.100024.xyz/2023/12/14/8wnxt6.webp',
+        'The Taff Trail is a popular walking and cycle path that runs alongside the River Taff, providing stunning natural views and connecting Cardiff Bay with the Brecon Beacons.');
+
+insert into trail (name, image, detail)
+values ('Llandaff Cathedral',
+        'https://i2.100024.xyz/2023/12/14/8wn1mc.webp',
+        'Llandaff Cathedral, an architectural gem, is surrounded by pathways offering a blend of history and tranquility.');
+
+insert into trail (name, image, detail)
+values ('Cardiff Central Market',
+        'https://i2.100024.xyz/2023/12/14/8wkdn3.webp',
+        'Explore the bustling Cardiff Central Market, a historical market with a variety of stalls selling local produce and goods.');
+
+insert into trail (name, image, detail)
+values ('The Cardiff Story',
+        'https://i2.100024.xyz/2023/12/14/8wikuz.webp',
+        'The Cardiff Story is a museum that tells the tale of how Cardiff transformed from a small market town to the bustling capital city it is today.');
+
+insert into trail (name, image, detail)
+values ('St Fagans National Museum of History',
+        'https://i2.100024.xyz/2023/12/14/8whe8i.webp',
+        'St Fagans National Museum of History is an open-air museum with over forty original buildings from various historical periods transported and re-erected in the 100-acre park.');
+
+insert into trail (name, image, detail)
+values ('The Principality Stadium',
+        'https://i2.100024.xyz/2023/12/14/8wgz36.webp',
+        'The Principality Stadium, known for hosting iconic sports events and concerts, is a key attraction with its remarkable architecture and rich history.');
 delete
 from roles;
 TRUNCATE TABLE roles;
@@ -204,6 +247,14 @@ VALUES (1, 'Cardiff', 'The capital city of Wales, located in the south of the co
        (9, 'Porthmadog', 'A small coastal town and community in the Eifionydd area of Gwynedd, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6vrx.webp'),
        (10, 'Aberaeron', 'A seaside resort town in Ceredigion, Wales.', 'https://i2.100024.xyz/2023/12/12/gz6mcp.webp');
 
+delete
+from collection_user;
+insert into collection_user (user_id, trail_id)
+values (1, 1);
+insert into collection_user (user_id, trail_id)
+values (1, 2);
+insert into collection_user (user_id, trail_id)
+values (1, 3);
 
 delete from user_checkpoint;
 TRUNCATE TABLE user_checkpoint;

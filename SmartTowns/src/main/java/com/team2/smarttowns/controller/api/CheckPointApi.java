@@ -10,6 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Checkpoint api
+ * Get all checkpoints by trail id
+ * @see CheckpointService
+ * @see Checkpoint
+ *
+ * @version 1.0
+ *
+ * @author CHENKE SUN
+ */
 @RestController
 public class CheckPointApi {
 

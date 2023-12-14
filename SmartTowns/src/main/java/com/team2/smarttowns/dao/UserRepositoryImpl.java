@@ -2,6 +2,7 @@ package com.team2.smarttowns.dao;
 
 import com.team2.smarttowns.entity.CheckpointEntity;
 import com.team2.smarttowns.entity.UserEntity;
+import com.team2.smarttowns.model.UserAccessedCheckpointRank;
 import org.apache.tomcat.util.digester.RuleSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -96,16 +97,32 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserEntity getUserByUsername(String name){
-        String sql = "SELECT * FROM user WHERE name = ?";
-        return jdbcTemplate.queryForObject(sql, userRowMapper, name);
-    }
+    public UserAccessedCheckpointRank getUserInfoByName(String name) {
+        String userInfoSql = "SELECT id, name, (SELECT COUNT(*) FROM user_checkpoint WHERE user_id = u.id) AS checkpointAmount FROM user u WHERE name = ?";
 
+        return jdbcTemplate.queryForObject(userInfoSql, new Object[]{name}, (rs, rowNum) -> {
+            UserAccessedCheckpointRank userInfo = new UserAccessedCheckpointRank();
+            userInfo.setId(rs.getInt("id"));
+            userInfo.setName(rs.getString("name"));
+            userInfo.setCount(rs.getInt("checkpointAmount"));
+            return userInfo;
+        });
+    }
 
     public List<CheckpointEntity> getCheckpointsByUserId(int id) {
         //get from user_checkpoint
         String sql = "SELECT * FROM checkpoint WHERE id IN (SELECT checkpoint_id FROM user_checkpoint WHERE user_id = ?)";
         return jdbcTemplate.query(sql, checkpointEntityRowMapper, id);
+    }
+
+    /**
+     * update user info use this userEntity.id's user
+     * @param userEntity user
+     */
+    @Override
+    public void updateUser(UserEntity userEntity) {
+        String sql = "UPDATE users SET name = ?, password = ?, profile_img = ?, account = ?, email = ?, badge = ? WHERE id = ?";
+        jdbcTemplate.update(sql, userEntity.getName(), userEntity.getPassword(), userEntity.getProfileImg(), userEntity.getAccount(), userEntity.getEmail(), userEntity.getBadge(), userEntity.getId());
     }
 
     @Autowired

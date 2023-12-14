@@ -72,6 +72,17 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
         jdbc.update(sql, checkpointId, userId);
     }
 
+    /**
+     * Get all checkpoints of a trail
+     *
+     * @param trailId
+     * @return List<CheckpointEntity>  a list of checkpoints entity
+     * @version 1.0
+     * @see CheckpointEntity
+     * @see CheckpointRepository
+     *
+     * @author CHENKE SUN
+     */
     @Override
     public List<CheckpointEntity> getCheckpointsByTrailId(int trailId) {
         String sql = "SELECT c.*\n" +
