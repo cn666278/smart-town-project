@@ -259,6 +259,26 @@
             visibility: visible;
             opacity: 1;
         }
+
+        .text-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favorite-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #aaa; /* Default color */
+        }
+
+        .favorite-button.active {
+            color: pink; /* Color when set as collect */
+            background-color: transparent; /* Makes background color transparent */
+        }
+
     </style>
 </head>
 <body>
@@ -294,7 +314,7 @@
 
                     <input type="button" value="Submit" id="sumbit-button" onclick="validateForm()">
 
-<!--                    <button type="button" onclick="updateAccount()">Update Account</button>-->
+                    <!--                    <button type="button" onclick="updateAccount()">Update Account</button>-->
                     <br>
                 </form>
             </div>
@@ -521,105 +541,35 @@
         <!-- content of Collection module -->
         <div class="module" id="collects">
             <!-- Collects -->
-            <div class="item wrapper">
+            <div class="wrapper">
                 <!-- header -->
                 <div class="hd">
                     <h3>Collects</h3>
                 </div>
                 <!-- content -->
                 <div class="bd">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
-                                <div class="text">
-                                    <h4>Town Name</h4>
-                                    <p><span>new</span> - <i>1123</i> view</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="right">
+                        <div class="bottom">
+                            <ul>
+                                <!-- Thymeleaf-->
+                                <li th:each="myTrail, iterStat : ${myTrails}" th:if="${iterStat.count <= 4}">
+                                    <a href="/trails/1">
+                                        <div class="img"><img th:src="${myTrail.image}" alt="content1"></div>
+                                    </a>
+                                    <div class="text">
+                                        <div class="text-header">
+                                            <h4 th:text="${myTrail.name}">Trail Name</h4>
+                                            <!-- Favorite Button -->
+                                            <button class="favorite-button" onclick="toggleFavorite(this)">
+                                                ❤
+                                            </button>
+                                        </div>
+                                        <p><span>new</span> - <i>1123</i> views</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -628,6 +578,11 @@
 </div>
 
 <script>
+
+    function toggleFavorite(button) {
+        button.classList.toggle('active');
+    }
+
     function showModule(moduleName) {
         // Hides all elements with class="module"
         document.querySelectorAll('.module').forEach(function (module) {
@@ -646,7 +601,7 @@
     /**
      * Dialog box implementation
      */
-    // track for button click events
+        // track for button click events
     var overlay = document.getElementById('overlay');
     var showDialogButton = document.getElementById('showDialogButton');
     var dialog = document.getElementById('dialog');
@@ -678,7 +633,6 @@
     });
 
 
-
     document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('sumbit-button').addEventListener('click', validateForm);
     });
@@ -688,16 +642,17 @@
         toast.className = "toast";
         toast.textContent = message;
         document.body.appendChild(toast);
-        setTimeout(function() {
+        setTimeout(function () {
             toast.className += " show";
         }, 100);
-        setTimeout(function() {
+        setTimeout(function () {
             toast.className = toast.className.replace("show", "");
-            setTimeout(function() {
+            setTimeout(function () {
                 document.body.removeChild(toast);
             }, 500);
         }, 3000);
     }
+
     /**
      * Get user data from the server
      */
@@ -746,7 +701,7 @@
                 password: password,
                 email: email
             },
-            success: function(data) {
+            success: function (data) {
                 console.log('Success:', data);
                 //alert("Update Success!");
                 showToast("Update Success!");
@@ -754,12 +709,13 @@
                 updateUserInfoOnPage();
                 // window.location.reload();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
                 alert("Update Failed.");
             }
         });
     }
+
     function updateUserInfoOnPage() {
         var username = document.getElementById('username').value;
         var email = document.getElementById('email').value;
@@ -768,10 +724,10 @@
         document.querySelector('.user-details .editprofile p').textContent = email;
         document.querySelector('.user-details img').src = profilePhoto;
     }
+
     window.onload = function () {
         getUserData();
     };
-
 
 
     /**
@@ -789,12 +745,11 @@
         // Validate username
         if (username.length < 3) {
             alert('Username must be at least 3 characters long.');
-        }
-        else if (username.length > 3 && username.length < 20) {
+        } else if (username.length > 3 && username.length < 20) {
             // Validate password
             if (password.length < 6) {
                 alert('Password must be at least 6 characters long.');
-            }else if (
+            } else if (
                 // password.length > 6 && password.length < 12
                 true
             ) {
@@ -831,7 +786,6 @@
         // If all the validations passed, return true
         return true;
     }
-
 
 
 </script>
