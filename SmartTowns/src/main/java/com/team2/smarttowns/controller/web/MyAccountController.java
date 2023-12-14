@@ -1,5 +1,6 @@
 package com.team2.smarttowns.controller.web;
 
+import com.google.gson.Gson;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.TrailEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,27 @@ public class MyAccountController {
         modelAndView.addObject("userId",1);
         User user = userService.getUserById(1);
         modelAndView.addObject("user", userService.getUserById(1));
+        modelAndView.addObject("myTrails", trailService.getAllTrails());
+        modelAndView.addObject("completedTrails", trailService.getAllTrails());
+
+        // get user trails by the checkpoints user visited
+//        List<TrailEntity> userTrails1 = trailRepository.getTrailsByUserId(1);
+//        List<Trail> userTrails = new ArrayList<>();
+//        for (TrailEntity trailEntity : userTrails1) {
+//            Trail trail = trailService.transferTrailEntityToModel(trailEntity);
+//            userTrails.add(trail);
+//        }
+//        modelAndView.addObject("myTrails", userTrails);
+
+        // get user collected trails by user id
+//        List<Integer> userCompletedTrails = trailRepository.getCompletedTrailsByUserId(1);
+//        List<Trail> completedTrails = new ArrayList<>();
+//
+//        for (Integer trailId : userCompletedTrails) {
+//            Trail trail = trailService.getTrailById(trailId);
+//            completedTrails.add(trail);
+//        }
+//        modelAndView.addObject("completedTrails", completedTrails);
 
         return modelAndView;
     }
@@ -46,6 +69,19 @@ public class MyAccountController {
         return modelAndView;
     }
 
+    @GetMapping("/myaccount/myTrails/{userid}")
+    public ModelAndView myTrailsPage(@PathVariable int userid) {
+        ModelAndView modelAndView = new ModelAndView("myaccount.html");
+
+        List<TrailEntity> userTrails1 = trailRepository.getTrailsByUserId(userid);
+        List<Trail> userTrails = new ArrayList<>();
+        for (TrailEntity trailEntity : userTrails1) {
+            Trail trail = trailService.transferTrailEntityToModel(trailEntity);
+            userTrails.add(trail);
+        }
+        modelAndView.addObject("myTrails", userTrails);
+        return modelAndView;
+    }
 
 
     @GetMapping("/myaccount/completedTrails/{userid}")
@@ -53,7 +89,6 @@ public class MyAccountController {
         ModelAndView modelAndView = new ModelAndView("myaccount.html");
 
         List<Integer> userCompletedTrails = trailRepository.getCompletedTrailsByUserId(userid);
-//
         List<Trail> completedTrails = new ArrayList<>();
 
         for (Integer trailId : userCompletedTrails) {

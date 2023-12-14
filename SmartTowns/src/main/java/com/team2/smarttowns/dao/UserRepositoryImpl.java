@@ -130,4 +130,6 @@ public class UserRepositoryImpl implements UserRepository {
         this.jdbcTemplate = jdbcTemplate;
         this.checkpointRepository = checkpointRepository;
     }
+
+
 }
