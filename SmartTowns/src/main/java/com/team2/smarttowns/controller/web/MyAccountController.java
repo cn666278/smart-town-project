@@ -1,5 +1,6 @@
 package com.team2.smarttowns.controller.web;
 
+import com.google.gson.Gson;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.TrailEntity;
@@ -45,6 +46,17 @@ public class MyAccountController {
         return modelAndView;
     }
 
+    @GetMapping("/api/users")
+    public String getAllUserDataApi() {
+        Gson gson = new Gson();
+        return gson.toJson(userService.getAllUsers());
+    }
+
+    @GetMapping("/api/getuser")
+    public String getUserDataApi(@PathVariable("userId") int userId) {
+        Gson gson = new Gson();
+        return gson.toJson(userService.getUserById(userId));
+    }
 
     @GetMapping("/myaccount/user/{userId}")
     public ModelAndView myaccountUser(@PathVariable("userId") int userId) {
@@ -53,7 +65,6 @@ public class MyAccountController {
         modelAndView.addObject("user", userService.getUserById(userId));
         return modelAndView;
     }
-
 
 
     @GetMapping("/myaccount/completedTrails/{userid}")
