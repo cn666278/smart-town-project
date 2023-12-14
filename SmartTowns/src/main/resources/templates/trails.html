@@ -323,8 +323,10 @@
             </div>
         </div>
         <div class="viewonmap">
-            <div style="text-align: center;"><a style="margin: auto;" class="waves-effect waves-light btn-large"><i
-                    class="material-icons right">travel_explore</i>View on map</a></div>
+            <div style="text-align: center;">
+                <a  class="waves-effect waves-light btn-large" target="_blank" th:data-id="${trails.id}" onclick="jumpToMap(this)"><i>
+                    <i class="material-icons right">travel_explore</i>View on map
+                </a>
         </div>
 
         <!-- Checkpoint -->
@@ -440,5 +442,10 @@
         var checkpointId = button.getAttribute("data-id");
         console.log("Checkpoint ID: " + checkpointId);
         window.open("http://localhost:8080/checkpoint/" + checkpointId);
+    }
+
+    function jumpToMap(button) {
+        var id = button.getAttribute("data-id");
+        window.open("http://localhost:8080/trailsmap/"+id);
     }
 </script>
