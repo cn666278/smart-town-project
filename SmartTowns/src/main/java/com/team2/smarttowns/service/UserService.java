@@ -200,6 +200,11 @@ for(TrailEntity trailEntity1:trailEntity){
         userRepository.assignRole4User(id,2);
     }
 
+    public int getUserIdByName(String name) {
+        return userRepository.getUserIdByName(name);
+    }
+
+
     /**
      * get user by username
      * @param name

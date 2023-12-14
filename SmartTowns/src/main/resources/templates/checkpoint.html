@@ -25,10 +25,14 @@
     <!--mostly from external library-->
     <script th:inline="javascript">
         let backendId =  /*[[${id}]]*/ '';
-
+        let userId = /*[[${userId}]]*/ '';
         let scanningEnabled = true;
 
         function startScanning() {
+            if (!userId) {
+                window.open('/login', '_blank');
+                return;
+            }
             let video = document.createElement("video");
             let canvasElement = document.getElementById("canvas");
             let canvas = canvasElement.getContext("2d");
@@ -60,7 +64,7 @@
                     loadingMessage.hidden = true;
                     canvasElement.hidden = false;
                     outputContainer.hidden = false;
-                    wrapper.hidden = true; // 隐藏检查点信息部分
+                    wrapper.hidden = true;
 
                     canvasElement.height = video.videoHeight;
                     canvasElement.width = video.videoWidth;
@@ -80,7 +84,6 @@
 
                         scanningEnabled = false;
                         let checkpointId = code.data.replace('http://localhost:8080/checkpoint/', '');
-                        let userId = 1;
                         if (checkpointId == backendId) {
                             console.log(111)
                             fetch(`/checkpoint/${checkpointId}/${userId}`, {
@@ -92,8 +95,10 @@
                                     checkpointId: checkpointId,
                                     userId: userId,
                                 }),
-                            }).then(
-                                window.alert('Congratulations! You have finished the checkpoint!')
+                            }).then(() => {
+                                    window.alert('Congratulations! You have finished the checkpoint!');
+                                    window.location.href = window.location.href;
+                                }
                             );
                         }
                     } else {

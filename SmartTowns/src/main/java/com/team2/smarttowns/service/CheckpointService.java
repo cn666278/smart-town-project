@@ -65,4 +65,11 @@ public class CheckpointService {
     }
 
 
+    public CheckpointEntity getCheckpointById(int id) {
+        return checkpointRepository.getCheckpointById(id);
+    }
+
+    public void addUserCheckpoint(int checkpointId, int userId) {
+        checkpointRepository.addUserCheckpoint(checkpointId, userId);
+    }
 }

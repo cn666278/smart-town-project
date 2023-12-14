@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +93,7 @@
         .right {
             /* your right styles */
         }
+
         /* Add these styles inside your existing styles or in a separate style tag */
         .image-slider {
             margin-top: 50px;
@@ -130,12 +130,44 @@
         .next-button {
             right: 10px;
         }
+
+        .developer-team {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            width: 1200px;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            margin: 10px;
+            text-align: center;
+            width: 350px;
+        }
+
+        .team-member p{
+            color: #4d5359;
+        }
+
+        .team-photo {
+            border-radius: 50%; /* Circular images */
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            object-fit: cover;
+            border: 2px solid #0092cb; /* Optional: add a border */
+        }
+
     </style>
     <title>About Me</title>
 </head>
 <body>
 <!-- header-nav -->
-    <div th:replace="~{fragments/header :: headerBlock}"/>
+<div th:replace="~{fragments/header :: headerBlock}"/>
 
 <div class="banner">
     <div class="wrapper">
@@ -170,6 +202,46 @@
         <button class="next-button" onclick="changeSlide(1)">&#10095;</button>
     </div>
 </div>
+
+<!-- Developer Team Section -->
+<div class="developer-team">
+    <h2>Our Developer Team</h2><br>
+    <div class="team-members">
+
+        <!-- Team Leader -->
+        <div class="team-member">
+            <img src="../static/img/cn.jpg" alt="Team Leader" class="team-photo">
+            <h3>Steven</h3>
+            <p>MSc Software Engineering student in Cardiff University.</p>
+        </div>
+
+        <!-- Team Member 1 -->
+        <div class="team-member">
+            <img src="../static/img/sun.jpg" alt="Team Member 1" class="team-photo">
+            <h3>Humphrey</h3>
+            <p>MSc Software Engineering student in Cardiff University.</p>
+        </div>
+        <div class="team-member">
+            <img src="../static/img/zhao.jpg" alt="Team Member 2" class="team-photo">
+            <h3>Cecilia</h3>
+            <p>MSc Software Engineering student in Cardiff University.</p>
+        </div>
+        <div class="team-member">
+            <img src="../static/img/hao.jpg" alt="Team Member 2" class="team-photo">
+            <h3>Jia Rui</h3>
+            <p>MSc Software Engineering student in Cardiff University.</p>
+        </div>
+        <div class="team-member">
+            <img src="../static/img/liu.jpg" alt="Team Member 3" class="team-photo">
+            <h3>Yan</h3>
+            <p>MSc Software Engineering student in Cardiff University.</p>
+        </div>
+
+        <!-- Add more team members here -->
+
+    </div>
+</div>
+
 
 </body>
 
