@@ -135,6 +135,14 @@ values (2,
             124,
             '1@qq.com',
             'dragon hero');
+insert into user (id, name, password, profile_img, account, email, badge)
+values (4,
+       'Joe',
+       '$2a$10$DWqR71nLUR9S7XXF9tdzt.6jzEwcHkx6cbtHwGOWZA9q.EXASFT5G',
+'http://localhost:8080/static/img/Profile.jpg',
+       123,
+       '1223341604@gmail.com',
+         'dragon hero');
 delete
 from trail;
 TRUNCATE TABLE trail;
@@ -211,6 +219,10 @@ insert into users_roles (user_id, role_id)
 values (1, 2);
 insert into users_roles (user_id, role_id)
 values (2, 2);
+insert into users_roles (user_id, role_id)
+values (3, 2);
+insert into users_roles (user_id, role_id)
+values (4, 2);
 
 
 delete

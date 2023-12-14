@@ -15,7 +15,9 @@ public interface TrailRepository {
 
     TrailEntity getTrailById(int id);
 
-    List<Integer> getTrailsByUserId(int id);
+    List<TrailEntity> getTrailsByUserId(int id);
+
+    List<TrailEntity> getTrailByUserId(int UserId);
 
     List<Integer> getCompletedTrailsByUserId(int id);
 
