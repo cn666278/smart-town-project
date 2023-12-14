@@ -19,6 +19,7 @@ public class CheckpointService {
 
     @Autowired
     private CheckpointRepository checkpointRepository;
+
     public List<Checkpoint> getCheckpointsByTrailId(int trailId) {
         List<Checkpoint> checkpoints = new ArrayList<>();
         //get data from dao. Then transfer entity to model
@@ -44,4 +45,11 @@ public class CheckpointService {
     }
 
 
+    public CheckpointEntity getCheckpointById(int id) {
+        return checkpointRepository.getCheckpointById(id);
+    }
+
+    public void addUserCheckpoint(int checkpointId, int userId) {
+        checkpointRepository.addUserCheckpoint(checkpointId, userId);
+    }
 }
