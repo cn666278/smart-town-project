@@ -1,5 +1,6 @@
 package com.team2.smarttowns.controller.web;
 
+import com.google.gson.Gson;
 import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.entity.TrailEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +82,6 @@ public class MyAccountController {
         modelAndView.addObject("myTrails", userTrails);
         return modelAndView;
     }
-
 
 
     @GetMapping("/myaccount/completedTrails/{userid}")

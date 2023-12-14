@@ -200,4 +200,14 @@ for(TrailEntity trailEntity1:trailEntity){
         userRepository.assignRole4User(id,2);
     }
 
+    /**
+     * get user by username
+     * @param name
+     * @return
+     */
+    public User getUserByUsername(String name) {
+        UserEntity userEntity = userRepository.getUserByUsername(name);
+        User user = userEntityToModel(userEntity);
+        return user;
+    }
 }
