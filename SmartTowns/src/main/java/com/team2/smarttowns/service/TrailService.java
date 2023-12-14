@@ -57,6 +57,18 @@ public class TrailService {
         trailEntityToModel(trailEntity, trail);
         return trail;
     }
+
+    public List<Trail> getTrailsByUserId(int id) {
+        List<Trail> trails =new ArrayList<>();
+        List<TrailEntity> trailEntities = trailRepository.getTrailsByUserId(id);
+        for (TrailEntity trailEntity : trailEntities) {
+                Trail trail = new Trail();
+                trailEntityToModel(trailEntity, trail);
+            trails.add(trail);
+        }
+        return trails;
+    }
+
     public TrailEntity trailModelToEntity(Trail trail) {
         TrailEntity trailEntity=new TrailEntity();
         trailEntity.setId(trail.getId());
@@ -81,6 +93,16 @@ public class TrailService {
         trail.setImage(trailEntity.getImage());
         trail.setDetails(trailEntity.getDetails());
         return trail;
+    }
+
+    public List<Trail> getTrailsByUserId(List<Integer> trailIds) {
+        List<Trail> trails = new ArrayList<>();
+        //get data from dao. Then transfer entity to model
+        for (Integer trailId : trailIds) {
+            Trail trail = getTrailById(trailId);
+            trails.add(trail);
+        }
+        return trails;
     }
 
     @Autowired
