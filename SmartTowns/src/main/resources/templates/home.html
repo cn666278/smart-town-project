@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/home/base.css">
+    <link rel="stylesheet" href="../static/css/home/index.css">
+    <title>Smart Towns Home Page</title>
+    <style>
+        .text-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favorite-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #aaa; /* Default color */
+            margin-left: 10px; /* Space between the title and the button */
+        }
+
+        .favorite-button.active {
+            color: pink; /* Color when set as collect */
+            background-color: transparent; /* Makes background color transparent */
+        }
+
+
+    </style>
+</head>
+
+<body>
+<!-- header-nav -->
+<div th:replace="~{fragments/header :: headerBlock}"/>
+
+<!-- banner -->
+<div class="banner">
+    <div class="wrapper">
+        <div class="left">
+            <h2>Cardiff</h2><br>
+            <p>Cardiff, the capital of Wales, is a harmonious blend of historic charm and contemporary dynamism.
+                Renowned for its majestic Cardiff Castle and the serene Bute Park, the city is also a hub for shopping
+                and culture. </p>
+        </div>
+        <!-- slide nav -->
+        <!-- <div class="left">
+            <ul>
+                <li><a href="#">Toys</a></li>
+                <li><a href="#">Cloths</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Hats</a></li>
+                <li><a href="#">Trousers</a></li>
+            </ul>
+        </div> -->
+    </div>
+</div>
+
+<!-- recommend -->
+<div class="recommend wrapper">
+    <h3>Recommend</h3>
+    <ul>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Promotion</a></li>
+        <li><a href="#">Trending</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">More Info</a></li>
+    </ul>
+    <a href="#" class="modify">edit</a>
+</div>
+
+<!-- What's happening -->
+<div class="item wrapper">
+    <!-- header -->
+    <div class="hd">
+        <h3>What's happening</h3>
+        <a href="" class="more">view all</a>
+    </div>
+    <!-- content -->
+    <div class="bd">
+        <ul>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
+                    <div class="text">
+                        <h4>News</h4>
+                        <p><span>new</span> - <i>1123</i> view</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Trails -->
+<div class="wrapper">
+    <!-- header -->
+    <div class="hd">
+        <h3>Trails</h3>
+        <ul>
+            <li><a href="#" class="active">Hot</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">News</a></li>
+        </ul>
+        <a href="#" class="more">View All</a>
+    </div>
+    <!-- content -->
+    <div class="bd">
+        <div class="left">
+            <img src="../static/img/cardiff_trail3.jpg" alt="left">
+        </div>
+        <div class="right">
+            <div class="top">
+                <img src="../static/img/cardiff_trail2.jpg" alt="top">
+            </div>
+            <div class="bottom">
+                <ul>
+                    <!-- Thymeleaf-->
+                    <li th:each="trail : ${trails}">
+                        <a href="/trails/1">
+                            <div class="img"><img th:src="${trail.image}" alt="content1"></div>
+                        </a>
+                            <div class="text">
+                                <div class="text-header">
+                                    <h4 th:text="${trail.name}">Trail Name</h4>
+                                    <!-- Favorite Button -->
+                                    <button class="favorite-button" onclick="toggleFavorite(this)">
+                                        ❤
+                                    </button>
+                                </div>
+                                <p><span>new</span> - <i>1123</i> views</p>
+                            </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleFavorite(button) {
+        button.classList.toggle('active');
+    }
+
+</script>
+</body>
+
+<div th:replace="~{fragments/footer :: footerBlock}"/>
+
+</html>

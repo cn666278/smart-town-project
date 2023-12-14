@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    **Notice**
+    index.html is used to store the public nav and footer part only
+ -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!-- header-nav -->
+    <div th:replace="~{fragments/header :: headerBlock}"/>
+</body>
+
+<div th:replace="~{fragments/footer :: footerBlock}"/>
+
+</html>

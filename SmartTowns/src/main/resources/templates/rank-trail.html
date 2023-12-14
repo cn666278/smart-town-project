@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rank</title>
+    <style>
+        body
+
+        {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        p {
+            text-align: center;
+            font-size: 18px; /* Resize text */
+            color: #555; /* Adjust text color */
+        }
+        /* Sets the upper and lower margins of the table container */
+        .table-container {
+            margin-top: 100px; /* Upper margin */
+            margin-bottom: 100px; /* Lower margin height */
+            width: 85%; /* Sets the width of the table container and can be adjusted as needed */
+            margin: 20px auto; /* Set the left and right margins to auto to achieve horizontal centering */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 100%; /* Ensure the image takes the full width of its container */
+            max-width: 800px; /* Adjust the maximum width as needed */
+            height: auto; /* Maintain the aspect ratio of the image */
+        }
+    </style>
+</head>
+<body>
+<!-- header-nav -->
+<div th:replace="~{fragments/header :: headerBlock}"/>
+<h1>ranklist</h1>
+<!-- Add text column -->
+<p>Here is a ranklist of checkpoint.The top three numbers of checkpoint for all users are shown here</p>
+
+<!-- Table container -->
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>username</th>
+            <th>Checkpoint</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="checkpoint, iterStat : ${checkpoints}">
+            <td th:text="${iterStat.index + 1}">1</td>
+            <td th:text="${checkpoint.name}">checkpoint.name</td>
+            <td th:text="${checkpoint.count}">checkpoint.count</td>
+        </tr>
+        <!-- Other rows -->
+        </tbody>
+    </table>
+
+    <div th:if="${currentUser != null}">
+        <div style="color: #7e0007">Current User: <span th:text="${currentUser.name}"></span></div>
+        <div style="color: #7e0007">Finished Checkpoints Amount: <span th:text="${currentUser.count}"></span></div>
+    </div>
+
+
+    <!-- Add a backbutton -->
+    <button> <a href="/trails/1">Go Back</a> </button>
+    <!-- Image container -->
+    <div class="image-container">
+        <img src="../static/img/rank2.jpg" alt="Description of your image">
+    </div>
+</div>
+</body>
+<footer>
+    <!-- footer -->
+    <div th:replace="~{fragments/footer :: footerBlock}"></div>
+
+
+</footer>
+</html>

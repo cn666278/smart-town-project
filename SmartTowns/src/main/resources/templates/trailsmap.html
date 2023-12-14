@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trails Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <script src="/js/materialize.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var checkpoints = /*[[${checkpoints}]]*/ [];
+        /*]]>*/
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        #container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .rectangle, #jump-to-map-button, .checkpoint {
+            background: #FFFDFD;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        #map {
+            height: 400px;
+            margin-bottom: 20px;
+            margin-left: 70px;
+            margin-right: 70px;
+
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+
+        .rectangle {
+            flex-basis: 48%;
+            min-height: 50px;
+        }
+
+        .checkpoint {
+            font-size: 14px;
+            color: #000000;
+        }
+
+        #jump-to-map-button {
+            width: auto;
+            cursor: pointer;
+        }
+
+        nav {
+            line-height: 20px;
+        }
+
+        .collapsible-header {
+            flex-basis: 98%;
+            margin: 0 auto; /* Centers the header */
+            display: flex; /* Enables flexible box layout */
+            align-items: center; /* Vertically centers the content within the header */
+            justify-content: center; /* Horizontally centers the content within the header */
+        }
+
+        .collapsible-body-image-container {
+            padding: 10px;
+        }
+
+        .collapsible-body-inside {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            margin: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .collapsible-body-info-container {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .collapsible-body-info-container p {
+            margin: 0;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<!-- header-nav -->
+<div th:replace="~{fragments/header :: headerBlock}"/>
+
+<div id="container">
+    <div id="map"></div>
+    <div class="flex-container">
+        <ul class="collapsible" style="flex-basis: 100%; color: #0d1d29">
+            <li>
+                <div class="collapsible-header" style="color: black">
+                    <i class="material-icons">info</i>
+                    <h4 th:text="${trails.name}">Trail Name</h4>
+                    <span class="new badge blue" data-badge-caption="checkpoints"
+                          th:text="${trails.checkpoints.size()}">size of checkpoints{</span></div>
+                <!--                <div class="collapsible-body" style="color: black"><p>Lorem ipsum dolor sit amet.</p></div>-->
+            </li>
+            <li th:each="checkpoint : ${checkpoints}">
+                <div th:attr="data-checkpoint-id=${checkpoint.id}">
+                    <div class="collapsible-header" style="color: black">
+                        <i class="material-icons">place</i>
+                        <span th:text="${checkpoint.name}">####</span>
+                        <span class="badge" style="color: black">
+                            <i class="material-icons" style="color: black">explore</i>
+                        </span>
+                    </div>
+
+                    <div class="collapsible-body">
+                        <div class="collapsible-body-inside">
+                            <div class="collapsible-body-image-container">
+                                <img class="materialboxed" width="250" th:src="@{${checkpoint.image}}">
+                            </div>
+                            <div class="collapsible-body-info-container">
+                                <p class="name" th:text="'Name:'+${checkpoint.name}">Name</p>
+                                <p class="location"
+                                   th:text="'Location: ' + ${checkpoint.latitude} + ', ' + ${checkpoint.longitude}">
+                                    Location</p>
+                                <p class="description " th:text="${checkpoint.description}">Description</p>
+
+                                <a class="btn filled icon-left" th:attr="data-checkpoint-id=${checkpoint.id}">
+                                    <i class="material-icons">add_location_alt</i>show on map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="jump-to-map-button">Jump to Map App</div>
+</div>
+
+<!-- footer -->
+<div th:replace="~{fragments/footer :: footerBlock}"/>
+
+<script>
+
+    function convertDMSToDD(dms, direction) {
+        let dd = parseFloat(dms);
+
+        if (direction === "S" || direction === "W") {
+            dd = dd * -1;
+        } // No need for N or E as they are defaults to positive
+
+        return dd;
+    }
+
+
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        var bounds = L.latLngBounds();
+        var checkpointMarkers = {};
+        checkpoints.forEach(function (checkpoint) {
+            let latitudeDMS = checkpoint.latitude.split("°")[0];
+            let latitudeDirection = checkpoint.latitude.slice(-1);
+            let latitude = convertDMSToDD(latitudeDMS, latitudeDirection);
+
+            let longitudeDMS = checkpoint.longitude.split("°")[0];
+            let longitudeDirection = checkpoint.longitude.slice(-1);
+            let longitude = convertDMSToDD(longitudeDMS, longitudeDirection);
+
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`); // 输出坐标
+
+            var latLng = L.latLng(latitude, longitude);
+            var marker = L.marker(latLng).addTo(map);
+            checkpointMarkers[checkpoint.id] = marker;
+            bounds.extend(latLng);
+        });
+
+        console.log(bounds);
+        map.fitBounds(bounds);
+        console.log()
+
+        var elems = document.querySelectorAll('.collapsible');
+        var instances = M.Collapsible.init(elems, {
+            // specify options here
+        });
+
+
+        document.querySelectorAll('.collapsible-body-info-container .btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var checkpointId = this.getAttribute('data-checkpoint-id');
+                if (checkpointMarkers[checkpointId]) {
+                    map.flyTo(checkpointMarkers[checkpointId].getLatLng(), 20);
+                }
+            });
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

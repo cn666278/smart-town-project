@@ -1,0 +1,54 @@
+<!-- header-nav -->
+<script src="/static/js/header.js"></script>
+<div class="header" th:fragment="headerBlock">
+  <div class="wrapper">
+
+    <nav>
+      <link rel="stylesheet" type="text/css" href="/static/css/nav.css">
+
+      <!-- logo -->
+      <div class="logo">
+        <a href="#">Smart Towns</a>
+      </div>
+      <div class="nav-tab">
+        <!-- TODO: change active class to your page -->
+        <!-- Home -> ${CityName} -->
+        <a class="active" href="http://localhost:8080/home">Home</a>
+        <a href="http://localhost:8080/trailsmap">Map</a>
+        <a href="http://localhost:8080/about">About Us</a>
+      </div>
+      <!-- search -->
+      <div class="search">
+        <input type="text" placeholder="please enter">
+        <a href="#"><img src="../static/img/search.png" alt=""></a>
+      </div>
+      <div class="nav-town">
+        <a href="http://localhost:8080/towns">Towns</a>
+      </div>
+      <!-- user -->
+      <div class="user">
+        <a href="/myaccount">
+          <img src="../static/img/user.png" alt="">
+          <span>Steven</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+<script>
+  let lastScrollTop = 0; // 记录上一次的滚动位置
+  const header = document.querySelector('.header'); // 获取头部元素
+
+  window.addEventListener('scroll', function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop) {
+      // 向下滚动
+      header.classList.add('hidden');
+    } else {
+      // 向上滚动
+      header.classList.remove('hidden');
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 更新最后一次的位置
+  }, false);
+</script>

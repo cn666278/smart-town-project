@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Vertical arrangement */
+        }
+
+        .header {
+            /* your header styles */
+        }
+
+        .wrapper {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            /* your nav styles */
+        }
+
+        .logo {
+            /* your logo styles */
+        }
+
+        .nav-tab {
+            /* your nav-tab styles */
+        }
+
+        .search {
+            /* your search styles */
+        }
+
+        .user {
+            /* your user styles */
+        }
+
+        .about-me-image img {
+            /* styles for the image */
+            margin-top: 350px;
+            width: 1200px;
+            height: 500px;
+        }
+
+        .about-me-box {
+            width: 1200px;
+            padding: 20px;
+            background-color: #fff; /* White rectangular box background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 10px; /* The distance of upward movement */
+        }
+
+        /* banner */
+        .banner {
+            height: 500px;
+            background-color: #0092cb;
+            opacity: 0.9;
+        }
+
+        .banner .wrapper {
+            display: flex;
+            justify-content: space-between;
+            height: 500px;
+            width: 1200px;
+            background-image: url(../static/img/cardiff1.jpg);
+        }
+
+        /* left banner */
+        .banner .left {
+            padding: 130px 20px;
+            width: 300px;
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.42);
+            color: #fff;
+        }
+
+        h1, p {
+            margin: 0;
+        }
+
+        .left {
+            /* your left styles */
+        }
+
+        .right {
+            /* your right styles */
+        }
+        /* Add these styles inside your existing styles or in a separate style tag */
+        .image-slider {
+            margin-top: 50px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .prev-button, .next-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            outline: none;
+            color: #fff;
+        }
+
+        .prev-button {
+            left: 10px;
+        }
+
+        .next-button {
+            right: 10px;
+        }
+    </style>
+    <title>About Me</title>
+</head>
+<body>
+<!-- header-nav -->
+    <div th:replace="~{fragments/header :: headerBlock}"/>
+
+<div class="banner">
+    <div class="wrapper">
+        <div class="left">
+            <h2>About Us</h2>
+            <p>Welcome to our personal page! Our team is Crazy Thursday, if you have any questions please contact us,
+                our email is haojiarui2023@163.com</p>
+        </div>
+    </div>
+</div>
+
+<div class="about-me-box">
+    <h1>Cardiff Town</h1>
+    <p>
+        Our city is proud of its strong community spirit and rich history and culture. Walk along Cardiff Bay, starting
+        at the Bay, visiting many national retailers and independent shops along the way. There is a great variety of
+        food and drink to enjoy in the city centre. Experience the historic charm of Cardiff Castle, followed by the
+        beautiful Cardiff University, where you can experience the passion of students from all over the world.
+    </p>
+</div>
+
+<div class="wrapper">
+    <!--image slider-->
+    <div class="image-slider">
+        <div class="slider-wrapper">
+            <div class="slide"><img src="../static/img/slide1.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="../static/img/slide2.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="../static/img/slide3.jpg" alt="Image 3"></div>
+            <!-- Add more slides as needed -->
+        </div>
+        <button class="prev-button" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-button" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</div>
+
+</body>
+
+<script>
+    var currentSlide = 0;
+
+    function changeSlide(n) {
+        showSlide(currentSlide += n);
+    }
+
+    function showSlide(n) {
+        var slides = document.querySelectorAll('.slide');
+        if (n >= slides.length) {
+            currentSlide = 0;
+        }
+        if (n < 0) {
+            currentSlide = slides.length - 1;
+        }
+        document.querySelector('.slider-wrapper').style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+    }
+</script>
+<footer>
+    <!-- footer -->
+    <div class="footer">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <div class="wrapper" style="padding: 0 50px 0 50px">
+            <div class="left">
+                <h2><a href="#">Smart Towns</a></h2>
+                <p>More than just a digital high street, it connects consumers, businesses, towns and local authorities
+                    for a completely joined up approach. Smart towns make it easier for consumers to buy, find, see and
+                    do where they live and work, creating a better sense of community.</p>
+                <a href="#" class="download">Download App</a>
+                <p>@2023 Smart Towns Inc. All rights reserved.</p>
+                <p></p>
+            </div>
+            <div class="right">
+                <dl>
+                    <dt>About</dt>
+                    <dd><a href="#">About Us</a></dd>
+                    <dd><a href="#">Join Us</a></dd>
+                    <dd><a href="#">Contact Us</a></dd>
+                    <dd><a href="#">Q&A</a></dd>
+                </dl>
+                <dl>
+                    <dt>Community</dt>
+                    <dd><a href="#">Our Community</a></dd>
+                    <dd><a href="#">Guide</a></dd>
+                    <dd><a href="#">Community</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</html>
