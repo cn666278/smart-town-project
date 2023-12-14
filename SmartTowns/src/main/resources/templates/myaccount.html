@@ -612,28 +612,6 @@
         }, 3000);
     }
 
-    /**
-     * Get user data from the server
-     */
-    function getUserData() {
-        fetch('/api/getuser')
-            .then(response => response.json())
-            .then(data => {
-                // console.log('Success:', data);
-
-                // Populate the dialog fields with user data
-                document.getElementById('username').value = data.name;
-                document.getElementById('password').value = data.password;
-                document.getElementById('email').value = data.email;
-                document.getElementById('profilePhoto').value = data.profileImg;
-
-                // You might want to update the image source directly as well
-                document.querySelector('.user-details img').src = data.profileImg;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
 
     //update user info by post user to /api/updateuser
     /*
@@ -805,44 +783,23 @@
      * Get user data from the server
      */
     function getUserData() {
-        // fetch('/api/getuser')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // console.log('Success:', data);
-        //
-        //         // Populate the dialog fields with user data
-        //         document.getElementById('username').value = data.name;
-        //         document.getElementById('password').value = data.password;
-        //         document.getElementById('email').value = data.email;
-        //         document.getElementById('profilePhoto').value = data.profileImg;
-        //
-        //         document.querySelector('.user-details img').src = data.profileImg;
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });\
-        //user jquery to get user data,post userid
-        $.ajax({
-            url: '/api/getuser',
-            type: 'POST',
-            data: {
-                userId: 1
-                //tobe changed
-            },
-            success: function (data) {
+        fetch('/api/getuser')
+            .then(response => response.json())
+            .then(data => {
                 console.log('Success:', data);
+
                 // Populate the dialog fields with user data
                 document.getElementById('username').value = data.name;
                 document.getElementById('password').value = data.password;
                 document.getElementById('email').value = data.email;
                 document.getElementById('profilePhoto').value = data.profileImg;
 
+                // You might want to update the image source directly as well
                 document.querySelector('.user-details img').src = data.profileImg;
-            },
-            error: function (xhr, status, error) {
+            })
+            .catch((error) => {
                 console.error('Error:', error);
-            }
-        });
+            });
     }
 
     //update user info by post user to /api/updateuser
