@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="../static/css/home/base.css">
     <link rel="stylesheet" href="../static/css/home/index.css">
     <title>Smart Towns Home Page</title>
+    <style>
+        .text-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favorite-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #aaa; /* Default color */
+            margin-left: 10px; /* Space between the title and the button */
+        }
+
+        .favorite-button.active {
+            color: pink; /* Color when set as collect */
+            background-color: transparent; /* Makes background color transparent */
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -17,10 +40,10 @@
 <div class="banner">
     <div class="wrapper">
         <div class="left">
-            <h2>Cardiff</h2>
-            <p>Connect with your audience like never before. Engaging both the businesses and consumers, you’re able
-                to communicate directly quickly and efficiently. From message boards for consumers to groups that
-                engage users - as well as direct messaging. We bring people together.</p>
+            <h2>Cardiff</h2><br>
+            <p>Cardiff, the capital of Wales, is a harmonious blend of historic charm and contemporary dynamism.
+                Renowned for its majestic Cardiff Castle and the serene Bute Park, the city is also a hub for shopping
+                and culture. </p>
         </div>
         <!-- slide nav -->
         <!-- <div class="left">
@@ -63,7 +86,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -72,7 +95,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town1.jpg" alt="content2"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -81,7 +104,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town2.jpg" alt="content3"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -90,7 +113,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town3.jpg" alt="content4"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -99,7 +122,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town4.jpg" alt="content5"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -108,7 +131,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town4.jpg" alt="content6"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -117,7 +140,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town2.jpg" alt="content7"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -126,7 +149,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town3.jpg" alt="content8"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -135,7 +158,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town0.png" alt="content9"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -144,7 +167,7 @@
                 <a href="#">
                     <div class="img"><img src="../static/img/town1.jpg" alt="content10"></div>
                     <div class="text">
-                        <h4>Town Name</h4>
+                        <h4>News</h4>
                         <p><span>new</span> - <i>1123</i> view</p>
                     </div>
                 </a>
@@ -169,30 +192,41 @@
     <!-- content -->
     <div class="bd">
         <div class="left">
-            <img src="../static/img/town5.jpg" alt="left">
+            <img src="../static/img/cardiff_trail3.jpg" alt="left">
         </div>
         <div class="right">
             <div class="top">
-                <img src="../static/img/town6.jpg" alt="top">
+                <img src="../static/img/cardiff_trail2.jpg" alt="top">
             </div>
             <div class="bottom">
                 <ul>
                     <!-- Thymeleaf-->
                     <li th:each="trail : ${trails}">
-                        <a href="/trails">
+                        <a href="/trails/1">
                             <div class="img"><img th:src="${trail.image}" alt="content1"></div>
-                            <div class="text">
-                                <h4 th:text="${trail.name}">Town Name</h4>
-                                <p><span>new</span> - <i>1123</i> view</p>
-                            </div>
                         </a>
+                            <div class="text">
+                                <div class="text-header">
+                                    <h4 th:text="${trail.name}">Trail Name</h4>
+                                    <!-- Favorite Button -->
+                                    <button class="favorite-button" onclick="toggleFavorite(this)">
+                                        ❤
+                                    </button>
+                                </div>
+                                <p><span>new</span> - <i>1123</i> views</p>
+                            </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function toggleFavorite(button) {
+        button.classList.toggle('active');
+    }
 
+</script>
 </body>
 
 <div th:replace="~{fragments/footer :: footerBlock}"/>

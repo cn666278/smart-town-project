@@ -67,7 +67,7 @@ public class TrailRepositoryImpl implements TrailRepository {
      */
     @Override
     public List<TrailEntity> getAllTrails() {
-        String sql = "SELECT * FROM trails";
+        String sql = "SELECT * FROM trail";
         return jdbcTemplate.query(sql, trailRowMapper);
     }
 

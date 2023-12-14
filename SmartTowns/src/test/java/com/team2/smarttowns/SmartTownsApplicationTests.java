@@ -4,11 +4,14 @@ import com.team2.smarttowns.dao.CheckpointRepository;
 import com.team2.smarttowns.dao.TrailRepository;
 import com.team2.smarttowns.dao.UserRepository;
 import com.team2.smarttowns.entity.CheckpointEntity;
+import com.team2.smarttowns.model.User;
+import com.team2.smarttowns.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -17,6 +20,13 @@ class SmartTownsApplicationTests {
     private TrailRepository trailRepository;
     private CheckpointRepository checkpointRepository;
     private UserRepository userRepository;
+
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private UserService userservice;
 
     /**
      * Test to retrieve all checkpoints
