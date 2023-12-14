@@ -309,8 +309,8 @@
     <div id="toast" class="toast hidden">Update Successful!</div>
     <div class="box">
         <!--        todo: userId-->
-        <a href="#" onclick="showModule('trails'); getUserTrails(userId);">My Trails</a>
-        <a href="#" onclick="showModule('CompletedTrails')">CompletedTrails</a>
+        <a href="#" onclick="showModule('trails');">My Trails</a>
+        <a href="#" onclick="showModule('CompletedTrails')">Completed Trails</a>
         <a href="#" onclick="showModule('medal')">My Medal</a>
         <a href="#" onclick="showModule('collects')">Collects</a>
     </div>
@@ -328,11 +328,38 @@
                 <!-- content -->
                 <div class="bd">
                     <ul>
-                        <li th:each="myTrail : ${myTrails}">
+                        <li th:each="myTrail, iterStat : ${myTrails}" th:if="${iterStat.count <= 7}">
                             <a href="#">
-                                <div class="img"><img th:src="@{${myTrail}}" alt="content1"></div>
+                                <div class="img"><img th:src="@{${myTrail.image}}" alt="content1"></div>
                                 <div class="text">
                                     <h4 th:text="${myTrail.name}">Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town0.png" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town2.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town3.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
@@ -353,11 +380,29 @@
                 <!-- content -->
                 <div class="bd">
                     <ul>
-                        <li th:each="completedTrail : ${completedTrails}">
+                        <li th:each="completedTrail, iterStat : ${completedTrails}" th:if="${iterStat.count <= 4}">
                             <a href="#">
                                 <div class="img"><img th:src="@{${completedTrail.image}}" alt="content2"></div>
                                 <div class="text">
                                     <h4 th:text="${completedTrail.name}">Town Name</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/town4.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
+                                    <p><span>new</span> - <i>1123</i> view</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img"><img src="../static/img/slide1.jpg" alt="content1"></div>
+                                <div class="text">
+                                    <h4>Trail</h4>
                                     <p><span>new</span> - <i>1123</i> view</p>
                                 </div>
                             </a>
