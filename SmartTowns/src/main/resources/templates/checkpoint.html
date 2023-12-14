@@ -30,7 +30,7 @@
 
         function startScanning() {
             if (!userId) {
-                window.location.href = '/login';
+                window.open('/login', '_blank');
                 return;
             }
             let video = document.createElement("video");
