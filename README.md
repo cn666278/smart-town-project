@@ -2,7 +2,7 @@
 
 ### Client Project | Nov 2023 to Dec 2023  
 
-<img src="screenshots/sc2.png" height="500px"/>
+<img src="screenshots/sc2.png"/>
 
 - Implemented a team-based project, utilizing HTML, CSS, JavaScript, and Ajax, and leveraging the 
 Spring Boot JDBC framework for robust backend development.
@@ -44,18 +44,18 @@ codes in twenty shops in two separate towns, and on recognizing which town and w
 has been scanned, and the medal or reward is stored against the correct trail.
 
 ### Some screenshots:
-<img src="screenshots/login.png" height="400px"/>
-<img src="screenshots/register.png" height="400px"/>
-<img src="screenshots/sc1.png" height="500px"/>
-<img src="screenshots/sc2.png" height="500px"/>
-<img src="screenshots/sc3.png" height="500px"/>
-<img src="screenshots/sc4.png" height="500px"/>
-<img src="screenshots/sc5.png" height="500px"/>
-<img src="screenshots/sc6.png" height="500px"/>
-<img src="screenshots/sc7.png" height="500px"/>
-<img src="screenshots/sc8.png" height="500px"/>
-<img src="screenshots/sc9.png" height="500px"/>
-<img src="screenshots/sc10.png" height="500px"/>
+<img src="screenshots/login.png" />
+<img src="screenshots/register.png" />
+<img src="screenshots/sc1.png" />
+<img src="screenshots/sc2.png"/>
+<img src="screenshots/sc3.png" />
+<img src="screenshots/sc4.png" />
+<img src="screenshots/sc5.png" />
+<img src="screenshots/sc6.png" />
+<img src="screenshots/sc7.png" />
+<img src="screenshots/sc8.png" />
+<img src="screenshots/sc9.png" />
+<img src="screenshots/sc10.png" />
 
 ## Roles and Responsibilities:
 Scrum identifies three roles: Product Owner, Scrum Master, and the Development Team. Each 
@@ -180,7 +180,7 @@ product align more closely with team and project requirements.
 
 - **Team Cohesion:**
 
-<img src="screenshots/our_team.png" height="500px"/>
+<img src="screenshots/our_team.png" />
 
 As our team slogan goes, "Crazy Thursday, Happy Friday," we believe in finishing important 
 work early for better relaxation. Work-life balance is crucial for both the team and individuals. 
