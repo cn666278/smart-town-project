@@ -1,92 +1,195 @@
 # Team 2 - Smart Towns
 
+### Client Project | Nov 2023 to Dec 2023  
+
+- Implemented a team-based project, utilizing HTML, CSS, JavaScript, and Ajax, and leveraging the 
+Spring Boot JDBC framework for robust backend development.
+
+- Developed a website called "Smart Towns", enhancing interactions between town merchants and 
+customers. Created a versatile platform for tourists, residents, merchants, and city councils with 
+interactive features.
+
+- Led a team of five in a project requiring adherence to agile development principles. Organized the 
+project into multiple sprints with set durations, ensuring structured progress. Conducted regular 
+sprint review meetings to assess and adjust project trajectories.
+
+- Facilitated reflective meetings, encouraging team members to share insights for continuous 
+improvement. Achieved successful project completion, enhancing team efficiency, and fostering 
+strong communication and collaboration.
+
+- Enabled users to explore towns virtually and complete activities using gamification like scanning 
+QR codes at checkpoints. Successfully launched a user-friendly website, boosting local business 
+visibility and enhancing user engagement through interactive town exploration and rewards.
+
+### Projects Brief:
+Create a website called Smart Towns.
+### Aims:
+Provide commercial street merchants in different towns.
+### Target audience:
+Ordinary users (tourists, town residents), merchants (management), city council (management).
+### Requirements:
+Users can choose to enter different towns, and the following modules will be available in the town:
+Trails, shops, news.
+
+In the Trails module, users can see the current Trails introduction, map, and checkpoint.
+
+Users can pass checkpoints through certain methods (such as scanning QR codes, scanning
+specific graphics, logos, etc.). When users pass all checkpoints, they will unlock the current Trails
+and receive rewards and medals.
+
+It is important that the trails can work irrespective of location. That is, we can place 20 images/QR
+codes in twenty shops in two separate towns, and on recognizing which town and which QR code
+has been scanned, and the medal or reward is stored against the correct trail.
+
+### Some screenshots:
+[1]()  
+[2]()  
+[3]()  
+[4]()  
+
+## Roles and Responsibilities:
+Scrum identifies three roles: Product Owner, Scrum Master, and the Development Team. Each 
+has clearly defined responsibilities. This likely enhanced project efficiency because we wanted to make sure our team worked as a 
+cohesive unit with clearly understood roles. 
+
+Regarding the distribution of responsibilities for each role, our team's arrangement is as follows:
+Regardless of the role, as the team leader, I have the responsibility to ensure that each team 
+member has a certain level of involvement. After discussions with my team members, we 
+established the following rules for the allocation of these three roles:  
+
+- **Product Owner:**  
+Each team member takes on the role of a product owner to create certain issues. The product 
+owner is responsible for ensuring the quality of user story writing within the issue, ensuring 
+acceptance criteria meet functional requirements and guarantee that the entire user 
+story aligns with INVEST principles.
+Importantly, the product owner is also responsible for 
+communication with developers and the review process. The product owner needs to review 
+and provide feedback on the code submitted by developers, ensuring it meets acceptance 
+criteria, complies with the team's Definition of Done (DOD), and promptly addresses code issues 
+through reviews and feedback to developers. After the review is complete and testing ensures 
+there are no conflicts, the product owner approves the merge request.
+
+- **Scrum Master:**  
+We rotate the role of the Scrum Master among team members, with each member being 
+responsible for two consecutive days as the Scrum Master. The primary duties include 
+conducting daily scrum meetings (via MS Teams or physically) and recording and organizing
+the meeting notes, which are then uploaded to the Scrum folder in Teams.
+
+- **Development Team:**  
+Developers are responsible for ensuring the timely and quality completion of assigned tasks. 
+They must maintain communication with the product owner and the entire team, ensuring 
+adherence to team agreements and strict compliance with the Scrum process. Developers 
+ensure that the submitted code is incremental, valuable, and undergoes testing before a 
+merge request is made to prevent potential project crashes, among other responsibilities.
+
+As the leader, my utmost priority is to ensure that each team member can participate as fairly 
+as possible in the overall team project development. Considering varying skill levels within the 
+team, especially with two members having weaker programming foundations, I try 
+to pair them with experienced team members for pair programming sessions. During these 
+sessions, they receive explanations of basic principles and code logic. Once they become 
+familiar with the team's development processes, I then assign independent development tasks.
+
+In this team collaboration, the most valuable lesson I learned is the importance of "balance." 
+In group work, conflicts and differences of opinion are common. Effectively resolving 
+disagreements and allowing the team to move forward smoothly challenges the leader's 
+balancing skills. As team members, when conflicts arise, their initial reactions often involve 
+taking sides, choosing to remain neutral, or ignoring the issue. Rarely do people choose the 
+most complex approach, which is to resolve conflicts and ensure support from both sides. This 
+is a responsibility of a good leader.  
 
 
-## Getting started
+### Sprint Planning and Execution:
+Sprints are the heart of Scrum, where goals are set, work is completed, and increments are 
+delivered in a time-boxed period. Our team sets the sprint duration to one week, typically 
+holding a team meeting for Sprint Planning after the weekly review meeting on Mondays. 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+During these meetings, we reflect on whether sprints were effectively planned and executed. 
+We assess if goals were consistently met and if there were any interruptions or frequent 
+changes to goals. We prioritize which issues to address in the upcoming week. Ineffective 
+sprint planning or execution can lead to scope creep, missed deadlines, and team burnout.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Daily Stand-Ups:
+Daily stand-ups are a key communication tool, designed to be short meetings to update on 
+progress and address impediments. As mentioned earlier, our designated Scrum Master is 
+responsible for this aspect of the process, ensuring active participation from all team members 
+in each daily scrum meeting. The Scrum Master records everyone's work progress and 
+discussion points for subsequent management and reference.  
 
-## Add your files
+### Sprint Reviews and Retrospectives:
+At the end of each sprint (usually on Sundays), our team conducts a Sprint Review to showcase 
+the work done. We evaluate if the work progress aligns with our set sprint planning and if 
+merge requests comply with the team's Definition of Done (DOD), among other criteria. 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Additionally, we hold a Retrospective to reflect on the sprint process—identifying current 
+project issues, discussing improvement strategies, and addressing any incomplete issues. If 
+there are unresolved issues, we consider whether to include them in the next week's sprint or 
+temporarily postpone them. These meetings serve as a platform for feedback and continuous 
+improvement within our team.  
 
-```
-cd existing_repo
-git remote add origin https://git.cardiff.ac.uk/c23091223/team-3-smart-towns.git
-git branch -M main
-git push -uf origin main
-```
+### Product Backlog Management:
+The backlog should be clearly defined and prioritized. One of the most crucial aspects of 
+weekly issues is to keep them manageable in size and assign priorities. This is paramount for 
+agile team development. Poorly managed backlogs can lead to confusion and inefficiencies in 
+the development process. Agile development emphasizes rapid development in short cycles, 
+placing significant demands on time management, task prioritization, team collaboration, and 
+consensus building. 
 
-## Integrate with your tools
+In our team, we've faced challenges in this aspect, such as initially writing 
+issues that were too large in the first week, leading to extended development time spans. 
+Developers found it challenging to focus, and product owners struggled to review the code. 
+The direct consequence was that the quality of the developed product was often compromised 
+and didn't align well with the team's standards.  
 
-- [ ] [Set up project integrations](https://git.cardiff.ac.uk/c23091223/team-3-smart-towns/-/settings/integrations)
+### Stakeholder Engagement:
+Limited engagement can lead to a disconnect between what’s being developed and what’s 
+needed. For our team's development projects, we maintain a weekly meeting 
+frequency with stakeholders. During these weekly meetings, we showcase the current product 
+outcomes through a "show and tell" approach. We actively record feedback and opinions from 
+stakeholders (managed by the Scrum Master). Based on this input, we discuss and research 
+improvement plans during the sprint review of that week.
 
-## Collaborate with your team
+### Team Dynamics and Culture:
+For successful team development, team consensus and active participation are crucial. Poor 
+team dynamics can hamper productivity and morale. In agile development, there's a high 
+requirement for the engagement of each team member. The full participation of every 
+member is essential to unleash the team's creativity and potential. Maximizing team 
+engagement, however, is a complex task.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+For our team, we primarily enhance team engagement through the following aspects:
 
-## Test and Deploy
+- **Team Consensus:**
+Excellent team development relies on a solid team consensus, especially for programmers. 
+Large-scale project development places higher demands on team development guidelines. 
+With different backgrounds, experiences, and habits in language and framework usage, having 
+a strong consensus is crucial.
 
-Use the built-in continuous integration in GitLab.
+A good consensus helps smooth the team development process. It acts as a behavioral 
+guideline, providing all team members with guidance and constraints, preventing significant 
+divergences and conflicts among team members. This ensures that the produced code and 
+product align more closely with team and project requirements.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- **Team Cohesion:**
 
-***
+[xxx]()  
 
-# Editing this README
+As our team slogan goes, "Crazy Thursday, Happy Friday," we believe in finishing important 
+work early for better relaxation. Work-life balance is crucial for both the team and individuals. 
+Our team meetings often take place in a large learning space, where we can freely express 
+ideas, not just about projects and code but also about our interests and hobbies. We often 
+bring snacks and food to enjoy together. Additionally, when there are fewer tasks or course 
+assignments, we regularly organize team activities, such as going to karaoke together or short 
+trips.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **Team Communication:**
+We ensure effective team communication through various methods, such as holding regular 
+team meetings, exchanging opinions in the team chat, asking questions among team members, 
+and providing mutual guidance and corrections during pair programming.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- **Team Task Assignment:**
+We fairly distribute tasks to each team member weekly, ensuring both contribution 
+fairness and team engagement. This approach also serves as a constraint for developers, 
+preventing idleness and a lack of urgency. However, adjustments may be necessary based on 
+practical circumstances, such as helping certain members due to insufficient ability or a weak 
+foundation, in which case pair programming or a relative reduction in task volume might be 
+considered.
 
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
